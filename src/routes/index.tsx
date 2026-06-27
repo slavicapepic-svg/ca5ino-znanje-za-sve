@@ -208,7 +208,7 @@ function Header() {
       {mobileOpen && (
         <div className="border-t border-border bg-white lg:hidden">
           <div className="mx-auto max-w-7xl px-4 py-3">
-            {["O nama", "Reč stručnjaka", "Vesti i Mediji", "Kontakt"].map((l) => (
+            {["O nama", "Reč stručnjaka", "Vesti i Mediji", "Vaša pitanja", "Kontakt"].map((l) => (
               <a key={l} href="#" className="block rounded-lg px-3 py-2.5 text-sm font-medium text-text-body hover:bg-blue-50">
                 {l}
               </a>
