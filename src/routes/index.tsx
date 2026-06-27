@@ -61,44 +61,57 @@ function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
 }
 
 /* ============================= LOGO ============================= */
-function Logo({ light = false }: { light?: boolean }) {
-  // Tight wedge mark: yellow vertical bar + stacked "ca5ino / Zašto Zato"
-  // Right edge angled like the brand spec (clip-path wedge).
-  const wedge = "polygon(0 0, 100% 0, 88% 100%, 0 100%)";
+function Logo({ light = false, className = "h-12 w-auto" }: { light?: boolean; className?: string }) {
+  // Tight Wedge — concept 01 (light bg) / 02 (dark bg) from brand spec.
+  const bg = light ? "#3A4795" : "#ffffff";
+  const stroke = light ? "rgba(255,255,255,0.18)" : "#3A4795";
+  const primaryText = light ? "#ffffff" : "#3A4795";
+  const subText = light ? "rgba(255,255,255,0.55)" : "#5F6470";
   return (
     <a href="/" aria-label="ca5ino Zašto Zato" className="inline-flex items-center">
-      <div
-        className="relative flex items-center gap-2.5 px-3 py-1.5 pr-6"
-        style={{
-          clipPath: wedge,
-          background: light ? "transparent" : "transparent",
-        }}
+      <svg
+        viewBox="0 0 440 301"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+        role="img"
       >
-        <span
-          aria-hidden
-          className="block h-9 w-[3px] rounded-sm"
-          style={{ background: "var(--brand-accent)" }}
+        <path
+          d="M 0,0 L 440,0 L 209,267 Q 180,301 135,301 L 0,301 Z"
+          fill={bg}
+          stroke={stroke}
+          strokeWidth="11"
+          strokeLinejoin="miter"
         />
-        <div className="flex flex-col leading-[0.95]">
-          <span
-            className={`text-[18px] font-extrabold tracking-tight ${
-              light ? "text-white" : "text-[color:var(--brand-primary)]"
-            }`}
-          >
-            ca<span style={{ color: "var(--brand-accent)" }}>5</span>ino
-          </span>
-          <span
-            className={`text-[15px] font-extrabold tracking-tight ${
-              light ? "text-white/70" : "text-[color:var(--brand-neutral)]"
-            }`}
-          >
-            Zašto Zato
-          </span>
-        </div>
-      </div>
+        <rect x="16" y="40" width="7" height="222" rx="3.5" fill="#FFC53D" />
+        <text
+          x="42" y="105"
+          fontFamily="Rubik, Inter, sans-serif"
+          fontWeight={900} fontSize={90} letterSpacing="-3"
+          fill={primaryText}
+        >
+          ca<tspan fill="#FFC53D">5</tspan>ino
+        </text>
+        <text
+          x="42" y="178"
+          fontFamily="Rubik, Inter, sans-serif"
+          fontWeight={900} fontSize={70} letterSpacing="-2"
+          fill={subText}
+        >
+          Zašto
+        </text>
+        <text
+          x="42" y="246"
+          fontFamily="Rubik, Inter, sans-serif"
+          fontWeight={900} fontSize={70} letterSpacing="-2"
+          fill={subText}
+        >
+          Zato
+        </text>
+      </svg>
     </a>
   );
 }
+
 
 
 /* ============================= HEADER ============================= */
