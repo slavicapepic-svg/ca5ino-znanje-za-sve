@@ -563,7 +563,7 @@ function ContentCard({
 
 function LatestNews() {
   return (
-    <section id="vesti" className="relative py-16 md:py-20">
+    <section id="vesti" className="relative pt-10 pb-16 md:pt-12 md:pb-20">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
