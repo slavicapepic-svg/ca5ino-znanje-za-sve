@@ -220,12 +220,8 @@ function Header() {
 function Hero() {
   const [q, setQ] = useState("");
   return (
-    <section className="relative overflow-hidden">
-      <div className="blob left-[-120px] top-[-80px] h-[380px] w-[380px] bg-blue-200" />
-      <div className="blob right-[-140px] top-[40px] h-[420px] w-[420px]" style={{ background: "#FFE7A8" }} />
-      <div className="blob left-[30%] bottom-[-160px] h-[320px] w-[320px] bg-blue-50" />
-
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:px-6 lg:grid-cols-12 lg:py-24">
+    <section className="relative overflow-hidden bg-bg-soft">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:px-6 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-7">
           <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
             <Sparkles className="h-3.5 w-3.5" /> Edukativna platforma · ne kockarnica
@@ -271,18 +267,20 @@ function Hero() {
         </div>
 
         <div className="relative lg:col-span-5">
-          <div className="relative mx-auto aspect-square w-full max-w-md">
-            <div className="absolute inset-6 rounded-[40%_60%_55%_45%/55%_45%_60%_40%] bg-blue-50" />
-            <div className="absolute -right-2 top-6 h-20 w-20 rounded-full bg-accent/70 blur-[2px]" />
+          <div className="relative overflow-hidden rounded-3xl border border-border shadow-card">
             <img
               src={heroIllustration}
-              alt="Edukacija o online igrama"
-              width={896}
-              height={768}
-              className="relative h-full w-full object-contain"
+              alt="Edukacija o online igrama na sreću"
+              width={1024}
+              height={1024}
+              className="block aspect-square h-full w-full object-cover"
             />
+            <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-brand shadow-soft">
+              <ShieldCheck className="h-3.5 w-3.5" /> Bez reklama operatera
+            </span>
           </div>
         </div>
+
       </div>
     </section>
   );
