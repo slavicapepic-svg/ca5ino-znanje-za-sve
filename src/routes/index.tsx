@@ -1062,7 +1062,7 @@ function HomePage() {
         <TopicMarquee />
         <LatestNews />
         <LatestEducation />
-        <FAQ />
+        
         <Experts />
         <AskQuestion />
       </main>
