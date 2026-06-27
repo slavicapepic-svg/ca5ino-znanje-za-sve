@@ -47,6 +47,7 @@
   --color-text-body: var(--text-body);
   --color-text-muted: var(--text-muted);
   --color-bg-soft: var(--bg-soft);
+  --color-bg-cream: var(--bg-cream);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
@@ -81,6 +82,7 @@
 
   --bg: #FFFFFF;
   --bg-soft: #F6F7FB;
+  --bg-cream: #FFF7E0;
 
   --success: #2E9E5B;
   --warning: #E6A100;
