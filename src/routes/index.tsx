@@ -825,7 +825,7 @@ function ExpertCard({ e }: { e: Expert & { fullQuote: string } }) {
         <article className="flip-face flip-back flex h-full flex-col overflow-hidden border border-[color:var(--brand-primary-deep)] bg-[color:var(--brand-primary-deep)] p-6 text-white shadow-card">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <h3 className="text-lg font-bold">{e.name}</h3>
+              <h3 className="text-lg font-bold text-white">{e.name}</h3>
               <p className="mt-0.5 text-sm font-medium text-[color:var(--brand-accent)]">{e.role}</p>
               <p className="mt-0.5 text-xs text-white/60">{e.company}</p>
             </div>
