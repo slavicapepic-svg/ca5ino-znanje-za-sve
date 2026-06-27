@@ -175,9 +175,13 @@ function Header() {
           <a href="#vesti" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
             Vesti i Mediji
           </a>
+          <a href="#vasa-pitanja" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
+            Vaša pitanja
+          </a>
           <a href="#kontakt" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
             Kontakt
           </a>
+
         </nav>
 
         <div className="hidden items-center gap-1 md:flex">
