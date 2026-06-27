@@ -234,7 +234,7 @@ function Hero() {
   const [q, setQ] = useState("");
   return (
     <section className="relative overflow-hidden bg-bg-soft">
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:px-6 lg:grid-cols-12 lg:py-20">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pt-14 pb-8 md:px-6 lg:grid-cols-12 lg:pt-20 lg:pb-10">
         <div className="lg:col-span-7">
           <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
             <Sparkles className="h-3.5 w-3.5" /> Edukativna platforma · ne kockarnica
