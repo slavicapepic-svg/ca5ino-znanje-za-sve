@@ -536,7 +536,7 @@ function LatestEducation() {
   return (
     <section className="relative bg-bg-soft py-16 md:py-20">
       <div className="absolute inset-x-0 top-0 -z-0">
-        <div className="blob right-[5%] top-[10%] h-[300px] w-[300px] bg-blue-200" />
+        
       </div>
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
