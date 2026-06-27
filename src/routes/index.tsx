@@ -363,7 +363,7 @@ const quickLinks = [
 function QuickLinks() {
   return (
     <section className="relative pt-8 pb-10 md:pt-10 md:pb-12 bg-gradient-to-b from-bg-cream via-bg-cream to-white">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-px h-24 bg-gradient-to-b from-bg-soft to-transparent" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-px h-28 bg-gradient-to-b from-[#FFC53D]/35 via-[#FFC53D]/10 to-transparent" />
 
 
       <div className="mx-auto max-w-7xl px-4 md:px-6">
