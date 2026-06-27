@@ -391,8 +391,13 @@ function ContentCard({
   read: string;
   badge?: "video" | "article";
 }) {
+  const isVideo = badge === "video";
   return (
-    <a href="#" className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card">
+    <a
+      href="#"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card"
+      aria-label={isVideo ? `Pogledaj video: ${title}` : title}
+    >
       <div className="relative aspect-[16/10] overflow-hidden bg-blue-50">
         <img
           src={image}
@@ -400,15 +405,41 @@ function ContentCard({
           loading="lazy"
           className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
         />
+
+        {/* Category pill */}
         <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-brand shadow-soft">
           {category}
         </span>
-        {badge === "video" && (
-          <span className="absolute inset-0 grid place-items-center">
-            <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-brand shadow-card transition group-hover:bg-accent group-hover:text-accent-foreground">
-              <PlayCircle className="h-7 w-7" />
+
+        {isVideo && (
+          <>
+            {/* Dark cinematic gradient so video looks watchable */}
+            <span
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(15,20,55,0.10) 0%, rgba(15,20,55,0.45) 60%, rgba(15,20,55,0.75) 100%)",
+              }}
+            />
+            {/* VIDEO badge top-right */}
+            <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[color:var(--brand-accent)] px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[color:var(--brand-primary-deep)] shadow-cta">
+              <span className="grid h-3.5 w-3.5 place-items-center rounded-full bg-[color:var(--brand-primary-deep)] text-[color:var(--brand-accent)]">
+                <Play className="h-2 w-2 fill-current" />
+              </span>
+              Video
             </span>
-          </span>
+            {/* Duration bottom-right */}
+            <span className="absolute bottom-3 right-3 rounded-md bg-black/70 px-2 py-0.5 text-[11px] font-semibold text-white">
+              {read}:00
+            </span>
+            {/* Big play button */}
+            <span className="absolute inset-0 grid place-items-center">
+              <span className="grid h-20 w-20 place-items-center rounded-full bg-white/95 text-[color:var(--brand-primary)] shadow-card ring-4 ring-white/40 transition group-hover:scale-105 group-hover:bg-[color:var(--brand-accent)] group-hover:text-[color:var(--brand-primary-deep)]">
+                <Play className="ml-1 h-8 w-8 fill-current" />
+              </span>
+            </span>
+          </>
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
@@ -418,12 +449,16 @@ function ContentCard({
         <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-4 text-xs text-text-muted">
           <span className="inline-flex items-center gap-1.5"><UserIcon className="h-3.5 w-3.5" />{author}</span>
           <span className="inline-flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" />{date}</span>
-          <span className="inline-flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" />{read} min čitanja</span>
+          <span className="inline-flex items-center gap-1.5">
+            {isVideo ? <Play className="h-3.5 w-3.5" /> : <Clock className="h-3.5 w-3.5" />}
+            {read} min {isVideo ? "videa" : "čitanja"}
+          </span>
         </div>
       </div>
     </a>
   );
 }
+
 
 function LatestNews() {
   return (
