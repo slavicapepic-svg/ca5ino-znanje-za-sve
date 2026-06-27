@@ -64,11 +64,12 @@ function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 /* ============================= LOGO ============================= */
 function Logo({ light = false, className = "h-12 w-auto" }: { light?: boolean; className?: string }) {
-  // Tight Wedge — concept 01 (light bg) / 02 (dark bg) from brand spec.
-  const bg = light ? "#3A4795" : "#ffffff";
-  const stroke = light ? "rgba(255,255,255,0.18)" : "#3A4795";
-  const primaryText = light ? "#ffffff" : "#3A4795";
-  const subText = light ? "rgba(255,255,255,0.55)" : "#5F6470";
+  // Compact Triangle Mark v1.0 — wedge fully filled, text sits inside the wedge.
+  // light=false → Blue wedge on white bg (header). light=true → White wedge on dark/navy bg (footer).
+  const wedgeFill = light ? "#ffffff" : "#3A4795";
+  const accentBar = "#FFC53D";
+  const primaryText = light ? "#3A4795" : "#ffffff";
+  const subText = light ? "#5F6470" : "rgba(255,255,255,0.52)";
   return (
     <a href="/" aria-label="ca5ino Zašto Zato" className="inline-flex items-center">
       <svg
@@ -79,12 +80,9 @@ function Logo({ light = false, className = "h-12 w-auto" }: { light?: boolean; c
       >
         <path
           d="M 0,0 L 440,0 L 209,267 Q 180,301 135,301 L 0,301 Z"
-          fill={bg}
-          stroke={stroke}
-          strokeWidth="11"
-          strokeLinejoin="miter"
+          fill={wedgeFill}
         />
-        <rect x="16" y="40" width="7" height="222" rx="3.5" fill="#FFC53D" />
+        <rect x="16" y="38" width="7" height="222" rx="3.5" fill={accentBar} />
         <text
           x="42" y="105"
           fontFamily="Rubik, Inter, sans-serif"
@@ -94,17 +92,17 @@ function Logo({ light = false, className = "h-12 w-auto" }: { light?: boolean; c
           ca<tspan fill="#FFC53D">5</tspan>ino
         </text>
         <text
-          x="42" y="178"
+          x="42" y="182"
           fontFamily="Rubik, Inter, sans-serif"
-          fontWeight={900} fontSize={70} letterSpacing="-2"
+          fontWeight={900} fontSize={70} letterSpacing="1"
           fill={subText}
         >
           Zašto
         </text>
         <text
-          x="42" y="246"
+          x="42" y="255"
           fontFamily="Rubik, Inter, sans-serif"
-          fontWeight={900} fontSize={70} letterSpacing="-2"
+          fontWeight={900} fontSize={70} letterSpacing="-3"
           fill={subText}
         >
           Zato
@@ -113,6 +111,7 @@ function Logo({ light = false, className = "h-12 w-auto" }: { light?: boolean; c
     </a>
   );
 }
+
 
 
 
