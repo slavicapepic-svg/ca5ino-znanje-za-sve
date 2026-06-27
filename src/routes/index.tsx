@@ -755,7 +755,7 @@ const sampleQA = [
 function AskQuestion() {
   return (
     <section id="postavi" className="relative overflow-hidden py-16 md:py-24">
-      <div className="blob right-[-10%] top-[10%] h-[320px] w-[320px]" style={{ background: "#FFE7A8" }} />
+      
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid items-start gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
