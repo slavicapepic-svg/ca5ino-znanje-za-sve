@@ -368,7 +368,7 @@ function QuickLinks() {
               <ArrowRight className="h-3.5 w-3.5" /> Brzi linkovi
             </span>
             <h2 className="mt-3 text-3xl font-extrabold text-text-strong sm:text-4xl">
-              Krenite odavde
+              Edukacija
             </h2>
             <p className="mt-2 max-w-xl text-text-body">
               Najtraženije teme — objašnjene jednostavno, bez sitnih slova.
@@ -573,7 +573,7 @@ function LatestNews() {
               <Calendar className="h-3.5 w-3.5" /> Najnovije vesti
             </span>
             <h2 className="mt-3 text-3xl font-extrabold text-text-strong sm:text-4xl">
-              Šta se trenutno dešava
+              Aktuelne teme
             </h2>
           </div>
           <a href="#" className="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline">
