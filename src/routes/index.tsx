@@ -279,20 +279,66 @@ function Hero() {
           </div>
         </div>
 
-        <div className="relative lg:col-span-5">
-          <div className="relative overflow-hidden rounded-3xl border border-border shadow-card">
-            <img
-              src={heroIllustration}
-              alt="Edukacija o online igrama na sreću"
-              width={1024}
-              height={1024}
-              className="block aspect-square h-full w-full object-cover"
+        <div className="relative mt-4 lg:col-span-5 lg:mt-0">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] sm:max-w-[480px] lg:max-w-none">
+            {/* Yellow accent block behind */}
+            <div
+              aria-hidden
+              className="absolute -right-3 -top-3 h-[55%] w-[55%] rounded-[28px] bg-accent sm:-right-5 sm:-top-5"
             />
-            <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-brand shadow-soft">
-              <ShieldCheck className="h-3.5 w-3.5" /> Bez reklama operatera
-            </span>
+            {/* Navy dotted accent behind, bottom-left */}
+            <div
+              aria-hidden
+              className="absolute -bottom-4 -left-4 h-24 w-24 rounded-2xl border-2 border-brand/15 sm:h-32 sm:w-32"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle, var(--brand-primary) 1.2px, transparent 1.5px)",
+                backgroundSize: "12px 12px",
+                opacity: 0.35,
+              }}
+            />
+            {/* Main image — slight tilt, layered on top */}
+            <div className="absolute inset-0 overflow-hidden rounded-[28px] border border-border bg-white shadow-card rotate-[-2deg] lg:rotate-[-3deg] transition-transform duration-500 hover:rotate-0">
+              <img
+                src={heroIllustration}
+                alt="Edukacija o online igrama na sreću"
+                width={1024}
+                height={1280}
+                className="block h-full w-full object-cover"
+              />
+              {/* Soft bottom gradient for badge legibility */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/40 to-transparent"
+              />
+              <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-brand shadow-soft backdrop-blur">
+                <ShieldCheck className="h-3.5 w-3.5" /> Bez reklama operatera
+              </span>
+            </div>
+
+            {/* Floating stat card — top-left, peeking off the image */}
+            <div className="absolute -left-3 top-6 hidden rounded-2xl border border-border bg-white p-3 pr-4 shadow-card sm:flex sm:items-center sm:gap-3 lg:-left-6">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-brand">
+                <Sparkles className="h-5 w-5" />
+              </span>
+              <div className="leading-tight">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-text-muted">
+                  Bonus uslovi
+                </div>
+                <div className="text-sm font-bold text-text-strong">
+                  Objašnjeno na 1 minut
+                </div>
+              </div>
+            </div>
+
+            {/* Floating chip — bottom-right */}
+            <div className="absolute -bottom-3 right-2 hidden items-center gap-2 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-semibold text-text-strong shadow-card sm:inline-flex lg:right-6">
+              <span className="h-2 w-2 rounded-full bg-success" />
+              Verifikovano od stručnjaka
+            </div>
           </div>
         </div>
+
 
       </div>
     </section>
