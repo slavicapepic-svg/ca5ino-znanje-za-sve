@@ -347,11 +347,12 @@ function Hero() {
 
 /* ============================= QUICK LINKS ============================= */
 const quickLinks = [
+  { label: "Registracija & Verifikacija", desc: "Kako se otvara nalog i zašto se traži lična karta.", icon: ShieldCheck },
   { label: "Bonus uslovi", desc: "Šta zaista znači „uslov klađenja x40“?", icon: Sparkles },
+  { label: "Uplate & Isplate", desc: "Metode plaćanja, provizije i rokovi isplate.", icon: Wallet },
+  { label: "Sve o igricama", desc: "RTP, volatilnost i kako slotovi zaista rade.", icon: Dice5 },
   { label: "Svet & regulative", desc: "Kako se zakoni razlikuju od zemlje do zemlje.", icon: Gavel },
   { label: "Odgovorna igra i alati", desc: "Limit, pauza, samoisključenje — kako rade.", icon: HeartHandshake },
-  { label: "Reč stručnjaka", desc: "Pravnici, psiholozi i analitičari o industriji.", icon: UserIcon },
-  { label: "Postavi pitanje", desc: "Pošaljite pitanje — odgovaramo javno.", icon: MessageCircleQuestion },
 ];
 
 function QuickLinks() {
