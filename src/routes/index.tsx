@@ -397,6 +397,48 @@ function QuickLinks() {
   );
 }
 
+/* ============================= TOPIC MARQUEE (separator) ============================= */
+const marqueeTopics = [
+  "Uslov klađenja x40",
+  "RTP 96.5%",
+  "KYC verifikacija",
+  "Samoisključenje",
+  "Volatilnost slotova",
+  "Licence EU",
+  "Brza isplata",
+  "Provizije na uplatu",
+  "Bonus bez depozita",
+  "Limit dnevne potrošnje",
+  "Sportske kvote",
+  "Live dealer",
+];
+
+function TopicMarquee() {
+  const loop = [...marqueeTopics, ...marqueeTopics];
+  return (
+    <div
+      aria-hidden="true"
+      className="marquee-mask relative overflow-hidden border-y border-border bg-[color:var(--brand-primary-deep)] py-4"
+    >
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[color:var(--brand-primary-deep)] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[color:var(--brand-primary-deep)] to-transparent" />
+      <div className="marquee-track gap-3">
+        {loop.map((t, i) => (
+          <span
+            key={`${t}-${i}`}
+            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-white"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-accent)]" />
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
 /* ============================= NEWS ============================= */
 const news = [
   {
