@@ -62,26 +62,44 @@ function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 /* ============================= LOGO ============================= */
 function Logo({ light = false }: { light?: boolean }) {
+  // Tight wedge mark: yellow vertical bar + stacked "ca5ino / Zašto Zato"
+  // Right edge angled like the brand spec (clip-path wedge).
+  const wedge = "polygon(0 0, 100% 0, 88% 100%, 0 100%)";
   return (
-    <a href="/" className="group inline-flex items-center gap-2">
+    <a href="/" aria-label="ca5ino Zašto Zato" className="inline-flex items-center">
       <div
-        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl font-extrabold ${
-          light ? "bg-white/10 text-white" : "bg-blue-50 text-brand"
-        }`}
+        className="relative flex items-center gap-2.5 px-3 py-1.5 pr-6"
+        style={{
+          clipPath: wedge,
+          background: light ? "transparent" : "transparent",
+        }}
       >
-        ZZ
+        <span
+          aria-hidden
+          className="block h-9 w-[3px] rounded-sm"
+          style={{ background: "var(--brand-accent)" }}
+        />
+        <div className="flex flex-col leading-[0.95]">
+          <span
+            className={`text-[18px] font-extrabold tracking-tight ${
+              light ? "text-white" : "text-[color:var(--brand-primary)]"
+            }`}
+          >
+            ca<span style={{ color: "var(--brand-accent)" }}>5</span>ino
+          </span>
+          <span
+            className={`text-[15px] font-extrabold tracking-tight ${
+              light ? "text-white/70" : "text-[color:var(--brand-neutral)]"
+            }`}
+          >
+            Zašto Zato
+          </span>
+        </div>
       </div>
-      <span
-        className={`text-lg font-extrabold tracking-tight ${
-          light ? "text-white" : "text-text-strong"
-        }`}
-      >
-        ca<span className="logo-five">5</span>ino{" "}
-        <span className={light ? "text-white/80" : "text-brand"}>Zašto Zato</span>
-      </span>
     </a>
   );
 }
+
 
 /* ============================= HEADER ============================= */
 const eduItems = [
