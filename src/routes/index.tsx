@@ -357,7 +357,8 @@ const quickLinks = [
 
 function QuickLinks() {
   return (
-    <section className="relative bg-bg-soft py-16 md:py-20">
+    <section className="relative bg-bg-soft pt-16 pb-10 md:pt-20 md:pb-12">
+
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
