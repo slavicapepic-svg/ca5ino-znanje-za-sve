@@ -24,6 +24,8 @@ import {
   Menu,
   X,
   PlayCircle,
+  RotateCw,
+  Quote,
 } from "lucide-react";
 import heroIllustration from "@/assets/hero-illustration.png";
 import newsBonus from "@/assets/news-bonus.jpg";
