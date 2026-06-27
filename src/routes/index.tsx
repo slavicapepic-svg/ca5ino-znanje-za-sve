@@ -13,7 +13,7 @@ import {
   User as UserIcon,
   Plus,
   Minus,
-  PlayCircle,
+  Play,
   ShieldCheck,
   Wallet,
   Dice5,
@@ -21,6 +21,9 @@ import {
   HeartHandshake,
   MessageCircleQuestion,
   Sparkles,
+  Menu,
+  X,
+  PlayCircle,
 } from "lucide-react";
 import heroIllustration from "@/assets/hero-illustration.png";
 import newsBonus from "@/assets/news-bonus.jpg";
@@ -29,6 +32,10 @@ import newsSlots from "@/assets/news-slots.jpg";
 import newsPayments from "@/assets/news-payments.jpg";
 import eduResponsible from "@/assets/edu-responsible.jpg";
 import eduRtp from "@/assets/edu-rtp.jpg";
+import expert1 from "@/assets/expert-1.jpg";
+import expert2 from "@/assets/expert-2.jpg";
+import expert3 from "@/assets/expert-3.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,26 +62,44 @@ function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 /* ============================= LOGO ============================= */
 function Logo({ light = false }: { light?: boolean }) {
+  // Tight wedge mark: yellow vertical bar + stacked "ca5ino / Zašto Zato"
+  // Right edge angled like the brand spec (clip-path wedge).
+  const wedge = "polygon(0 0, 100% 0, 88% 100%, 0 100%)";
   return (
-    <a href="/" className="group inline-flex items-center gap-2">
+    <a href="/" aria-label="ca5ino Zašto Zato" className="inline-flex items-center">
       <div
-        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl font-extrabold ${
-          light ? "bg-white/10 text-white" : "bg-blue-50 text-brand"
-        }`}
+        className="relative flex items-center gap-2.5 px-3 py-1.5 pr-6"
+        style={{
+          clipPath: wedge,
+          background: light ? "transparent" : "transparent",
+        }}
       >
-        ZZ
+        <span
+          aria-hidden
+          className="block h-9 w-[3px] rounded-sm"
+          style={{ background: "var(--brand-accent)" }}
+        />
+        <div className="flex flex-col leading-[0.95]">
+          <span
+            className={`text-[18px] font-extrabold tracking-tight ${
+              light ? "text-white" : "text-[color:var(--brand-primary)]"
+            }`}
+          >
+            ca<span style={{ color: "var(--brand-accent)" }}>5</span>ino
+          </span>
+          <span
+            className={`text-[15px] font-extrabold tracking-tight ${
+              light ? "text-white/70" : "text-[color:var(--brand-neutral)]"
+            }`}
+          >
+            Zašto Zato
+          </span>
+        </div>
       </div>
-      <span
-        className={`text-lg font-extrabold tracking-tight ${
-          light ? "text-white" : "text-text-strong"
-        }`}
-      >
-        ca<span className="logo-five">5</span>ino{" "}
-        <span className={light ? "text-white/80" : "text-brand"}>Zašto Zato</span>
-      </span>
     </a>
   );
 }
+
 
 /* ============================= HEADER ============================= */
 const eduItems = [
@@ -158,7 +183,7 @@ function Header() {
           aria-label="Meni"
           onClick={() => setMobileOpen((v) => !v)}
         >
-          {mobileOpen ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
@@ -195,12 +220,8 @@ function Header() {
 function Hero() {
   const [q, setQ] = useState("");
   return (
-    <section className="relative overflow-hidden">
-      <div className="blob left-[-120px] top-[-80px] h-[380px] w-[380px] bg-blue-200" />
-      <div className="blob right-[-140px] top-[40px] h-[420px] w-[420px]" style={{ background: "#FFE7A8" }} />
-      <div className="blob left-[30%] bottom-[-160px] h-[320px] w-[320px] bg-blue-50" />
-
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:px-6 lg:grid-cols-12 lg:py-24">
+    <section className="relative overflow-hidden bg-bg-soft">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:px-6 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-7">
           <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
             <Sparkles className="h-3.5 w-3.5" /> Edukativna platforma · ne kockarnica
@@ -246,18 +267,20 @@ function Hero() {
         </div>
 
         <div className="relative lg:col-span-5">
-          <div className="relative mx-auto aspect-square w-full max-w-md">
-            <div className="absolute inset-6 rounded-[40%_60%_55%_45%/55%_45%_60%_40%] bg-blue-50" />
-            <div className="absolute -right-2 top-6 h-20 w-20 rounded-full bg-accent/70 blur-[2px]" />
+          <div className="relative overflow-hidden rounded-3xl border border-border shadow-card">
             <img
               src={heroIllustration}
-              alt="Edukacija o online igrama"
-              width={896}
-              height={768}
-              className="relative h-full w-full object-contain"
+              alt="Edukacija o online igrama na sreću"
+              width={1024}
+              height={1024}
+              className="block aspect-square h-full w-full object-cover"
             />
+            <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-brand shadow-soft">
+              <ShieldCheck className="h-3.5 w-3.5" /> Bez reklama operatera
+            </span>
           </div>
         </div>
+
       </div>
     </section>
   );
@@ -366,8 +389,13 @@ function ContentCard({
   read: string;
   badge?: "video" | "article";
 }) {
+  const isVideo = badge === "video";
   return (
-    <a href="#" className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card">
+    <a
+      href="#"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card"
+      aria-label={isVideo ? `Pogledaj video: ${title}` : title}
+    >
       <div className="relative aspect-[16/10] overflow-hidden bg-blue-50">
         <img
           src={image}
@@ -375,15 +403,41 @@ function ContentCard({
           loading="lazy"
           className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
         />
+
+        {/* Category pill */}
         <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-brand shadow-soft">
           {category}
         </span>
-        {badge === "video" && (
-          <span className="absolute inset-0 grid place-items-center">
-            <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-brand shadow-card transition group-hover:bg-accent group-hover:text-accent-foreground">
-              <PlayCircle className="h-7 w-7" />
+
+        {isVideo && (
+          <>
+            {/* Dark cinematic gradient so video looks watchable */}
+            <span
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(15,20,55,0.10) 0%, rgba(15,20,55,0.45) 60%, rgba(15,20,55,0.75) 100%)",
+              }}
+            />
+            {/* VIDEO badge top-right */}
+            <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[color:var(--brand-accent)] px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[color:var(--brand-primary-deep)] shadow-cta">
+              <span className="grid h-3.5 w-3.5 place-items-center rounded-full bg-[color:var(--brand-primary-deep)] text-[color:var(--brand-accent)]">
+                <Play className="h-2 w-2 fill-current" />
+              </span>
+              Video
             </span>
-          </span>
+            {/* Duration bottom-right */}
+            <span className="absolute bottom-3 right-3 rounded-md bg-black/70 px-2 py-0.5 text-[11px] font-semibold text-white">
+              {read}:00
+            </span>
+            {/* Big play button */}
+            <span className="absolute inset-0 grid place-items-center">
+              <span className="grid h-20 w-20 place-items-center rounded-full bg-white/95 text-[color:var(--brand-primary)] shadow-card ring-4 ring-white/40 transition group-hover:scale-105 group-hover:bg-[color:var(--brand-accent)] group-hover:text-[color:var(--brand-primary-deep)]">
+                <Play className="ml-1 h-8 w-8 fill-current" />
+              </span>
+            </span>
+          </>
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
@@ -393,12 +447,16 @@ function ContentCard({
         <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-4 text-xs text-text-muted">
           <span className="inline-flex items-center gap-1.5"><UserIcon className="h-3.5 w-3.5" />{author}</span>
           <span className="inline-flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" />{date}</span>
-          <span className="inline-flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" />{read} min čitanja</span>
+          <span className="inline-flex items-center gap-1.5">
+            {isVideo ? <Play className="h-3.5 w-3.5" /> : <Clock className="h-3.5 w-3.5" />}
+            {read} min {isVideo ? "videa" : "čitanja"}
+          </span>
         </div>
       </div>
     </a>
   );
 }
+
 
 function LatestNews() {
   return (
@@ -478,7 +536,7 @@ function LatestEducation() {
   return (
     <section className="relative bg-bg-soft py-16 md:py-20">
       <div className="absolute inset-x-0 top-0 -z-0">
-        <div className="blob right-[5%] top-[10%] h-[300px] w-[300px] bg-blue-200" />
+        
       </div>
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
@@ -580,116 +638,77 @@ function FAQ() {
   );
 }
 
-/* ============================= EXPERTS (flip cards) ============================= */
+/* ============================= EXPERTS ============================= */
 type Expert = {
-  initials: string;
+  photo: string;
   name: string;
   role: string;
   company: string;
   quote: string;
-  color: string;
 };
 
 const experts: Expert[] = [
   {
-    initials: "MP",
+    photo: expert1,
     name: "Dr Marko Petrović",
     role: "Pravnik, specijalista za regulativu",
     company: "Univerzitet u Beogradu",
     quote:
       "Najveći broj sporova nastaje zato što igrači ne pročitaju uslove bonusa. Dva minuta čitanja danas štedi nedelje frustracije sutra.",
-    color: "#3A4795",
   },
   {
-    initials: "JK",
+    photo: expert2,
     name: "Jelena Kostić",
     role: "Klinička psihološkinja",
     company: "Centar za mentalno zdravlje",
     quote:
       "Igre na sreću dizajnirane su da održe pažnju. Postavljanje limita nije znak slabosti — to je znak da razumete kako mehanizam funkcioniše.",
-    color: "#FFC53D",
   },
   {
-    initials: "SI",
+    photo: expert3,
     name: "Stefan Ilić",
     role: "Analitičar iGaming industrije",
     company: "iGaming Insight",
     quote:
       "RTP, volatilnost i hit-frequency — tri broja koja vam govore više o slotu nego ijedan rivju. Naučite ih i nikad više nećete birati naslepo.",
-    color: "#2E3A82",
   },
 ];
 
 function ExpertCard({ e }: { e: Expert }) {
-  const [flipped, setFlipped] = useState(false);
   return (
-    <div
-      className="flip-card h-[360px]"
-      onClick={() => setFlipped((v) => !v)}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-    >
-      <div className={`flip-inner ${flipped ? "is-flipped" : ""}`}>
-        {/* Front */}
-        <div className="flip-face overflow-hidden border border-border bg-white shadow-card">
-          <div
-            className="h-24 w-full"
-            style={{
-              background:
-                "linear-gradient(135deg, var(--blue-600), var(--blue-700))",
-            }}
-          />
-          <div className="-mt-12 flex flex-col items-center px-6 pb-6 text-center">
-            <div
-              className="grid h-24 w-24 place-items-center rounded-full border-4 border-white text-2xl font-extrabold text-white shadow-card"
-              style={{ background: e.color, color: e.color === "#FFC53D" ? "#1F2A6B" : "#fff" }}
-            >
-              {e.initials}
-            </div>
-            <h3 className="mt-4 text-lg font-bold text-text-strong">{e.name}</h3>
-            <p className="mt-1 text-sm font-medium text-brand">{e.role}</p>
-            <p className="mt-1 text-xs text-text-muted">{e.company}</p>
-
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              onClick={(ev) => ev.stopPropagation()}
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-brand hover:bg-blue-50"
-            >
-              <Linkedin className="h-3.5 w-3.5" /> LinkedIn
-            </a>
-            <p className="mt-4 text-[11px] uppercase tracking-wider text-text-muted">
-              Kliknite za savet →
-            </p>
-          </div>
-        </div>
-
-        {/* Back */}
-        <div
-          className="flip-face flip-back flex flex-col justify-between p-6 text-white shadow-card"
-          style={{ background: "linear-gradient(160deg, var(--blue-700), var(--blue-900))" }}
-        >
-          <div>
-            <span className="text-5xl leading-none text-accent">“</span>
-            <p className="mt-2 text-[15px] leading-relaxed">{e.quote}</p>
-          </div>
-          <div className="mt-4 flex items-center justify-between border-t border-white/15 pt-4">
-            <div>
-              <p className="text-sm font-bold">{e.name}</p>
-              <p className="text-xs text-white/70">{e.company}</p>
-            </div>
-            <Linkedin className="h-5 w-5 text-accent" />
-          </div>
-        </div>
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:shadow-card">
+      <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
+        <img
+          src={e.photo}
+          alt={e.name}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
       </div>
-    </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-lg font-bold text-text-strong">{e.name}</h3>
+        <p className="mt-1 text-sm font-medium text-brand">{e.role}</p>
+        <p className="mt-0.5 text-xs text-text-muted">{e.company}</p>
+
+        <blockquote className="mt-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-text-body">
+          „{e.quote}”
+        </blockquote>
+
+        <a
+          href="#"
+          aria-label={`LinkedIn profil — ${e.name}`}
+          className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-brand hover:bg-blue-50"
+        >
+          <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+        </a>
+      </div>
+    </article>
   );
 }
 
 function Experts() {
   return (
     <section id="rec-strucnjaka" className="relative overflow-hidden bg-bg-soft py-16 md:py-20">
-      <div className="blob left-[-10%] top-[20%] h-[280px] w-[280px] bg-blue-200" />
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-10 max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
@@ -699,8 +718,7 @@ function Experts() {
             Ljudi koji znaju kako industrija zaista funkcioniše
           </h2>
           <p className="mt-2 text-text-body">
-            Pravnici, psiholozi i analitičari dele konkretne savete. Pređite mišem
-            preko kartice (ili je dodirnite) da vidite njihov savet.
+            Pravnici, psiholozi i analitičari dele konkretne savete iz svoje prakse.
           </p>
         </div>
 
@@ -713,6 +731,7 @@ function Experts() {
     </section>
   );
 }
+
 
 /* ============================= POSTAVI PITANJE ============================= */
 const sampleQA = [
@@ -736,7 +755,7 @@ const sampleQA = [
 function AskQuestion() {
   return (
     <section id="postavi" className="relative overflow-hidden py-16 md:py-24">
-      <div className="blob right-[-10%] top-[10%] h-[320px] w-[320px]" style={{ background: "#FFE7A8" }} />
+      
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid items-start gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
