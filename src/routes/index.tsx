@@ -183,7 +183,7 @@ function Header() {
           aria-label="Meni"
           onClick={() => setMobileOpen((v) => !v)}
         >
-          {mobileOpen ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
