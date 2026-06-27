@@ -359,7 +359,8 @@ const quickLinks = [
 
 function QuickLinks() {
   return (
-    <section className="relative bg-white pt-8 pb-10 md:pt-10 md:pb-12 border-t border-border/60">
+    <section className="relative pt-8 pb-10 md:pt-10 md:pb-12 bg-gradient-to-b from-bg-soft via-white to-white">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-px h-24 bg-gradient-to-b from-bg-soft to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
