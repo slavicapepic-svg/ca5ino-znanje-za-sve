@@ -77,19 +77,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ca5ino Zašto Zato — Edukacija o online igrama na sreću" },
+      {
+        name: "description",
+        content:
+          "Edukativna platforma o mehanizmima iGaming industrije: bonusi, regulative, uplate, igre i odgovorna igra — objašnjeno jednostavno.",
+      },
+      { name: "author", content: "ca5ino Zašto Zato" },
+      { property: "og:title", content: "ca5ino Zašto Zato — Iza kulisa igre" },
+      {
+        property: "og:description",
+        content:
+          "Razumite kako bonusi, pravila i regulative zaista funkcionišu. Edukacija, a ne kockanje.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
       },
     ],
   }),
