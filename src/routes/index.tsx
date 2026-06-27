@@ -640,116 +640,77 @@ function FAQ() {
   );
 }
 
-/* ============================= EXPERTS (flip cards) ============================= */
+/* ============================= EXPERTS ============================= */
 type Expert = {
-  initials: string;
+  photo: string;
   name: string;
   role: string;
   company: string;
   quote: string;
-  color: string;
 };
 
 const experts: Expert[] = [
   {
-    initials: "MP",
+    photo: expert1,
     name: "Dr Marko Petrović",
     role: "Pravnik, specijalista za regulativu",
     company: "Univerzitet u Beogradu",
     quote:
       "Najveći broj sporova nastaje zato što igrači ne pročitaju uslove bonusa. Dva minuta čitanja danas štedi nedelje frustracije sutra.",
-    color: "#3A4795",
   },
   {
-    initials: "JK",
+    photo: expert2,
     name: "Jelena Kostić",
     role: "Klinička psihološkinja",
     company: "Centar za mentalno zdravlje",
     quote:
       "Igre na sreću dizajnirane su da održe pažnju. Postavljanje limita nije znak slabosti — to je znak da razumete kako mehanizam funkcioniše.",
-    color: "#FFC53D",
   },
   {
-    initials: "SI",
+    photo: expert3,
     name: "Stefan Ilić",
     role: "Analitičar iGaming industrije",
     company: "iGaming Insight",
     quote:
       "RTP, volatilnost i hit-frequency — tri broja koja vam govore više o slotu nego ijedan rivju. Naučite ih i nikad više nećete birati naslepo.",
-    color: "#2E3A82",
   },
 ];
 
 function ExpertCard({ e }: { e: Expert }) {
-  const [flipped, setFlipped] = useState(false);
   return (
-    <div
-      className="flip-card h-[360px]"
-      onClick={() => setFlipped((v) => !v)}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-    >
-      <div className={`flip-inner ${flipped ? "is-flipped" : ""}`}>
-        {/* Front */}
-        <div className="flip-face overflow-hidden border border-border bg-white shadow-card">
-          <div
-            className="h-24 w-full"
-            style={{
-              background:
-                "linear-gradient(135deg, var(--blue-600), var(--blue-700))",
-            }}
-          />
-          <div className="-mt-12 flex flex-col items-center px-6 pb-6 text-center">
-            <div
-              className="grid h-24 w-24 place-items-center rounded-full border-4 border-white text-2xl font-extrabold text-white shadow-card"
-              style={{ background: e.color, color: e.color === "#FFC53D" ? "#1F2A6B" : "#fff" }}
-            >
-              {e.initials}
-            </div>
-            <h3 className="mt-4 text-lg font-bold text-text-strong">{e.name}</h3>
-            <p className="mt-1 text-sm font-medium text-brand">{e.role}</p>
-            <p className="mt-1 text-xs text-text-muted">{e.company}</p>
-
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              onClick={(ev) => ev.stopPropagation()}
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-brand hover:bg-blue-50"
-            >
-              <Linkedin className="h-3.5 w-3.5" /> LinkedIn
-            </a>
-            <p className="mt-4 text-[11px] uppercase tracking-wider text-text-muted">
-              Kliknite za savet →
-            </p>
-          </div>
-        </div>
-
-        {/* Back */}
-        <div
-          className="flip-face flip-back flex flex-col justify-between p-6 text-white shadow-card"
-          style={{ background: "linear-gradient(160deg, var(--blue-700), var(--blue-900))" }}
-        >
-          <div>
-            <span className="text-5xl leading-none text-accent">“</span>
-            <p className="mt-2 text-[15px] leading-relaxed">{e.quote}</p>
-          </div>
-          <div className="mt-4 flex items-center justify-between border-t border-white/15 pt-4">
-            <div>
-              <p className="text-sm font-bold">{e.name}</p>
-              <p className="text-xs text-white/70">{e.company}</p>
-            </div>
-            <Linkedin className="h-5 w-5 text-accent" />
-          </div>
-        </div>
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:shadow-card">
+      <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
+        <img
+          src={e.photo}
+          alt={e.name}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
       </div>
-    </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-lg font-bold text-text-strong">{e.name}</h3>
+        <p className="mt-1 text-sm font-medium text-brand">{e.role}</p>
+        <p className="mt-0.5 text-xs text-text-muted">{e.company}</p>
+
+        <blockquote className="mt-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-text-body">
+          „{e.quote}”
+        </blockquote>
+
+        <a
+          href="#"
+          aria-label={`LinkedIn profil — ${e.name}`}
+          className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-brand hover:bg-blue-50"
+        >
+          <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+        </a>
+      </div>
+    </article>
   );
 }
 
 function Experts() {
   return (
     <section id="rec-strucnjaka" className="relative overflow-hidden bg-bg-soft py-16 md:py-20">
-      <div className="blob left-[-10%] top-[20%] h-[280px] w-[280px] bg-blue-200" />
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-10 max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
@@ -759,8 +720,7 @@ function Experts() {
             Ljudi koji znaju kako industrija zaista funkcioniše
           </h2>
           <p className="mt-2 text-text-body">
-            Pravnici, psiholozi i analitičari dele konkretne savete. Pređite mišem
-            preko kartice (ili je dodirnite) da vidite njihov savet.
+            Pravnici, psiholozi i analitičari dele konkretne savete iz svoje prakse.
           </p>
         </div>
 
@@ -773,6 +733,7 @@ function Experts() {
     </section>
   );
 }
+
 
 /* ============================= POSTAVI PITANJE ============================= */
 const sampleQA = [
