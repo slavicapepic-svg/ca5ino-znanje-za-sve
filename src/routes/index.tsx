@@ -1013,6 +1013,7 @@ function HomePage() {
       <main>
         <Hero />
         <QuickLinks />
+        <TopicMarquee />
         <LatestNews />
         <LatestEducation />
         <FAQ />
