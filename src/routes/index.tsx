@@ -177,7 +177,7 @@ const quickLinkMeta: Record<string, { icon: typeof ShieldCheck; desc: string }> 
 
 function QuickLinks() {
   return (
-    <section className="relative pt-8 pb-10 md:pt-10 md:pb-12 bg-gradient-to-b from-bg-cream via-bg-cream to-white">
+    <section id="edukacija" className="relative scroll-mt-24 pt-8 pb-10 md:pt-10 md:pb-12 bg-gradient-to-b from-bg-cream via-bg-cream to-white">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-px h-28 bg-gradient-to-b from-[#FFC53D]/35 via-[#FFC53D]/10 to-transparent" />
 
 
