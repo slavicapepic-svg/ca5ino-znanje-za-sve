@@ -589,8 +589,8 @@ function Experts() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {experts.map((e) => (
-            <ExpertCard key={e.name} e={e} />
+          {featuredExperts.map((e) => (
+            <ExpertCard key={e.id} variant="teaser" expert={e} />
           ))}
         </div>
       </div>
