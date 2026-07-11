@@ -137,7 +137,7 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="flex w-full flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        className="flex w-full flex-1 flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
       >
         <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
           <img
