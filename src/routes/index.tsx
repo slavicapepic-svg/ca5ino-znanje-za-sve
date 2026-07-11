@@ -22,6 +22,7 @@ import {
 import heroIllustration from "@/assets/hero-illustration.png";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { FollowUs } from "@/components/site/FollowUs";
 import { ExpertCard } from "@/components/site/ExpertCard";
 import { featuredExperts } from "@/content/experts";
 import { categories } from "@/content/categories";
@@ -587,6 +588,7 @@ function HomePage() {
         <Experts />
         <AskQuestion />
       </main>
+      <FollowUs />
       <Footer />
     </div>
   );
