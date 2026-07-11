@@ -32,33 +32,7 @@ function RecStrucnjakaPage() {
       <section className="mx-auto max-w-7xl px-4 pb-20 md:px-6">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {allQuestions.map(({ expert, question }) => (
-            <Link
-              key={question.slug}
-              to="/rec-strucnjaka/$slug"
-              params={{ slug: question.slug }}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
-                <img src={expert.photo} alt={expert.name} loading="lazy" className="h-full w-full object-cover" />
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <p className="text-sm font-bold text-text-strong">{expert.name}</p>
-                <p className="text-xs text-brand">{expert.title}</p>
-                <a
-                  href={expert.linkedin}
-                  onClick={(e) => e.stopPropagation()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-1 inline-flex w-fit items-center gap-1 text-[11px] font-semibold text-text-muted hover:text-brand"
-                >
-                  <Linkedin className="h-3 w-3" /> LinkedIn
-                </a>
-                <h3 className="mt-4 text-base font-bold leading-snug text-text-strong group-hover:text-brand">
-                  „{question.question}”
-                </h3>
-                <p className="mt-auto pt-4 text-xs text-text-muted">{question.date}</p>
-              </div>
-            </Link>
+            <ExpertCard key={question.slug} expert={expert} question={question} />
           ))}
         </div>
       </section>
