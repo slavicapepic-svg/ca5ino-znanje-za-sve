@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
-  ChevronDown, Youtube, Instagram, ShieldCheck, Sparkles, Wallet, Dice5, Gavel,
+  ChevronDown, Youtube, Instagram, Linkedin, ShieldCheck, Sparkles, Wallet, Dice5, Gavel,
   HeartHandshake, Menu, X,
 } from "lucide-react";
 import { Logo } from "./Logo";
 import { TikTokIcon } from "./icons";
+import { activeSocials } from "@/content/socials";
 
 export const eduItems = [
   { label: "Registracija & Verifikacija", to: "/registracija-verifikacija", icon: ShieldCheck },
@@ -17,11 +18,19 @@ export const eduItems = [
 ] as const;
 
 const topNav = [
-  { label: "O nama", to: "/o-nama" },
-  { label: "Reč stručnjaka", to: "/rec-strucnjaka" },
-  { label: "Vesti i Mediji", to: "/vesti-mediji" },
-  { label: "Vaša pitanja", to: "/postavi-pitanje" },
-] as const;
+  { label: "O nama", to: "/o-nama" as const },
+  { label: "Reč stručnjaka", to: "/rec-strucnjaka" as const },
+  { label: "Vesti i Mediji", to: "/vesti-mediji" as const },
+  { label: "Vaša pitanja", to: "/postavi-pitanje" as const },
+  { label: "Pomoć", to: "/pomoc" as const },
+];
+
+const socialIcon = {
+  youtube: Youtube,
+  instagram: Instagram,
+  tiktok: TikTokIcon,
+  linkedin: Linkedin,
+} as const;
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -62,14 +71,21 @@ export function Header() {
           <Link to="/rec-strucnjaka" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">Reč stručnjaka</Link>
           <Link to="/vesti-mediji" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">Vesti i Mediji</Link>
           <Link to="/postavi-pitanje" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">Vaša pitanja</Link>
-          <a href="#kontakt" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">Kontakt</a>
+          <Link to="/pomoc" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">Pomoć</Link>
         </nav>
 
-        <div className="hidden items-center gap-1 md:flex">
-          <a aria-label="YouTube" href="#" className="grid h-9 w-9 place-items-center rounded-full text-text-muted hover:bg-blue-50 hover:text-brand"><Youtube className="h-4 w-4" /></a>
-          <a aria-label="Instagram" href="#" className="grid h-9 w-9 place-items-center rounded-full text-text-muted hover:bg-blue-50 hover:text-brand"><Instagram className="h-4 w-4" /></a>
-          <a aria-label="TikTok" href="#" className="grid h-9 w-9 place-items-center rounded-full text-text-muted hover:bg-blue-50 hover:text-brand"><TikTokIcon /></a>
-        </div>
+        {activeSocials.length > 0 && (
+          <div className="hidden items-center gap-1 md:flex">
+            {activeSocials.map((s) => {
+              const Icon = socialIcon[s.key];
+              return (
+                <a key={s.key} aria-label={s.label} href={s.url} target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full text-text-muted hover:bg-blue-50 hover:text-brand">
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
+          </div>
+        )}
 
         <button className="grid h-10 w-10 place-items-center rounded-lg border border-border lg:hidden" aria-label="Meni" onClick={() => setMobileOpen((v) => !v)}>
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -84,7 +100,6 @@ export function Header() {
                 {l.label}
               </Link>
             ))}
-            <a href="#kontakt" className="block rounded-lg px-3 py-2.5 text-sm font-medium text-text-body hover:bg-blue-50">Kontakt</a>
             <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Edukacija</p>
             {eduItems.map((it) => (
               <Link key={it.label} to={it.to} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-text-body hover:bg-blue-50">
@@ -92,11 +107,18 @@ export function Header() {
                 {it.label}
               </Link>
             ))}
-            <div className="mt-3 flex items-center gap-2 px-3">
-              <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-brand"><Youtube className="h-4 w-4" /></a>
-              <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-brand"><Instagram className="h-4 w-4" /></a>
-              <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-brand"><TikTokIcon /></a>
-            </div>
+            {activeSocials.length > 0 && (
+              <div className="mt-3 flex items-center gap-2 px-3">
+                {activeSocials.map((s) => {
+                  const Icon = socialIcon[s.key];
+                  return (
+                    <a key={s.key} aria-label={s.label} href={s.url} target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-brand">
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       )}
