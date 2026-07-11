@@ -102,19 +102,27 @@ export const categories: Category[] = [
     title: "Anatomija bonusa: Šta vam zapravo nude?",
     eyebrow: "Edukacija · Bonusi",
     intro:
-      "Bonus je virtuelni novac koji vam kladionica ili online kazino daju kao dodatak na vašu uplatu ili kao nagradu za aktivnost. Primarni cilj tog dodatnog novca jeste da vas uvede u sistem i pretvori u aktivnog korisnika.",
+      "Bonus je virtuelni novac koji vam kladionica ili online kazino daju kao dodatak na vašu uplatu, ili kao nagradu za aktivnost na sajtu. Uplatite 2.000 dinara, kazino vam doda još 2.000 — u rukama imate duplo više sredstava. Ovaj visoko optimizovan alat za akviziciju igrača mi u industriji zovemo konverzija: primarni cilj tog novca je da vas uvede u sistem i pretvori u aktivnog korisnika. Veliki brojevi i obećanje dodatnog novca služe da premoste vašu prirodnu barijeru prema trošenju.",
     infoBlocks: [
       {
-        title: "Glavni tipovi bonusa",
-        body: "Welcome / First Deposit, Reload, Cashback, Free Spins, Free Bet — svaki ima različitu logiku i različite uslove za isplatu.",
+        title: "Glavni tipovi bonusa u industriji",
+        body:
+          "Bonus dobrodošlice (First Deposit) — jednokratni bonus na prvu uplatu, obično najveći procentualno, ali i sa najstrožim uslovima proigravanja.\n\nReload bonus — bonus na svaku sledeću uplatu, manji od prvog, služi za zadržavanje aktivnog igrača.\n\nCashback — povraćaj dela izgubljenog novca (najčešće 5–20%) posle definisanog perioda; deluje kao „mreža za pad“ i podstiče duže sesije.\n\nFree Spins — besplatni spinovi na tačno određenim slotovima; dobitak se skoro uvek uplaćuje kao bonus (ne kao keš) i podleže wageringu.\n\nGratis opklade (Free Bet) — besplatna opklada u kladionici; ako prođe, isplaćuje se čist dobitak bez uloga.",
       },
       {
         title: "Bonus je dug, a ne poklon",
-        body: "Iza svakog bonusa stoji: minimalna uplata, uslov klađenja (wagering), vremensko ograničenje, maksimalna isplata, dozvoljene i zabranjene igre.",
+        body:
+          "Bonus je virtualni dug definisan pravilima operatera. Iza svakog velikog broja stoje prednost kuće (House Edge) i zakon velikih brojeva — što više igrate, statistika radi protiv vas.\n\nSvaki bonus dolazi sa: minimalnom uplatom, uslovom proigravanja (wagering), vremenskim ograničenjem, ograničenjem maksimalne isplate i listom dozvoljenih/zabranjenih igara.\n\n„Zaključan novac“: dok ne ispunite wagering, ne možete podići ni bonus ni dobitke iz njega. Primer: bonus od 2.000 din sa wageringom 35x znači da morate proigrati 70.000 din prometa pre nego što bilo šta postane vaše. Uz to postoje skriveni limiti — maksimalna opklada dok je bonus aktivan, maksimalna isplata iz bonusa, igre koje ne broje 100% ka wageringu.",
       },
       {
         title: "Bonus je udica za vaš mozak",
-        body: "Strah od gubitka, Sunk Cost efekat i navika — bonusi koriste iste psihološke mehanizme koji pokreću zavisnost od igara.",
+        body:
+          "Bonus isključuje strah od gubitka — nije „vaš novac“, pa vam se čini da nemate šta da izgubite. Zapravo trošite vreme, pažnju i sve buduće uplate koje ćete napraviti nakon što uđete u sistem.\n\nSunk Cost Fallacy (pritisak uloženog truda) — kad ste već proigrali 30.000 od 70.000 wageringa, teško je odustati, jer se čini da bacate ono što ste do sada uradili. Kazino računa upravo na to.\n\nKreiranje navike — cashback, dnevni free spinovi i „misije“ pretvaraju povremeno igranje u dnevni ritual. Kad ritual postoji, akvizicija je gotova.",
+      },
+      {
+        title: "Odakle nam znanje",
+        body:
+          "Dolazimo iz iGaming industrije i tvrdnje potkrepljujemo izvorima. Za dublje čitanje o gejmifikaciji i mehanizmima retencije:\n\n• Intervju sa Matthiasom Ciapparom o gejmifikaciji — https://gamblingindustryjobs.com/career-conversations/matthias-ciappara-building-engagement-through-gamification/\n\n• Optimove iGaming Pulse — https://www.optimove.com/solutions/igaming/promotions",
       },
     ],
     articles: [
