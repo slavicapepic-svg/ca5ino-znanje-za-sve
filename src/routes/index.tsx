@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Search,
-  ChevronDown,
   Youtube,
   Instagram,
   Linkedin,
@@ -21,8 +20,6 @@ import {
   HeartHandshake,
   MessageCircleQuestion,
   Sparkles,
-  Menu,
-  X,
   PlayCircle,
   RotateCw,
   Quote,
@@ -37,6 +34,9 @@ import eduRtp from "@/assets/edu-rtp.jpg";
 import expert1 from "@/assets/expert-1.jpg";
 import expert2 from "@/assets/expert-2.jpg";
 import expert3 from "@/assets/expert-3.jpg";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+
 
 
 export const Route = createFileRoute("/")({
@@ -53,186 +53,6 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-/* ----------------------------- TikTok icon ----------------------------- */
-function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M19.6 6.7a5.6 5.6 0 0 1-3.3-1.1 5.5 5.5 0 0 1-2.1-3.4h-3.3v12.4a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V8.6a6 6 0 1 0 5.3 6V9.3a8.8 8.8 0 0 0 5.3 1.7V7.6c-.1 0-.1 0 0-.9z" />
-    </svg>
-  );
-}
-
-/* ============================= LOGO ============================= */
-function Logo({ light = false, className = "h-12 w-auto" }: { light?: boolean; className?: string }) {
-  // Compact Triangle Mark v1.0 — wedge fully filled, text sits inside the wedge.
-  // light=false → Blue wedge on white bg (header). light=true → White wedge on dark/navy bg (footer).
-  const wedgeFill = light ? "#ffffff" : "#3A4795";
-  const accentBar = "#FFC53D";
-  const primaryText = light ? "#3A4795" : "#ffffff";
-  const subText = light ? "#5F6470" : "rgba(255,255,255,0.52)";
-  return (
-    <a href="/" aria-label="ca5ino Zašto Zato" className="inline-flex items-center">
-      <svg
-        viewBox="0 0 440 301"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        role="img"
-      >
-        <path
-          d="M 0,0 L 440,0 L 209,267 Q 180,301 135,301 L 0,301 Z"
-          fill={wedgeFill}
-        />
-        <rect x="16" y="38" width="7" height="222" rx="3.5" fill={accentBar} />
-        <text
-          x="42" y="105"
-          fontFamily="Rubik, Inter, sans-serif"
-          fontWeight={900} fontSize={90} letterSpacing="-3"
-          fill={primaryText}
-        >
-          ca<tspan fill="#FFC53D">5</tspan>ino
-        </text>
-        <text
-          x="42" y="182"
-          fontFamily="Rubik, Inter, sans-serif"
-          fontWeight={900} fontSize={70} letterSpacing="1"
-          fill={subText}
-        >
-          Zašto
-        </text>
-        <text
-          x="42" y="255"
-          fontFamily="Rubik, Inter, sans-serif"
-          fontWeight={900} fontSize={70} letterSpacing="-3"
-          fill={subText}
-        >
-          Zato
-        </text>
-      </svg>
-    </a>
-  );
-}
-
-
-
-
-/* ============================= HEADER ============================= */
-const eduItems = [
-  { label: "Registracija & Verifikacija", icon: ShieldCheck },
-  { label: "Bonus uslovi", icon: Sparkles },
-  { label: "Uplate & Isplate", icon: Wallet },
-  { label: "Sve o igricama", icon: Dice5 },
-  { label: "Svet & regulative", icon: Gavel },
-  { label: "Odgovorna igra i alati", icon: HeartHandshake },
-];
-
-function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [eduOpen, setEduOpen] = useState(false);
-
-  return (
-    <header className="sticky top-0 z-50 border-b border-border bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-        <Logo />
-
-        <nav className="hidden items-center gap-1 lg:flex">
-          <a href="#o-nama" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
-            O nama
-          </a>
-
-          <div
-            className="relative"
-            onMouseEnter={() => setEduOpen(true)}
-            onMouseLeave={() => setEduOpen(false)}
-          >
-            <button className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
-              Edukacija <ChevronDown className="h-4 w-4" />
-            </button>
-            {eduOpen && (
-              <div className="absolute left-0 top-full w-[420px] pt-2">
-                <div className="rounded-2xl border border-border bg-white p-3 shadow-card">
-                  <div className="grid grid-cols-1 gap-1">
-                    {eduItems.map((it) => (
-                      <a
-                        key={it.label}
-                        href="#"
-                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-text-body hover:bg-blue-50"
-                      >
-                        <span className="grid h-9 w-9 place-items-center rounded-lg bg-blue-50 text-brand">
-                          <it.icon className="h-4 w-4" />
-                        </span>
-                        <span className="font-medium text-text-strong">{it.label}</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <a href="#rec-strucnjaka" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
-            Reč stručnjaka
-          </a>
-          <a href="#vesti" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
-            Vesti i Mediji
-          </a>
-          <a href="#vasa-pitanja" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
-            Vaša pitanja
-          </a>
-          <a href="#kontakt" className="rounded-lg px-3 py-2 text-sm font-medium text-text-body hover:bg-blue-50 hover:text-brand">
-            Kontakt
-          </a>
-
-        </nav>
-
-        <div className="hidden items-center gap-1 md:flex">
-          <a aria-label="YouTube" href="#" className="grid h-9 w-9 place-items-center rounded-full text-text-muted hover:bg-blue-50 hover:text-brand">
-            <Youtube className="h-4 w-4" />
-          </a>
-          <a aria-label="Instagram" href="#" className="grid h-9 w-9 place-items-center rounded-full text-text-muted hover:bg-blue-50 hover:text-brand">
-            <Instagram className="h-4 w-4" />
-          </a>
-          <a aria-label="TikTok" href="#" className="grid h-9 w-9 place-items-center rounded-full text-text-muted hover:bg-blue-50 hover:text-brand">
-            <TikTokIcon />
-          </a>
-        </div>
-
-        <button
-          className="grid h-10 w-10 place-items-center rounded-lg border border-border lg:hidden"
-          aria-label="Meni"
-          onClick={() => setMobileOpen((v) => !v)}
-        >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
-
-      {mobileOpen && (
-        <div className="border-t border-border bg-white lg:hidden">
-          <div className="mx-auto max-w-7xl px-4 py-3">
-            {["O nama", "Reč stručnjaka", "Vesti i Mediji", "Vaša pitanja", "Kontakt"].map((l) => (
-              <a key={l} href="#" className="block rounded-lg px-3 py-2.5 text-sm font-medium text-text-body hover:bg-blue-50">
-                {l}
-              </a>
-            ))}
-            <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
-              Edukacija
-            </p>
-            {eduItems.map((it) => (
-              <a key={it.label} href="#" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-text-body hover:bg-blue-50">
-                <it.icon className="h-4 w-4 text-brand" />
-                {it.label}
-              </a>
-            ))}
-            <div className="mt-3 flex items-center gap-2 px-3">
-              <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-brand"><Youtube className="h-4 w-4" /></a>
-              <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-brand"><Instagram className="h-4 w-4" /></a>
-              <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-brand"><TikTokIcon /></a>
-            </div>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
 
 /* ============================= HERO ============================= */
 function Hero() {
@@ -966,93 +786,6 @@ function AskQuestion() {
   );
 }
 
-/* ============================= FOOTER ============================= */
-const footerCols = [
-  {
-    title: "Edukacija",
-    links: ["Bonus uslovi", "Sve o igricama", "Uplate & Isplate", "Svet & regulative", "Reč stručnjaka", "Odgovorna igra"],
-  },
-  {
-    title: "Informacije",
-    links: ["Novosti & Media", "O nama", "Kontakt", "Pitanja & Saveti"],
-  },
-];
-
-function Footer() {
-  return (
-    <footer id="kontakt" className="bg-[color:var(--brand-primary-deep)] text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4">
-        <div>
-          <Logo light />
-          <p className="mt-4 max-w-xs text-sm text-white/70">
-            Edukativna platforma o mehanizmima iGaming industrije i odgovornoj igri.
-          </p>
-          <div className="mt-5 flex items-center gap-2">
-            {[Youtube, Instagram].map((Icon, i) => (
-              <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground">
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground">
-              <TikTokIcon />
-            </a>
-            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground">
-              <Linkedin className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-
-        {footerCols.map((col) => (
-          <div key={col.title}>
-            <p className="text-sm font-bold uppercase tracking-wider text-white">{col.title}</p>
-            <ul className="mt-5 space-y-3">
-              {col.links.map((l) => (
-                <li key={l}>
-                  <a href="#" className="text-sm text-white/75 transition hover:text-accent">
-                    {l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        <div>
-          <p className="text-sm font-bold uppercase tracking-wider text-white">Linkovi za pomoć</p>
-          <ul className="mt-5 space-y-3 text-sm text-white/75">
-            <li><a href="#" className="hover:text-accent">Institucije i SOS linije</a></li>
-            <li><a href="#" className="hover:text-accent">Klubovi za zavisnike</a></li>
-            <li><a href="#" className="hover:text-accent">Onlajn savetovanje</a></li>
-          </ul>
-          <div className="mt-6 rounded-xl border border-white/15 bg-white/5 p-4 text-xs text-white/80">
-            Imate problem sa kontrolom igranja? Pozovite besplatan broj{" "}
-            <span className="font-bold text-accent">0800 000 000</span> — 24/7.
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 text-xs text-white/70 md:flex-row md:items-center md:justify-between md:px-6">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <a href="#" className="hover:text-accent">Uslovi korišćenja</a>
-            <a href="#" className="hover:text-accent">Politika privatnosti</a>
-            <a href="#" className="hover:text-accent">Politika kolačića</a>
-            <a href="#" className="hover:text-accent">Disclaimer</a>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-extrabold text-accent-foreground">
-              18+ 🔞
-            </span>
-            <span>Igre na sreću mogu izazvati zavisnost. Igrajte odgovorno.</span>
-          </div>
-        </div>
-        <div className="mx-auto max-w-7xl px-4 pb-8 text-xs text-white/50 md:px-6">
-          © 2026 ca<span className="logo-five">5</span>ino Zašto Zato. Sva prava zadržana.
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 /* ============================= PAGE ============================= */
 function HomePage() {
