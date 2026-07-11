@@ -9,7 +9,7 @@ import { Link } from "@tanstack/react-router";
  *
  * `light` boolean prop preserved as a shortcut for existing call sites.
  */
-type LogoVariant = "blue" | "light";
+type LogoVariant = "blue" | "light" | "white";
 
 const PALETTE: Record<LogoVariant, {
   wedgeFill: string;
@@ -36,6 +36,15 @@ const PALETTE: Record<LogoVariant, {
     fiveStrokeFill: "#1C2040",
     fiveStroke: "#ffffff",
     subText: "rgba(255,255,255,0.55)",
+  },
+  // 01 — Primary Lockup · White / Light
+  white: {
+    wedgeFill: "#ffffff",
+    wedgeStroke: "#3A4795",
+    primaryText: "#3A4795",
+    fiveStrokeFill: "#ffffff",
+    fiveStroke: "#3A4795",
+    subText: "#5F6470",
   },
 };
 
