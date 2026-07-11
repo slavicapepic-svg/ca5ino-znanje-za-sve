@@ -75,7 +75,7 @@ export function Header() {
         </nav>
 
         {activeSocials.length > 0 && (
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="ml-auto flex items-center gap-0.5 sm:gap-1 lg:ml-0">
             {activeSocials.map((s) => {
               const Icon = socialIcon[s.key];
               return (
