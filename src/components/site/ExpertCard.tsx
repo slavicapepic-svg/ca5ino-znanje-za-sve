@@ -165,29 +165,23 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-white/5 p-5 sm:flex-row sm:items-center">
-              <img
-                src={expert.photo}
-                alt={expert.name}
-                className="h-16 w-16 rounded-full object-cover ring-2 ring-[color:var(--brand-accent)]/60"
-              />
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-bold text-white">{expert.name}</p>
-                <p className="text-xs text-[color:var(--brand-accent)]">{expert.title}</p>
-                <p className="mt-2 text-xs leading-relaxed text-white/80 sm:text-sm">
-                  {expert.bio}
-                </p>
-                {expert.linkedin && expert.linkedin !== "#" && (
-                  <a
-                    href={expert.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
-                  >
-                    <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
-                  </a>
-                )}
-              </div>
+            <div className="mt-8 rounded-2xl bg-white/5 p-5 sm:p-6">
+              <p className="mb-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[color:var(--brand-accent)]">
+                O stručnjaku
+              </p>
+              <p className="text-xs leading-relaxed text-white/85 sm:text-sm">
+                {expert.bio}
+              </p>
+              {expert.linkedin && expert.linkedin !== "#" && (
+                <a
+                  href={expert.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
+                >
+                  <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+                </a>
+              )}
             </div>
           </div>
         </div>
