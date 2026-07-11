@@ -28,8 +28,8 @@ function RouteComponent() {
           „{question.question}”
         </h1>
         <p className="mt-4 text-xs text-text-muted">{question.date}</p>
-        <div className="mt-8 text-base leading-relaxed text-text-body">
-          <p>{question.answer}</p>
+        <div className="mt-8 space-y-4 text-base leading-relaxed text-text-body">
+          {question.answer.split("\n\n").map((p, i) => <p key={i}>{p}</p>)}
         </div>
 
         <div className="mt-12 flex flex-col gap-4 rounded-2xl border border-border bg-bg-soft p-6 sm:flex-row sm:items-center">
