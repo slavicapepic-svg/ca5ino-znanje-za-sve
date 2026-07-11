@@ -31,12 +31,24 @@ export function CategoryPage({ slug }: { slug: string }) {
       <PageHeader eyebrow={cat.eyebrow} title={cat.title} intro={cat.intro} />
 
       {cat.infoBlocks && cat.infoBlocks.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 pb-10 md:px-6">
-          <div className="grid gap-4 md:grid-cols-3">
+        <section className="mx-auto max-w-3xl px-4 pb-12 md:px-6">
+          <div className="space-y-10">
             {cat.infoBlocks.map((b) => (
-              <div key={b.title} className="rounded-2xl border border-border bg-bg-cream p-6 shadow-soft">
-                <h3 className="text-base font-bold text-text-strong">{b.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-text-body">{b.body}</p>
+              <div key={b.title}>
+                <h2 className="text-2xl font-extrabold text-text-strong sm:text-3xl">{b.title}</h2>
+                <div className="mt-4 space-y-4 text-base leading-relaxed text-text-body">
+                  {b.body.split("\n\n").map((p, i) => (
+                    <p key={i}>
+                      {p.split(/(https?:\/\/[^\s]+)/g).map((chunk, j) =>
+                        /^https?:\/\//.test(chunk) ? (
+                          <a key={j} href={chunk} target="_blank" rel="noopener noreferrer" className="text-brand hover:underline break-all">{chunk}</a>
+                        ) : (
+                          <span key={j}>{chunk}</span>
+                        ),
+                      )}
+                    </p>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
