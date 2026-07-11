@@ -95,40 +95,32 @@ export function CategoryPage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* Info blocks -> callouts */}
+      {/* Info blocks -> compact grid of cards */}
       {cat.infoBlocks && cat.infoBlocks.length > 0 && (
         <section className="border-y border-border bg-bg-soft py-14">
-          <div className="mx-auto max-w-4xl px-4 md:px-6">
-            <div className="space-y-6">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
               {cat.infoBlocks.map((b, i) => (
-                <div key={b.title} className="rounded-2xl border border-border bg-white p-6 shadow-soft md:p-8">
-                  <div className="flex items-start gap-4">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-blue-50 text-brand font-bold">
+                <article
+                  key={b.title}
+                  className="flex flex-col rounded-2xl border border-border bg-white p-5 shadow-soft transition hover:shadow-card"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-blue-50 text-sm font-bold text-brand">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <div className="min-w-0">
-                      <h2 className="text-xl font-extrabold text-text-strong sm:text-2xl">{b.title}</h2>
-                      <div className="mt-3 space-y-4 text-base leading-relaxed text-text-body">
-                        {b.body.split("\n\n").map((p, j) => (
-                          <p key={j}>
-                            {p.split(/(https?:\/\/[^\s]+)/g).map((chunk, k) =>
-                              /^https?:\/\//.test(chunk) ? (
-                                <a key={k} href={chunk} target="_blank" rel="noopener noreferrer" className="text-brand hover:underline break-all">{chunk}</a>
-                              ) : (
-                                <span key={k}>{chunk}</span>
-                              ),
-                            )}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
+                    <h2 className="text-base font-extrabold leading-snug text-text-strong sm:text-lg">{b.title}</h2>
                   </div>
-                </div>
+                  <div className="mt-4 space-y-3 text-sm leading-relaxed text-text-body">
+                    {formatInfoBody(b.body)}
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
       )}
+
 
       {/* Ungrouped articles */}
       {ungrouped.length > 0 && (
@@ -459,7 +451,61 @@ export function ArticlePage({ categorySlug, articleSlug }: { categorySlug: strin
   );
 }
 
+/* --- Info body formatter: turns "Term — definition" lines into bold-term list,
+ *     leaves regular paragraphs, keeps bullet lines starting with "•", auto-links URLs. --- */
+function formatInfoBody(body: string) {
+  const paragraphs = body.split("\n\n").map((s) => s.trim()).filter(Boolean);
+
+  const renderInline = (text: string) =>
+    text.split(/(https?:\/\/[^\s]+)/g).map((chunk, k) =>
+      /^https?:\/\//.test(chunk) ? (
+        <a key={k} href={chunk} target="_blank" rel="noopener noreferrer" className="text-brand hover:underline break-all">{chunk}</a>
+      ) : (
+        <span key={k}>{chunk}</span>
+      ),
+    );
+
+  // Group consecutive "Term — def" or "• …" paragraphs into a single list
+  const nodes: React.ReactNode[] = [];
+  let listBuffer: { term?: string; rest: string }[] = [];
+  const flush = () => {
+    if (!listBuffer.length) return;
+    nodes.push(
+      <ul key={`ul-${nodes.length}`} className="space-y-2">
+        {listBuffer.map((it, k) => (
+          <li key={k} className="flex gap-2">
+            <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--brand-accent)]" />
+            <span>
+              {it.term && <strong className="font-semibold text-text-strong">{it.term}</strong>}
+              {it.term ? " — " : ""}
+              {renderInline(it.rest)}
+            </span>
+          </li>
+        ))}
+      </ul>,
+    );
+    listBuffer = [];
+  };
+
+  for (const p of paragraphs) {
+    const bullet = p.replace(/^•\s*/, "");
+    const isBullet = bullet !== p;
+    const dashMatch = p.match(/^([^—\n]{2,60})\s+—\s+(.+)$/s);
+    if (dashMatch) {
+      listBuffer.push({ term: dashMatch[1].trim(), rest: dashMatch[2].trim() });
+    } else if (isBullet) {
+      listBuffer.push({ rest: bullet });
+    } else {
+      flush();
+      nodes.push(<p key={`p-${nodes.length}`}>{renderInline(p)}</p>);
+    }
+  }
+  flush();
+  return nodes;
+}
+
 /* --- Article helpers --- */
+
 function Callout({ tone = "info", title, children }: { tone?: "info" | "note"; title: string; children: React.ReactNode }) {
   return (
     <div className={`mt-8 flex gap-4 rounded-2xl border-l-4 p-5 ${tone === "info" ? "border-accent bg-bg-cream" : "border-brand bg-blue-50"}`}>
