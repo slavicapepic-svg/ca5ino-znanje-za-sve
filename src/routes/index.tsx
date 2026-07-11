@@ -162,14 +162,18 @@ function Hero() {
 }
 
 /* ============================= QUICK LINKS ============================= */
-const quickLinks = [
-  { label: "Registracija & Verifikacija", desc: "Kako se otvara nalog i zašto se traži lična karta.", icon: ShieldCheck },
-  { label: "Bonus uslovi", desc: "Šta zaista znači „uslov klađenja x40“?", icon: Sparkles },
-  { label: "Uplate & Isplate", desc: "Metode plaćanja, provizije i rokovi isplate.", icon: Wallet },
-  { label: "Sve o igricama", desc: "RTP, volatilnost i kako slotovi zaista rade.", icon: Dice5 },
-  { label: "Svet & regulative", desc: "Kako se zakoni razlikuju od zemlje do zemlje.", icon: Gavel },
-  { label: "Odgovorna igra i alati", desc: "Limit, pauza, samoisključenje — kako rade.", icon: HeartHandshake },
-];
+/**
+ * Brzi linkovi = pravi kategorijski unosi iz src/content/categories.ts.
+ * Ikonice i kratak opis mapirani po slug-u; klik vodi na tačnu kategoriju.
+ */
+const quickLinkMeta: Record<string, { icon: typeof ShieldCheck; desc: string }> = {
+  "registracija-verifikacija": { icon: ShieldCheck, desc: "Kako se otvara nalog i zašto se traži lična karta." },
+  "bonus-uslovi": { icon: Sparkles, desc: "Šta zaista znači „uslov klađenja x40“?" },
+  "uplate-isplate": { icon: Wallet, desc: "Metode plaćanja, provizije i rokovi isplate." },
+  "sve-o-igricama": { icon: Dice5, desc: "RTP, volatilnost i kako slotovi zaista rade." },
+  "svet-regulative": { icon: Gavel, desc: "Kako se zakoni razlikuju od zemlje do zemlje." },
+  "odgovorna-igra": { icon: HeartHandshake, desc: "Limit, pauza, samoisključenje — kako rade." },
+};
 
 function QuickLinks() {
   return (
@@ -193,22 +197,27 @@ function QuickLinks() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {quickLinks.map((q) => (
-            <a
-              key={q.label}
-              href="#"
-              className="group flex flex-col rounded-2xl border border-border bg-white p-5 shadow-soft transition hover:-translate-y-1 hover:shadow-card"
-            >
-              <span className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-brand transition group-hover:bg-accent group-hover:text-accent-foreground">
-                <q.icon className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-bold text-text-strong">{q.label}</h3>
-              <p className="mt-1 text-sm text-text-muted">{q.desc}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">
-                Saznaj više <ArrowUpRight className="h-4 w-4" />
-              </span>
-            </a>
-          ))}
+          {categories.map((cat) => {
+            const meta = quickLinkMeta[cat.slug];
+            if (!meta) return null;
+            const Icon = meta.icon;
+            return (
+              <Link
+                key={cat.slug}
+                to={cat.path as never}
+                className="group flex flex-col rounded-2xl border border-border bg-white p-5 shadow-soft transition hover:-translate-y-1 hover:shadow-card"
+              >
+                <span className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-brand transition group-hover:bg-accent group-hover:text-accent-foreground">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h3 className="text-base font-bold text-text-strong">{cat.title}</h3>
+                <p className="mt-1 text-sm text-text-muted">{meta.desc}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+                  Saznaj više <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
