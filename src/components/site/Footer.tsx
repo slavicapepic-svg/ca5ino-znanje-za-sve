@@ -2,6 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { Youtube, Instagram, Linkedin } from "lucide-react";
 import { Logo } from "./Logo";
 import { TikTokIcon } from "./icons";
+import { activeSocials } from "@/content/socials";
+
+const socialIcon = { youtube: Youtube, instagram: Instagram, tiktok: TikTokIcon, linkedin: Linkedin } as const;
+
 
 const footerCols = [
   {
@@ -42,16 +46,20 @@ export function Footer() {
           <p className="mt-4 max-w-xs text-sm text-white/70">
             Edukativna platforma o mehanizmima iGaming industrije i odgovornoj igri.
           </p>
-          <div className="mt-5 flex items-center gap-2">
-            {[Youtube, Instagram].map((Icon, i) => (
-              <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground">
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground"><TikTokIcon /></a>
-            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground"><Linkedin className="h-4 w-4" /></a>
-          </div>
+          {activeSocials.length > 0 && (
+            <div className="mt-5 flex items-center gap-2">
+              {activeSocials.map((s) => {
+                const Icon = socialIcon[s.key];
+                return (
+                  <a key={s.key} aria-label={s.label} href={s.url} target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground">
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
+            </div>
+          )}
         </div>
+
 
         {footerCols.map((col) => (
           <div key={col.title}>
