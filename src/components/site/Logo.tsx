@@ -1,18 +1,55 @@
 import { Link } from "@tanstack/react-router";
 
 /**
- * ca5ino Zašto Zato — brand mark v2
- * Wedge shape with rounded bottom-left corner and stroke outline.
- * `light={true}` → variant intended for dark surfaces (e.g. footer).
- * `light={false}` (default) → variant intended for light surfaces (e.g. header).
+ * ca5ino Zašto Zato — brand mark v2 (from /mnt/user-uploads/ca5ino-logo_v2_1.html)
+ *
+ * Variants (mirror the brand identity sheet):
+ * - "blue"  → Primary Lockup · Brand Blue  (used in the site header on light surfaces)
+ * - "light" → Primary Lockup · Dark / Night (used in the footer on dark surfaces)
+ *
+ * `light` boolean prop preserved as a shortcut for existing call sites.
  */
-export function Logo({ light = false, className = "h-12 w-auto" }: { light?: boolean; className?: string }) {
-  const wedgeFill = light ? "#1C2040" : "#ffffff";
-  const wedgeStroke = light ? "rgba(255,255,255,0.16)" : "#3A4795";
-  const primaryText = light ? "#ffffff" : "#3A4795";
-  const fiveStrokeFill = light ? "#1C2040" : "#ffffff";
-  const fiveStroke = light ? "#ffffff" : "#3A4795";
-  const subText = light ? "rgba(255,255,255,0.55)" : "#5F6470";
+type LogoVariant = "blue" | "light";
+
+const PALETTE: Record<LogoVariant, {
+  wedgeFill: string;
+  wedgeStroke: string;
+  primaryText: string;
+  fiveStrokeFill: string;
+  fiveStroke: string;
+  subText: string;
+}> = {
+  // 03 — Primary Lockup · Brand Blue
+  blue: {
+    wedgeFill: "#3A4795",
+    wedgeStroke: "rgba(255,255,255,0.18)",
+    primaryText: "#ffffff",
+    fiveStrokeFill: "#3A4795",
+    fiveStroke: "#ffffff",
+    subText: "rgba(255,255,255,0.6)",
+  },
+  // 02 — Primary Lockup · Dark / Night
+  light: {
+    wedgeFill: "#1C2040",
+    wedgeStroke: "rgba(255,255,255,0.13)",
+    primaryText: "#ffffff",
+    fiveStrokeFill: "#1C2040",
+    fiveStroke: "#ffffff",
+    subText: "rgba(255,255,255,0.55)",
+  },
+};
+
+export function Logo({
+  variant,
+  light = false,
+  className = "h-12 w-auto",
+}: {
+  variant?: LogoVariant;
+  light?: boolean;
+  className?: string;
+}) {
+  const chosen: LogoVariant = variant ?? (light ? "light" : "blue");
+  const c = PALETTE[chosen];
 
   return (
     <Link to="/" aria-label="ca5ino Zašto Zato" className="inline-flex items-center">
@@ -24,8 +61,8 @@ export function Logo({ light = false, className = "h-12 w-auto" }: { light?: boo
       >
         <path
           d="M 0,0 L 440,0 L 210,298 A 56,56 0 0,0 163,340 L 0,340 Z"
-          fill={wedgeFill}
-          stroke={wedgeStroke}
+          fill={c.wedgeFill}
+          stroke={c.wedgeStroke}
           strokeWidth={11}
           strokeLinejoin="miter"
         />
@@ -36,10 +73,10 @@ export function Logo({ light = false, className = "h-12 w-auto" }: { light?: boo
           fontWeight={900}
           fontSize={90}
           letterSpacing="-5"
-          fill={primaryText}
+          fill={c.primaryText}
         >
           ca
-          <tspan fill={fiveStrokeFill} stroke={fiveStroke} strokeWidth={2.5} paintOrder="stroke">
+          <tspan fill={c.fiveStrokeFill} stroke={c.fiveStroke} strokeWidth={2.5} paintOrder="stroke">
             5
           </tspan>
           ino
@@ -51,7 +88,7 @@ export function Logo({ light = false, className = "h-12 w-auto" }: { light?: boo
           fontWeight={900}
           fontSize={70}
           letterSpacing="-4"
-          fill={subText}
+          fill={c.subText}
         >
           Zašto
         </text>
@@ -62,7 +99,7 @@ export function Logo({ light = false, className = "h-12 w-auto" }: { light?: boo
           fontWeight={900}
           fontSize={70}
           letterSpacing="-4"
-          fill={subText}
+          fill={c.subText}
         >
           Zato
         </text>
