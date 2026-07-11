@@ -9,38 +9,236 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UplateIsplateRouteImport } from './routes/uplate-isplate'
+import { Route as SvetRegulativeRouteImport } from './routes/svet-regulative'
+import { Route as SveOIgricamaRouteImport } from './routes/sve-o-igricama'
+import { Route as RegistracijaVerifikacijaRouteImport } from './routes/registracija-verifikacija'
+import { Route as OdgovornaIgraRouteImport } from './routes/odgovorna-igra'
+import { Route as BonusUsloviRouteImport } from './routes/bonus-uslovi'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UplateIsplateSlugRouteImport } from './routes/uplate-isplate.$slug'
+import { Route as SvetRegulativeSlugRouteImport } from './routes/svet-regulative.$slug'
+import { Route as SveOIgricamaSlugRouteImport } from './routes/sve-o-igricama.$slug'
+import { Route as RegistracijaVerifikacijaSlugRouteImport } from './routes/registracija-verifikacija.$slug'
+import { Route as OdgovornaIgraSlugRouteImport } from './routes/odgovorna-igra.$slug'
+import { Route as BonusUsloviSlugRouteImport } from './routes/bonus-uslovi.$slug'
 
+const UplateIsplateRoute = UplateIsplateRouteImport.update({
+  id: '/uplate-isplate',
+  path: '/uplate-isplate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SvetRegulativeRoute = SvetRegulativeRouteImport.update({
+  id: '/svet-regulative',
+  path: '/svet-regulative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SveOIgricamaRoute = SveOIgricamaRouteImport.update({
+  id: '/sve-o-igricama',
+  path: '/sve-o-igricama',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistracijaVerifikacijaRoute =
+  RegistracijaVerifikacijaRouteImport.update({
+    id: '/registracija-verifikacija',
+    path: '/registracija-verifikacija',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const OdgovornaIgraRoute = OdgovornaIgraRouteImport.update({
+  id: '/odgovorna-igra',
+  path: '/odgovorna-igra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BonusUsloviRoute = BonusUsloviRouteImport.update({
+  id: '/bonus-uslovi',
+  path: '/bonus-uslovi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UplateIsplateSlugRoute = UplateIsplateSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => UplateIsplateRoute,
+} as any)
+const SvetRegulativeSlugRoute = SvetRegulativeSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => SvetRegulativeRoute,
+} as any)
+const SveOIgricamaSlugRoute = SveOIgricamaSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => SveOIgricamaRoute,
+} as any)
+const RegistracijaVerifikacijaSlugRoute =
+  RegistracijaVerifikacijaSlugRouteImport.update({
+    id: '/$slug',
+    path: '/$slug',
+    getParentRoute: () => RegistracijaVerifikacijaRoute,
+  } as any)
+const OdgovornaIgraSlugRoute = OdgovornaIgraSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => OdgovornaIgraRoute,
+} as any)
+const BonusUsloviSlugRoute = BonusUsloviSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BonusUsloviRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bonus-uslovi': typeof BonusUsloviRouteWithChildren
+  '/odgovorna-igra': typeof OdgovornaIgraRouteWithChildren
+  '/registracija-verifikacija': typeof RegistracijaVerifikacijaRouteWithChildren
+  '/sve-o-igricama': typeof SveOIgricamaRouteWithChildren
+  '/svet-regulative': typeof SvetRegulativeRouteWithChildren
+  '/uplate-isplate': typeof UplateIsplateRouteWithChildren
+  '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
+  '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
+  '/registracija-verifikacija/$slug': typeof RegistracijaVerifikacijaSlugRoute
+  '/sve-o-igricama/$slug': typeof SveOIgricamaSlugRoute
+  '/svet-regulative/$slug': typeof SvetRegulativeSlugRoute
+  '/uplate-isplate/$slug': typeof UplateIsplateSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bonus-uslovi': typeof BonusUsloviRouteWithChildren
+  '/odgovorna-igra': typeof OdgovornaIgraRouteWithChildren
+  '/registracija-verifikacija': typeof RegistracijaVerifikacijaRouteWithChildren
+  '/sve-o-igricama': typeof SveOIgricamaRouteWithChildren
+  '/svet-regulative': typeof SvetRegulativeRouteWithChildren
+  '/uplate-isplate': typeof UplateIsplateRouteWithChildren
+  '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
+  '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
+  '/registracija-verifikacija/$slug': typeof RegistracijaVerifikacijaSlugRoute
+  '/sve-o-igricama/$slug': typeof SveOIgricamaSlugRoute
+  '/svet-regulative/$slug': typeof SvetRegulativeSlugRoute
+  '/uplate-isplate/$slug': typeof UplateIsplateSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bonus-uslovi': typeof BonusUsloviRouteWithChildren
+  '/odgovorna-igra': typeof OdgovornaIgraRouteWithChildren
+  '/registracija-verifikacija': typeof RegistracijaVerifikacijaRouteWithChildren
+  '/sve-o-igricama': typeof SveOIgricamaRouteWithChildren
+  '/svet-regulative': typeof SvetRegulativeRouteWithChildren
+  '/uplate-isplate': typeof UplateIsplateRouteWithChildren
+  '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
+  '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
+  '/registracija-verifikacija/$slug': typeof RegistracijaVerifikacijaSlugRoute
+  '/sve-o-igricama/$slug': typeof SveOIgricamaSlugRoute
+  '/svet-regulative/$slug': typeof SvetRegulativeSlugRoute
+  '/uplate-isplate/$slug': typeof UplateIsplateSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bonus-uslovi'
+    | '/odgovorna-igra'
+    | '/registracija-verifikacija'
+    | '/sve-o-igricama'
+    | '/svet-regulative'
+    | '/uplate-isplate'
+    | '/bonus-uslovi/$slug'
+    | '/odgovorna-igra/$slug'
+    | '/registracija-verifikacija/$slug'
+    | '/sve-o-igricama/$slug'
+    | '/svet-regulative/$slug'
+    | '/uplate-isplate/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bonus-uslovi'
+    | '/odgovorna-igra'
+    | '/registracija-verifikacija'
+    | '/sve-o-igricama'
+    | '/svet-regulative'
+    | '/uplate-isplate'
+    | '/bonus-uslovi/$slug'
+    | '/odgovorna-igra/$slug'
+    | '/registracija-verifikacija/$slug'
+    | '/sve-o-igricama/$slug'
+    | '/svet-regulative/$slug'
+    | '/uplate-isplate/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/bonus-uslovi'
+    | '/odgovorna-igra'
+    | '/registracija-verifikacija'
+    | '/sve-o-igricama'
+    | '/svet-regulative'
+    | '/uplate-isplate'
+    | '/bonus-uslovi/$slug'
+    | '/odgovorna-igra/$slug'
+    | '/registracija-verifikacija/$slug'
+    | '/sve-o-igricama/$slug'
+    | '/svet-regulative/$slug'
+    | '/uplate-isplate/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BonusUsloviRoute: typeof BonusUsloviRouteWithChildren
+  OdgovornaIgraRoute: typeof OdgovornaIgraRouteWithChildren
+  RegistracijaVerifikacijaRoute: typeof RegistracijaVerifikacijaRouteWithChildren
+  SveOIgricamaRoute: typeof SveOIgricamaRouteWithChildren
+  SvetRegulativeRoute: typeof SvetRegulativeRouteWithChildren
+  UplateIsplateRoute: typeof UplateIsplateRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/uplate-isplate': {
+      id: '/uplate-isplate'
+      path: '/uplate-isplate'
+      fullPath: '/uplate-isplate'
+      preLoaderRoute: typeof UplateIsplateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/svet-regulative': {
+      id: '/svet-regulative'
+      path: '/svet-regulative'
+      fullPath: '/svet-regulative'
+      preLoaderRoute: typeof SvetRegulativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sve-o-igricama': {
+      id: '/sve-o-igricama'
+      path: '/sve-o-igricama'
+      fullPath: '/sve-o-igricama'
+      preLoaderRoute: typeof SveOIgricamaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registracija-verifikacija': {
+      id: '/registracija-verifikacija'
+      path: '/registracija-verifikacija'
+      fullPath: '/registracija-verifikacija'
+      preLoaderRoute: typeof RegistracijaVerifikacijaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/odgovorna-igra': {
+      id: '/odgovorna-igra'
+      path: '/odgovorna-igra'
+      fullPath: '/odgovorna-igra'
+      preLoaderRoute: typeof OdgovornaIgraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bonus-uslovi': {
+      id: '/bonus-uslovi'
+      path: '/bonus-uslovi'
+      fullPath: '/bonus-uslovi'
+      preLoaderRoute: typeof BonusUsloviRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +246,133 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uplate-isplate/$slug': {
+      id: '/uplate-isplate/$slug'
+      path: '/$slug'
+      fullPath: '/uplate-isplate/$slug'
+      preLoaderRoute: typeof UplateIsplateSlugRouteImport
+      parentRoute: typeof UplateIsplateRoute
+    }
+    '/svet-regulative/$slug': {
+      id: '/svet-regulative/$slug'
+      path: '/$slug'
+      fullPath: '/svet-regulative/$slug'
+      preLoaderRoute: typeof SvetRegulativeSlugRouteImport
+      parentRoute: typeof SvetRegulativeRoute
+    }
+    '/sve-o-igricama/$slug': {
+      id: '/sve-o-igricama/$slug'
+      path: '/$slug'
+      fullPath: '/sve-o-igricama/$slug'
+      preLoaderRoute: typeof SveOIgricamaSlugRouteImport
+      parentRoute: typeof SveOIgricamaRoute
+    }
+    '/registracija-verifikacija/$slug': {
+      id: '/registracija-verifikacija/$slug'
+      path: '/$slug'
+      fullPath: '/registracija-verifikacija/$slug'
+      preLoaderRoute: typeof RegistracijaVerifikacijaSlugRouteImport
+      parentRoute: typeof RegistracijaVerifikacijaRoute
+    }
+    '/odgovorna-igra/$slug': {
+      id: '/odgovorna-igra/$slug'
+      path: '/$slug'
+      fullPath: '/odgovorna-igra/$slug'
+      preLoaderRoute: typeof OdgovornaIgraSlugRouteImport
+      parentRoute: typeof OdgovornaIgraRoute
+    }
+    '/bonus-uslovi/$slug': {
+      id: '/bonus-uslovi/$slug'
+      path: '/$slug'
+      fullPath: '/bonus-uslovi/$slug'
+      preLoaderRoute: typeof BonusUsloviSlugRouteImport
+      parentRoute: typeof BonusUsloviRoute
+    }
   }
 }
 
+interface BonusUsloviRouteChildren {
+  BonusUsloviSlugRoute: typeof BonusUsloviSlugRoute
+}
+
+const BonusUsloviRouteChildren: BonusUsloviRouteChildren = {
+  BonusUsloviSlugRoute: BonusUsloviSlugRoute,
+}
+
+const BonusUsloviRouteWithChildren = BonusUsloviRoute._addFileChildren(
+  BonusUsloviRouteChildren,
+)
+
+interface OdgovornaIgraRouteChildren {
+  OdgovornaIgraSlugRoute: typeof OdgovornaIgraSlugRoute
+}
+
+const OdgovornaIgraRouteChildren: OdgovornaIgraRouteChildren = {
+  OdgovornaIgraSlugRoute: OdgovornaIgraSlugRoute,
+}
+
+const OdgovornaIgraRouteWithChildren = OdgovornaIgraRoute._addFileChildren(
+  OdgovornaIgraRouteChildren,
+)
+
+interface RegistracijaVerifikacijaRouteChildren {
+  RegistracijaVerifikacijaSlugRoute: typeof RegistracijaVerifikacijaSlugRoute
+}
+
+const RegistracijaVerifikacijaRouteChildren: RegistracijaVerifikacijaRouteChildren =
+  {
+    RegistracijaVerifikacijaSlugRoute: RegistracijaVerifikacijaSlugRoute,
+  }
+
+const RegistracijaVerifikacijaRouteWithChildren =
+  RegistracijaVerifikacijaRoute._addFileChildren(
+    RegistracijaVerifikacijaRouteChildren,
+  )
+
+interface SveOIgricamaRouteChildren {
+  SveOIgricamaSlugRoute: typeof SveOIgricamaSlugRoute
+}
+
+const SveOIgricamaRouteChildren: SveOIgricamaRouteChildren = {
+  SveOIgricamaSlugRoute: SveOIgricamaSlugRoute,
+}
+
+const SveOIgricamaRouteWithChildren = SveOIgricamaRoute._addFileChildren(
+  SveOIgricamaRouteChildren,
+)
+
+interface SvetRegulativeRouteChildren {
+  SvetRegulativeSlugRoute: typeof SvetRegulativeSlugRoute
+}
+
+const SvetRegulativeRouteChildren: SvetRegulativeRouteChildren = {
+  SvetRegulativeSlugRoute: SvetRegulativeSlugRoute,
+}
+
+const SvetRegulativeRouteWithChildren = SvetRegulativeRoute._addFileChildren(
+  SvetRegulativeRouteChildren,
+)
+
+interface UplateIsplateRouteChildren {
+  UplateIsplateSlugRoute: typeof UplateIsplateSlugRoute
+}
+
+const UplateIsplateRouteChildren: UplateIsplateRouteChildren = {
+  UplateIsplateSlugRoute: UplateIsplateSlugRoute,
+}
+
+const UplateIsplateRouteWithChildren = UplateIsplateRoute._addFileChildren(
+  UplateIsplateRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BonusUsloviRoute: BonusUsloviRouteWithChildren,
+  OdgovornaIgraRoute: OdgovornaIgraRouteWithChildren,
+  RegistracijaVerifikacijaRoute: RegistracijaVerifikacijaRouteWithChildren,
+  SveOIgricamaRoute: SveOIgricamaRouteWithChildren,
+  SvetRegulativeRoute: SvetRegulativeRouteWithChildren,
+  UplateIsplateRoute: UplateIsplateRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
