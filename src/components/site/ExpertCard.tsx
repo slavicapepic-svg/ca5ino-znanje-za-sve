@@ -1,4 +1,5 @@
 import { useState, useId } from "react";
+import { Link } from "@tanstack/react-router";
 import { Linkedin, Quote, RotateCw, Plus, ArrowRight } from "lucide-react";
 import type { Expert, ExpertQA } from "@/content/experts";
 
@@ -78,17 +79,29 @@ function ExpertCardTeaser({ expert }: { expert: Expert }) {
             „{expert.pullQuote}”
             {expert.bio && <span className="mt-3 block text-xs text-white/70">{expert.bio}</span>}
           </blockquote>
-          <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
-            <a
-              href={expert.linkedin || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(ev) => ev.stopPropagation()}
-              aria-label={`LinkedIn profil — ${expert.name}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
-            >
-              <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
-            </a>
+          <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
+            {expert.questions[0] && (
+              <Link
+                to="/rec-strucnjaka/$slug"
+                params={{ slug: expert.questions[0].slug }}
+                onClick={(ev) => ev.stopPropagation()}
+                className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--brand-accent)] px-3 py-1.5 text-xs font-bold text-[color:var(--brand-primary-deep)] hover:brightness-95"
+              >
+                Pročitaj pun odgovor <ArrowRight className="h-3 w-3" />
+              </Link>
+            )}
+            {expert.linkedin && expert.linkedin !== "#" && (
+              <a
+                href={expert.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(ev) => ev.stopPropagation()}
+                aria-label={`LinkedIn profil — ${expert.name}`}
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
+              >
+                <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+              </a>
+            )}
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[color:var(--brand-accent)]">
               <RotateCw className="h-3 w-3" /> Zatvori
             </span>
