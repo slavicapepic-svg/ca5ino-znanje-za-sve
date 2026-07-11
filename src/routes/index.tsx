@@ -529,12 +529,14 @@ function AskQuestion() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 to="/postavi-pitanje"
+                hash="forma"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-sm font-bold text-accent-foreground shadow-cta transition hover:brightness-95"
               >
                 Postavi pitanje <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                to="/rec-strucnjaka"
+                to="/postavi-pitanje"
+                hash="pitanja"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-white px-6 py-3.5 text-sm font-semibold text-brand hover:bg-blue-50"
               >
                 Pogledaj sva pitanja
