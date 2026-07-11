@@ -4,7 +4,7 @@ import {
   Search,
   Youtube,
   Instagram,
-  Linkedin,
+  
   ArrowRight,
   ArrowUpRight,
   Calendar,
@@ -21,8 +21,7 @@ import {
   MessageCircleQuestion,
   Sparkles,
   PlayCircle,
-  RotateCw,
-  Quote,
+  
 } from "lucide-react";
 import heroIllustration from "@/assets/hero-illustration.png";
 import newsBonus from "@/assets/news-bonus.jpg";
@@ -31,11 +30,10 @@ import newsSlots from "@/assets/news-slots.jpg";
 import newsPayments from "@/assets/news-payments.jpg";
 import eduResponsible from "@/assets/edu-responsible.jpg";
 import eduRtp from "@/assets/edu-rtp.jpg";
-import expert1 from "@/assets/expert-1.jpg";
-import expert2 from "@/assets/expert-2.jpg";
-import expert3 from "@/assets/expert-3.jpg";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ExpertCard } from "@/components/site/ExpertCard";
+import { featuredExperts } from "@/content/experts";
 
 
 
@@ -569,115 +567,7 @@ function FAQ() {
 }
 
 /* ============================= EXPERTS ============================= */
-type Expert = {
-  photo: string;
-  name: string;
-  role: string;
-  company: string;
-  quote: string;
-};
 
-const experts: (Expert & { fullQuote: string })[] = [
-  {
-    photo: expert1,
-    name: "Dr Marko Petrović",
-    role: "Pravnik, specijalista za regulativu",
-    company: "Univerzitet u Beogradu",
-    quote:
-      "Najveći broj sporova nastaje zato što igrači ne pročitaju uslove bonusa. Dva minuta čitanja danas štedi nedelje frustracije sutra.",
-    fullQuote:
-      "U poslednjih deset godina pratim sporove između igrača i operatera i obrazac je gotovo uvek isti — igrač prihvati bonus bez čitanja uslova, naiđe na uslov klađenja x40 ili maksimalan ulog tokom bonusa, i tek tada otkrije pravila. Moj savet je jednostavan: pre svake uplate pročitajte tri stvari — uslov klađenja, maksimalan ulog dok je bonus aktivan i rok za ispunjenje. Dva minuta čitanja danas štedi nedelje frustracije sutra i, što je važnije, čuva vaš novac.",
-  },
-  {
-    photo: expert2,
-    name: "Jelena Kostić",
-    role: "Klinička psihološkinja",
-    company: "Centar za mentalno zdravlje",
-    quote:
-      "Igre na sreću dizajnirane su da održe pažnju. Postavljanje limita nije znak slabosti — to je znak da razumete kako mehanizam funkcioniše.",
-    fullQuote:
-      "Slotovi, live igre i sportske kvote koriste iste principe koji drže pažnju kao i društvene mreže — promenljive nagrade, zvučne i vizuelne potvrde, osećaj 'skoro pa dobitak'. To nije slučajnost, to je dizajn. Kada postavite dnevni ili nedeljni limit, vi ne priznajete slabost — vi koristite alat koji je napravljen baš zato što i sami operateri znaju koliko je teško prestati u trenutku. Najzdraviji odnos sa igrom je onaj u kome unapred odlučite koliko trošite, a ne u trenutku kada ste u igri.",
-  },
-  {
-    photo: expert3,
-    name: "Stefan Ilić",
-    role: "Analitičar iGaming industrije",
-    company: "iGaming Insight",
-    quote:
-      "RTP, volatilnost i hit-frequency — tri broja koja vam govore više o slotu nego ijedan rivju. Naučite ih i nikad više nećete birati naslepo.",
-    fullQuote:
-      "Kada birate slot, ne tražite onaj sa najlepšom grafikom — tražite tri broja u info panelu. RTP (Return to Player) vam govori koliko se prosečno vraća igračima na dugi rok; sve ispod 96% je ispod proseka tržišta. Volatilnost vam govori kako se taj povraćaj raspoređuje — visoka znači retke ali velike dobitke, niska znači česte ali male. Hit-frequency je procenat okretaja koji uopšte daju neki dobitak. Kombinacija ova tri broja vam tačno govori kakvo iskustvo da očekujete — bez iznenađenja.",
-  },
-];
-
-function ExpertCard({ e }: { e: Expert & { fullQuote: string } }) {
-  const [flipped, setFlipped] = useState(false);
-
-  return (
-    <div className="flip-card h-[460px]">
-      <button
-        type="button"
-        onClick={() => setFlipped((v) => !v)}
-        aria-pressed={flipped}
-        aria-label={`${e.name} — ${flipped ? "sakrij" : "prikaži"} pun citat`}
-        className={`flip-inner block h-full w-full text-left cursor-pointer ${flipped ? "is-flipped" : ""}`}
-      >
-        {/* FRONT */}
-        <article className="flip-face flex h-full flex-col overflow-hidden border border-border bg-white shadow-soft transition hover:shadow-card">
-          <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
-            <img
-              src={e.photo}
-              alt={e.name}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-            <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-brand shadow-soft">
-              <RotateCw className="h-3 w-3" /> Klikni za pun citat
-            </span>
-          </div>
-          <div className="flex flex-1 flex-col p-6">
-            <h3 className="text-lg font-bold text-text-strong">{e.name}</h3>
-            <p className="mt-1 text-sm font-medium text-brand">{e.role}</p>
-            <p className="mt-0.5 text-xs text-text-muted">{e.company}</p>
-            <blockquote className="mt-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-text-body">
-              „{e.quote}”
-            </blockquote>
-          </div>
-        </article>
-
-        {/* BACK */}
-        <article className="flip-face flip-back flex h-full flex-col overflow-hidden border border-[color:var(--brand-primary-deep)] bg-[color:var(--brand-primary-deep)] p-6 text-white shadow-card">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h3 className="text-lg font-bold text-white">{e.name}</h3>
-              <p className="mt-0.5 text-sm font-medium text-[color:var(--brand-accent)]">{e.role}</p>
-              <p className="mt-0.5 text-xs text-white/60">{e.company}</p>
-            </div>
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/10 text-[color:var(--brand-accent)]">
-              <Quote className="h-4 w-4" />
-            </span>
-          </div>
-          <blockquote className="mt-4 flex-1 overflow-auto border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-white/90">
-            „{e.fullQuote}”
-          </blockquote>
-          <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
-            <a
-              href="#"
-              onClick={(ev) => ev.stopPropagation()}
-              aria-label={`LinkedIn profil — ${e.name}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
-            >
-              <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
-            </a>
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[color:var(--brand-accent)]">
-              <RotateCw className="h-3 w-3" /> Klikni za nazad
-            </span>
-          </div>
-        </article>
-      </button>
-    </div>
-  );
-}
 
 
 function Experts() {
@@ -697,8 +587,8 @@ function Experts() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {experts.map((e) => (
-            <ExpertCard key={e.name} e={e} />
+          {featuredExperts.map((e) => (
+            <ExpertCard key={e.id} variant="teaser" expert={e} />
           ))}
         </div>
       </div>

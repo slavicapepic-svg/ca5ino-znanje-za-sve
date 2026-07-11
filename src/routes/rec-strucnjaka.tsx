@@ -32,7 +32,7 @@ function RecStrucnjakaPage() {
       <section className="mx-auto max-w-7xl px-4 pb-20 md:px-6">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {allQuestions.map(({ expert, question }) => (
-            <ExpertCard key={question.slug} expert={expert} question={question} />
+            <ExpertCard key={question.slug} variant="full" expert={expert} question={question} />
           ))}
         </div>
       </section>
