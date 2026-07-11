@@ -42,7 +42,7 @@ export function Footer() {
     <footer id="kontakt" className="bg-[color:var(--brand-primary-deep)] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4">
         <div>
-          <Logo light />
+          <Logo variant="white" />
           <p className="mt-4 max-w-xs text-sm text-white/70">
             Edukativna platforma o mehanizmima iGaming industrije i odgovornoj igri.
           </p>
