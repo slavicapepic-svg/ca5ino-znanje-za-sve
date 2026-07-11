@@ -3,7 +3,6 @@ import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from 
 type Props = {
   children: ReactNode;
   delay?: number;
-  as?: keyof React.JSX.IntrinsicElements;
   className?: string;
 };
 
