@@ -60,6 +60,18 @@ function ExpertCardTeaser({ expert }: { expert: Expert }) {
             <blockquote className="mt-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-text-body">
               „{expert.pullQuote}”
             </blockquote>
+            {expert.linkedin && expert.linkedin !== "#" && (
+              <a
+                href={expert.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(ev) => ev.stopPropagation()}
+                aria-label={`LinkedIn profil — ${expert.name}`}
+                className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-brand/20 px-3 py-1.5 text-xs font-semibold text-brand hover:bg-brand/5"
+              >
+                <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+              </a>
+            )}
           </div>
         </article>
 
