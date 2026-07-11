@@ -451,7 +451,61 @@ export function ArticlePage({ categorySlug, articleSlug }: { categorySlug: strin
   );
 }
 
+/* --- Info body formatter: turns "Term — definition" lines into bold-term list,
+ *     leaves regular paragraphs, keeps bullet lines starting with "•", auto-links URLs. --- */
+function formatInfoBody(body: string) {
+  const paragraphs = body.split("\n\n").map((s) => s.trim()).filter(Boolean);
+
+  const renderInline = (text: string) =>
+    text.split(/(https?:\/\/[^\s]+)/g).map((chunk, k) =>
+      /^https?:\/\//.test(chunk) ? (
+        <a key={k} href={chunk} target="_blank" rel="noopener noreferrer" className="text-brand hover:underline break-all">{chunk}</a>
+      ) : (
+        <span key={k}>{chunk}</span>
+      ),
+    );
+
+  // Group consecutive "Term — def" or "• …" paragraphs into a single list
+  const nodes: React.ReactNode[] = [];
+  let listBuffer: { term?: string; rest: string }[] = [];
+  const flush = () => {
+    if (!listBuffer.length) return;
+    nodes.push(
+      <ul key={`ul-${nodes.length}`} className="space-y-2">
+        {listBuffer.map((it, k) => (
+          <li key={k} className="flex gap-2">
+            <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--brand-accent)]" />
+            <span>
+              {it.term && <strong className="font-semibold text-text-strong">{it.term}</strong>}
+              {it.term ? " — " : ""}
+              {renderInline(it.rest)}
+            </span>
+          </li>
+        ))}
+      </ul>,
+    );
+    listBuffer = [];
+  };
+
+  for (const p of paragraphs) {
+    const bullet = p.replace(/^•\s*/, "");
+    const isBullet = bullet !== p;
+    const dashMatch = p.match(/^([^—\n]{2,60})\s+—\s+(.+)$/s);
+    if (dashMatch) {
+      listBuffer.push({ term: dashMatch[1].trim(), rest: dashMatch[2].trim() });
+    } else if (isBullet) {
+      listBuffer.push({ rest: bullet });
+    } else {
+      flush();
+      nodes.push(<p key={`p-${nodes.length}`}>{renderInline(p)}</p>);
+    }
+  }
+  flush();
+  return nodes;
+}
+
 /* --- Article helpers --- */
+
 function Callout({ tone = "info", title, children }: { tone?: "info" | "note"; title: string; children: React.ReactNode }) {
   return (
     <div className={`mt-8 flex gap-4 rounded-2xl border-l-4 p-5 ${tone === "info" ? "border-accent bg-bg-cream" : "border-brand bg-blue-50"}`}>
