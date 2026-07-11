@@ -1,15 +1,114 @@
 import { useState, useId } from "react";
-import { Linkedin, Plus, ArrowRight } from "lucide-react";
+import { Linkedin, Quote, RotateCw, Plus, ArrowRight } from "lucide-react";
 import type { Expert, ExpertQA } from "@/content/experts";
 
-export function ExpertCard({ expert, question }: { expert: Expert; question: ExpertQA }) {
+type BaseProps = {
+  expert: Expert;
+};
+
+type TeaserProps = BaseProps & {
+  variant: "teaser";
+};
+
+type FullProps = BaseProps & {
+  variant: "full";
+  question: ExpertQA;
+};
+
+export type ExpertCardProps = TeaserProps | FullProps;
+
+/**
+ * Unified expert card. Isti dizajn jezik (navy + gold, portret, quote motiv).
+ * - variant="teaser" — home page: veliki portret, pullQuote, flip na navy sa bio-om i LinkedIn CTA.
+ * - variant="full"   — /rec-strucnjaka: portret + pitanje kao naslov, accordion otvara pun odgovor + bio + LinkedIn.
+ */
+export function ExpertCard(props: ExpertCardProps) {
+  if (props.variant === "teaser") return <ExpertCardTeaser expert={props.expert} />;
+  return <ExpertCardFull expert={props.expert} question={props.question} />;
+}
+
+function ExpertCardTeaser({ expert }: { expert: Expert }) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div className="flip-card h-[460px]">
+      <button
+        type="button"
+        onClick={() => setFlipped((v) => !v)}
+        aria-pressed={flipped}
+        aria-label={`${expert.name} — ${flipped ? "sakrij" : "prikaži"} pun citat`}
+        className={`flip-inner block h-full w-full text-left cursor-pointer ${flipped ? "is-flipped" : ""}`}
+      >
+        {/* FRONT */}
+        <article className="flip-face flex h-full flex-col overflow-hidden border border-border bg-white shadow-soft transition hover:shadow-card">
+          <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
+            <img
+              src={expert.photo}
+              alt={expert.name}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+            <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-brand shadow-soft">
+              <RotateCw className="h-3 w-3" /> Pročitaj odgovor
+            </span>
+          </div>
+          <div className="flex flex-1 flex-col p-6">
+            <h3 className="text-lg font-bold text-text-strong">{expert.name}</h3>
+            <p className="mt-1 text-sm font-medium text-brand">{expert.title}</p>
+            <p className="mt-0.5 text-xs text-text-muted">{expert.org}</p>
+            <blockquote className="mt-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-text-body">
+              „{expert.pullQuote}”
+            </blockquote>
+          </div>
+        </article>
+
+        {/* BACK */}
+        <article className="flip-face flip-back flex h-full flex-col overflow-hidden border border-[color:var(--brand-primary-deep)] bg-[color:var(--brand-primary-deep)] p-6 text-white shadow-card">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h3 className="text-lg font-bold text-white">{expert.name}</h3>
+              <p className="mt-0.5 text-sm font-medium text-[color:var(--brand-accent)]">{expert.title}</p>
+              <p className="mt-0.5 text-xs text-white/60">{expert.org}</p>
+            </div>
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/10 text-[color:var(--brand-accent)]">
+              <Quote className="h-4 w-4" />
+            </span>
+          </div>
+          <blockquote className="mt-4 flex-1 overflow-auto border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-white/90">
+            „{expert.pullQuote}”
+            {expert.bio && <span className="mt-3 block text-xs text-white/70">{expert.bio}</span>}
+          </blockquote>
+          <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
+            <a
+              href={expert.linkedin || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(ev) => ev.stopPropagation()}
+              aria-label={`LinkedIn profil — ${expert.name}`}
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
+            >
+              <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+            </a>
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[color:var(--brand-accent)]">
+              <RotateCw className="h-3 w-3" /> Zatvori
+            </span>
+          </div>
+        </article>
+      </button>
+    </div>
+  );
+}
+
+function ExpertCardFull({ expert, question }: { expert: Expert; question: ExpertQA }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
   return (
     <div
-      className={`group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition-all duration-300 ${
-        open ? "shadow-card sm:col-span-2 lg:col-span-3" : "hover:-translate-y-1 hover:shadow-card"
+      className={`group flex flex-col overflow-hidden border border-border bg-white shadow-soft transition-all duration-300 ${
+        open
+          ? "border-[color:var(--brand-primary-deep)] shadow-card sm:col-span-2 lg:col-span-3"
+          : "hover:-translate-y-1 hover:shadow-card"
       }`}
     >
       <button
@@ -19,35 +118,33 @@ export function ExpertCard({ expert, question }: { expert: Expert; question: Exp
         aria-controls={panelId}
         className="flex w-full flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
       >
-        <div className="flex items-start gap-4 p-5">
+        <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
           <img
             src={expert.photo}
             alt={expert.name}
             loading="lazy"
-            className="h-16 w-16 flex-shrink-0 rounded-full object-cover ring-2 ring-blue-50"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
           />
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-bold text-text-strong">{expert.name}</p>
-            <p className="text-xs text-brand">{expert.title}</p>
-            {question.date && (
-              <p className="mt-1 text-[11px] text-text-muted">{question.date}</p>
-            )}
-          </div>
-          <span
-            className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-50 text-brand transition-transform duration-300 ${
-              open ? "rotate-45" : "group-hover:scale-110"
-            }`}
-            aria-hidden
-          >
-            <Plus className="h-4 w-4" />
+          <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-brand shadow-soft">
+            <Plus className={`h-3 w-3 transition-transform ${open ? "rotate-45" : ""}`} />
+            {open ? "Zatvori" : "Pročitaj odgovor"}
           </span>
         </div>
-        <div className="px-5 pb-5">
-          <h3 className="text-base font-bold leading-snug text-text-strong transition-colors group-hover:text-brand">
-            „{question.question}”
-          </h3>
+        <div className="flex flex-1 flex-col p-6">
+          <h3 className="text-lg font-bold text-text-strong">{expert.name}</h3>
+          <p className="mt-1 text-sm font-medium text-brand">{expert.title}</p>
+          <p className="mt-0.5 text-xs text-text-muted">{expert.org}</p>
+          <blockquote className="mt-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-snug text-text-strong">
+            <span className="mb-1 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-brand">
+              <Quote className="h-3 w-3" /> Pitanje
+            </span>
+            <span className="block text-base font-bold leading-snug">„{question.question}”</span>
+            {question.date && (
+              <span className="mt-2 block text-[11px] text-text-muted">{question.date}</span>
+            )}
+          </blockquote>
           {!open && (
-            <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand">
+            <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand">
               Pročitaj odgovor <ArrowRight className="h-3 w-3" />
             </span>
           )}
@@ -61,23 +158,23 @@ export function ExpertCard({ expert, question }: { expert: Expert; question: Exp
         }`}
       >
         <div className="overflow-hidden">
-          <div className="border-t border-border px-5 py-6 sm:px-8 sm:py-8">
-            <div className="space-y-4 text-sm leading-relaxed text-text-body sm:text-base">
+          <div className="border-t border-border bg-[color:var(--brand-primary-deep)] px-5 py-6 text-white sm:px-8 sm:py-8">
+            <div className="space-y-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-white/90 sm:text-base">
               {question.answer.split("\n\n").map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-bg-soft p-5 sm:flex-row sm:items-center">
+            <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-white/5 p-5 sm:flex-row sm:items-center">
               <img
                 src={expert.photo}
                 alt={expert.name}
-                className="h-16 w-16 rounded-full object-cover"
+                className="h-16 w-16 rounded-full object-cover ring-2 ring-[color:var(--brand-accent)]/60"
               />
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-bold text-text-strong">{expert.name}</p>
-                <p className="text-xs text-brand">{expert.title}</p>
-                <p className="mt-2 text-xs leading-relaxed text-text-body sm:text-sm">
+                <p className="text-sm font-bold text-white">{expert.name}</p>
+                <p className="text-xs text-[color:var(--brand-accent)]">{expert.title}</p>
+                <p className="mt-2 text-xs leading-relaxed text-white/80 sm:text-sm">
                   {expert.bio}
                 </p>
                 {expert.linkedin && expert.linkedin !== "#" && (
@@ -85,7 +182,7 @@ export function ExpertCard({ expert, question }: { expert: Expert; question: Exp
                     href={expert.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline"
+                    className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10"
                   >
                     <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
                   </a>
