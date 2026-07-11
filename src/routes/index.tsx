@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Search,
-  ChevronDown,
   Youtube,
   Instagram,
   Linkedin,
@@ -21,8 +20,6 @@ import {
   HeartHandshake,
   MessageCircleQuestion,
   Sparkles,
-  Menu,
-  X,
   PlayCircle,
   RotateCw,
   Quote,
@@ -37,6 +34,9 @@ import eduRtp from "@/assets/edu-rtp.jpg";
 import expert1 from "@/assets/expert-1.jpg";
 import expert2 from "@/assets/expert-2.jpg";
 import expert3 from "@/assets/expert-3.jpg";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+
 
 
 export const Route = createFileRoute("/")({
