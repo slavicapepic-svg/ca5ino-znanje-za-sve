@@ -31,11 +31,10 @@ import newsSlots from "@/assets/news-slots.jpg";
 import newsPayments from "@/assets/news-payments.jpg";
 import eduResponsible from "@/assets/edu-responsible.jpg";
 import eduRtp from "@/assets/edu-rtp.jpg";
-import expert1 from "@/assets/expert-1.jpg";
-import expert2 from "@/assets/expert-2.jpg";
-import expert3 from "@/assets/expert-3.jpg";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ExpertCard } from "@/components/site/ExpertCard";
+import { featuredExperts } from "@/content/experts";
 
 
 
