@@ -10,8 +10,8 @@ type Props = {
  * Suptilan scroll-reveal (fade + translate-up) preko IntersectionObserver-a.
  * Poštuje `prefers-reduced-motion` — u tom slučaju sadržaj je odmah vidljiv.
  */
-export function Reveal({ children, delay = 0, as: Tag = "div", className = "" }: Props) {
-  const ref = useRef<HTMLElement | null>(null);
+export function Reveal({ children, delay = 0, className = "" }: Props) {
+  const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -39,19 +39,17 @@ export function Reveal({ children, delay = 0, as: Tag = "div", className = "" }:
     return () => io.disconnect();
   }, []);
 
-  const style: CSSProperties = {
-    transitionDelay: `${delay}ms`,
-  };
+  const style: CSSProperties = { transitionDelay: `${delay}ms` };
 
   return (
-    <Tag
-      ref={ref as never}
+    <div
+      ref={ref}
       style={style}
       className={`transition-all duration-700 ease-out will-change-transform motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
       {children}
-    </Tag>
+    </div>
   );
 }
