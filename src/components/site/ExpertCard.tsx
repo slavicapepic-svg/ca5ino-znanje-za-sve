@@ -60,8 +60,7 @@ function ExpertCardTeaser({ expert }: { expert: Expert }) {
             <blockquote className="mt-4 border-l-2 border-[color:var(--brand-accent)] pl-4 text-sm leading-relaxed text-text-body">
               „{expert.pullQuote}”
             </blockquote>
-            {expert.linkedin && expert.linkedin !== "#" && (
-              <a
+                          <a
                 href={expert.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -71,7 +70,6 @@ function ExpertCardTeaser({ expert }: { expert: Expert }) {
               >
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
               </a>
-            )}
           </div>
         </article>
 
@@ -102,8 +100,7 @@ function ExpertCardTeaser({ expert }: { expert: Expert }) {
                 Pročitaj pun odgovor <ArrowRight className="h-3 w-3" />
               </Link>
             )}
-            {expert.linkedin && expert.linkedin !== "#" && (
-              <a
+                          <a
                 href={expert.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -113,7 +110,6 @@ function ExpertCardTeaser({ expert }: { expert: Expert }) {
               >
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
               </a>
-            )}
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[color:var(--brand-accent)]">
               <RotateCw className="h-3 w-3" /> Zatvori
             </span>
@@ -174,8 +170,7 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
                 Pročitaj odgovor <ArrowRight className="h-3 w-3" />
               </span>
             )}
-            {expert.linkedin && expert.linkedin !== "#" && (
-              <a
+                          <a
                 href={expert.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -185,7 +180,6 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
               >
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
               </a>
-            )}
           </div>
         </div>
       </button>
@@ -211,8 +205,7 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
               <p className="text-xs leading-relaxed text-white/85 sm:text-sm">
                 {expert.bio}
               </p>
-              {expert.linkedin && expert.linkedin !== "#" && (
-                <a
+                              <a
                   href={expert.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -220,7 +213,6 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
                 >
                   <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
                 </a>
-              )}
             </div>
           </div>
         </div>
