@@ -4,7 +4,7 @@ import {
   Search,
   Youtube,
   Instagram,
-  Linkedin,
+  
   ArrowRight,
   ArrowUpRight,
   Calendar,
@@ -21,8 +21,7 @@ import {
   MessageCircleQuestion,
   Sparkles,
   PlayCircle,
-  RotateCw,
-  Quote,
+  
 } from "lucide-react";
 import heroIllustration from "@/assets/hero-illustration.png";
 import newsBonus from "@/assets/news-bonus.jpg";
