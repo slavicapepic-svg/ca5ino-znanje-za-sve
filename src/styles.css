@@ -124,7 +124,7 @@
     -webkit-font-smoothing: antialiased;
   }
   :where(h1, h2, h3, h4) {
-    color: var(--color-text-strong);
+    color: inherit;
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
