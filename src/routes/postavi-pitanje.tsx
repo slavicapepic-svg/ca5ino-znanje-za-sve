@@ -54,7 +54,7 @@ function PostaviPitanjePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-16 md:px-6">
+      <section id="forma" className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-16 md:px-6">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <h2 className="text-2xl font-extrabold text-text-strong">Vaše pitanje</h2>
@@ -121,7 +121,7 @@ function PostaviPitanjePage() {
             )}
           </div>
 
-          <div className="lg:col-span-7">
+          <div id="pitanja" className="scroll-mt-24 lg:col-span-7">
             <h2 className="text-2xl font-extrabold text-text-strong">Objavljena pitanja</h2>
 
             <div className="mt-4 flex items-center gap-2 rounded-xl border border-border bg-white p-2 shadow-soft">
