@@ -1,8 +1,8 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Linkedin } from "lucide-react";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { SiteShell } from "@/components/site/SiteShell";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { PageHeader } from "@/components/site/PageHeader";
+import { ExpertCard } from "@/components/site/ExpertCard";
 import { experts } from "@/content/experts";
 
 export const Route = createFileRoute("/rec-strucnjaka")({
