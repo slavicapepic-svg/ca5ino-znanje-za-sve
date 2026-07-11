@@ -1,10 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Search,
-  Youtube,
-  Instagram,
-  
   ArrowRight,
   ArrowUpRight,
   Calendar,
@@ -21,19 +18,15 @@ import {
   MessageCircleQuestion,
   Sparkles,
   PlayCircle,
-  
 } from "lucide-react";
 import heroIllustration from "@/assets/hero-illustration.png";
-import newsBonus from "@/assets/news-bonus.jpg";
-import newsRegulation from "@/assets/news-regulation.jpg";
-import newsSlots from "@/assets/news-slots.jpg";
-import newsPayments from "@/assets/news-payments.jpg";
-import eduResponsible from "@/assets/edu-responsible.jpg";
-import eduRtp from "@/assets/edu-rtp.jpg";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ExpertCard } from "@/components/site/ExpertCard";
 import { featuredExperts } from "@/content/experts";
+import { categories } from "@/content/categories";
+import { mediaFeed } from "@/content/mediaFeed";
+import { publishedQuestions } from "@/content/faq";
 
 
 
