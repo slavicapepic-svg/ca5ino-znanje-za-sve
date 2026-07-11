@@ -9,6 +9,7 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { CardGrid } from "@/components/site/CardGrid";
 import { CardTile } from "@/components/site/CardTile";
+import { LimitedGrid } from "@/components/site/LimitedGrid";
 import { categories, getCategoryBySlug, getArticle, type Article, type Category } from "@/content/categories";
 
 /* --- per-category metadata: icon + cross-sell --- */
@@ -127,11 +128,11 @@ export function CategoryPage({ slug }: { slug: string }) {
         <section className="py-14 md:py-16">
           <div className="mx-auto max-w-7xl px-4 md:px-6">
             <SectionHeader index={1} icon={Icon} title="Sve teme u rubrici" subtitle="Vodiči i objašnjenja iz oblasti." />
-            <CardGrid>
+            <LimitedGrid initialCount={4} cols={3}>
               {ungrouped.map((a) => (
                 <CardTile key={a.slug} to={`${cat.path}/${a.slug}`} image={a.image} title={a.title} author={a.author} date={a.date} read={a.read} category={cat.eyebrow.split("·")[1]?.trim()} />
               ))}
-            </CardGrid>
+            </LimitedGrid>
           </div>
         </section>
       )}
@@ -149,11 +150,11 @@ export function CategoryPage({ slug }: { slug: string }) {
                 title={group}
                 subtitle={`${arts.length} ${arts.length === 1 ? "tema" : arts.length < 5 ? "teme" : "tema"} u ovoj celini.`}
               />
-              <CardGrid>
+              <LimitedGrid initialCount={4} cols={3}>
                 {arts.map((a) => (
                   <CardTile key={a.slug} to={`${cat.path}/${a.slug}`} image={a.image} title={a.title} author={a.author} date={a.date} read={a.read} category={group} />
                 ))}
-              </CardGrid>
+              </LimitedGrid>
             </div>
           </section>
         );
