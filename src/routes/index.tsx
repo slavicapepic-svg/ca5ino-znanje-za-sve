@@ -224,40 +224,36 @@ function QuickLinks() {
   );
 }
 
-/* ============================= TOPIC MARQUEE (separator) ============================= */
-const marqueeTopics = [
-  "Uslov klađenja x40",
-  "RTP 96.5%",
-  "KYC verifikacija",
-  "Samoisključenje",
-  "Volatilnost slotova",
-  "Licence EU",
-  "Brza isplata",
-  "Provizije na uplatu",
-  "Bonus bez depozita",
-  "Limit dnevne potrošnje",
-  "Sportske kvote",
-  "Live dealer",
-];
-
+/* ============================= TOPIC MARQUEE (najčitanije vesti) ============================= */
+/**
+ * Marquee je direktna veza sa stranicom /vesti-mediji.
+ * Izvor istine: mediaFeed.ts — prikazujemo najčitanije vesti (type === "news"),
+ * a svaka „pill" je CTA link ka /vesti-mediji/{slug}.
+ */
 function TopicMarquee() {
-  const loop = [...marqueeTopics, ...marqueeTopics];
+  const topNews = mediaFeed.filter((m) => m.type === "news").slice(0, 8);
+  const loop = [...topNews, ...topNews];
   return (
     <div
-      aria-hidden="true"
       className="marquee-mask relative overflow-hidden border-y border-border bg-[color:var(--brand-primary-deep)] py-4"
+      aria-label="Najčitanije vesti"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[color:var(--brand-primary-deep)] to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[color:var(--brand-primary-deep)] to-transparent" />
       <div className="marquee-track gap-3">
-        {loop.map((t, i) => (
-          <span
-            key={`${t}-${i}`}
-            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-white"
+        {loop.map((item, i) => (
+          <Link
+            key={`${item.slug}-${i}`}
+            to="/vesti-mediji/$slug"
+            params={{ slug: item.slug }}
+            aria-hidden={i >= topNews.length ? "true" : undefined}
+            tabIndex={i >= topNews.length ? -1 : 0}
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-white transition hover:border-[color:var(--brand-accent)]/60 hover:bg-white/10"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-accent)]" />
-            {t}
-          </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-accent)] transition group-hover:scale-125" />
+            <span className="max-w-[46ch] truncate">{item.title}</span>
+            <span className="text-[color:var(--brand-accent)] opacity-70 transition group-hover:translate-x-0.5 group-hover:opacity-100">→</span>
+          </Link>
         ))}
       </div>
     </div>
