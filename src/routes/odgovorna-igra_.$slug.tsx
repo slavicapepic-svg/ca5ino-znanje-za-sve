@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArticlePage } from "@/components/site/CategoryTemplates";
 
-export const Route = createFileRoute("/registracija-verifikacija/$slug")({
+export const Route = createFileRoute("/odgovorna-igra_/$slug")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   const { slug } = Route.useParams();
-  return <ArticlePage categorySlug="registracija-verifikacija" articleSlug={slug} />;
+  return <ArticlePage categorySlug="odgovorna-igra" articleSlug={slug} />;
 }
