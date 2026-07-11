@@ -442,7 +442,7 @@ function FAQ() {
           </h2>
           <p className="mt-3 text-text-body">
             Brzi odgovori na pitanja koja dobijamo svake nedelje. Ne nalazite svoje?
-            Pošaljite ga u sekciji <a href="#postavi" className="font-semibold text-brand hover:underline">Postavi pitanje</a>.
+            Pošaljite ga u sekciji <Link to="/postavi-pitanje" className="font-semibold text-brand hover:underline">Postavi pitanje</Link>.
           </p>
         </div>
 
@@ -508,23 +508,8 @@ function Experts() {
 
 
 /* ============================= POSTAVI PITANJE ============================= */
-const sampleQA = [
-  {
-    q: "Mogu li operateri da promene uslove bonusa nakon što sam ga prihvatio?",
-    a: "Najčešće ne mogu retroaktivno — uslovi važe u trenutku prihvatanja bonusa. Ali pažnja: ako bonus „obnovite“ ili uzmete dodatnu promociju, mogu se primeniti novi uslovi.",
-    author: "Pitanje od korisnika · Beograd",
-  },
-  {
-    q: "Šta da uradim ako mi operater ne isplaćuje dobitak duže od 7 dana?",
-    a: "Prvo proverite da li je verifikacija završena (KYC). Ako jeste, podnesite zvaničnu reklamaciju operateru u pisanoj formi, pa ako rešenje izostane — žalba se podnosi nadležnom regulatoru u vašoj zemlji.",
-    author: "Pitanje od korisnika · Novi Sad",
-  },
-  {
-    q: "Da li je samoisključenje trajno?",
-    a: "Ne mora biti. Možete izabrati period (24h, 7 dana, 30 dana, 6 meseci ili trajno). Pre isteka roka nalog se ne može reaktivirati — to je ključna razlika u odnosu na običnu „pauzu“.",
-    author: "Pitanje od korisnika · Niš",
-  },
-];
+// Teaser Q&A = publishedQuestions iz src/content/faq.ts (jedini izvor).
+const sampleQA = publishedQuestions.slice(0, 3);
 
 function AskQuestion() {
   return (
@@ -546,18 +531,18 @@ function AskQuestion() {
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href="#"
+              <Link
+                to="/postavi-pitanje"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-sm font-bold text-accent-foreground shadow-cta transition hover:brightness-95"
               >
                 Postavi pitanje <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/rec-strucnjaka"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-white px-6 py-3.5 text-sm font-semibold text-brand hover:bg-blue-50"
               >
                 Pogledaj sva pitanja
-              </a>
+              </Link>
             </div>
           </div>
 
