@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArticlePage } from "@/components/site/CategoryTemplates";
 
-export const Route = createFileRoute("/odgovorna-igra/$slug")({
+export const Route = createFileRoute("/odgovorna-igra_/$slug")({
   component: RouteComponent,
 });
 

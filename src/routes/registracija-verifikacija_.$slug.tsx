@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArticlePage } from "@/components/site/CategoryTemplates";
 
-export const Route = createFileRoute("/registracija-verifikacija/$slug")({
+export const Route = createFileRoute("/registracija-verifikacija_/$slug")({
   component: RouteComponent,
 });
 

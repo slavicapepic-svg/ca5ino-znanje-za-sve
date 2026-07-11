@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArticlePage } from "@/components/site/CategoryTemplates";
 
-export const Route = createFileRoute("/svet-regulative/$slug")({
+export const Route = createFileRoute("/svet-regulative_/$slug")({
   component: RouteComponent,
 });
 
