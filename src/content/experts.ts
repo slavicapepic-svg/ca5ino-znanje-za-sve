@@ -1,7 +1,8 @@
 import expert1 from "@/assets/expert-1.jpg";
 import expert2 from "@/assets/expert-2.jpg";
 import expert3 from "@/assets/expert-3.jpg";
-import expert4 from "@/assets/expert-4.jpg";
+import expert4Asset from "@/assets/vera-test.jpg.asset.json";
+const expert4 = expert4Asset.url;
 
 export type ExpertQA = {
   slug: string;
