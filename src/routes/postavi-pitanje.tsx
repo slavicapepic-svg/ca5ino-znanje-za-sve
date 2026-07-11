@@ -78,6 +78,7 @@ function PostaviPitanjePage() {
                 </button>
               </div>
             ) : (
+              {/* TODO: backend za slanje/moderaciju/objavu pitanja (trenutno client-only forma). */}
               <form
                 onSubmit={(e) => { e.preventDefault(); if (nick.trim() && question.trim()) setSent(true); }}
                 className="mt-6 space-y-4 rounded-2xl border border-border bg-white p-6 shadow-soft"
