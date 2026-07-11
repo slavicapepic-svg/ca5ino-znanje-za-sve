@@ -168,11 +168,25 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
               <span className="mt-2 block text-[11px] text-text-muted">{question.date}</span>
             )}
           </blockquote>
-          {!open && (
-            <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand">
-              Pročitaj odgovor <ArrowRight className="h-3 w-3" />
-            </span>
-          )}
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            {!open && (
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand">
+                Pročitaj odgovor <ArrowRight className="h-3 w-3" />
+              </span>
+            )}
+            {expert.linkedin && expert.linkedin !== "#" && (
+              <a
+                href={expert.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(ev) => ev.stopPropagation()}
+                aria-label={`LinkedIn profil — ${expert.name}`}
+                className="ml-auto inline-flex items-center gap-2 rounded-full border border-brand/20 px-3 py-1.5 text-xs font-semibold text-brand hover:bg-brand/5"
+              >
+                <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+              </a>
+            )}
+          </div>
         </div>
       </button>
 
