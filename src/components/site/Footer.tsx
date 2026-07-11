@@ -1,0 +1,101 @@
+import { Link } from "@tanstack/react-router";
+import { Youtube, Instagram, Linkedin } from "lucide-react";
+import { Logo } from "./Logo";
+import { TikTokIcon } from "./icons";
+
+const footerCols = [
+  {
+    title: "Edukacija",
+    links: [
+      { label: "Bonus uslovi", to: "/bonus-uslovi" },
+      { label: "Sve o igricama", to: "/sve-o-igricama" },
+      { label: "Uplate & Isplate", to: "/uplate-isplate" },
+      { label: "Svet & regulative", to: "/svet-regulative" },
+      { label: "Reč stručnjaka", to: "/rec-strucnjaka" },
+      { label: "Odgovorna igra", to: "/odgovorna-igra" },
+    ],
+  },
+  {
+    title: "Informacije",
+    links: [
+      { label: "Vesti i Mediji", to: "/vesti-mediji" },
+      { label: "O nama", to: "/o-nama" },
+      { label: "Postavi pitanje", to: "/postavi-pitanje" },
+      { label: "Pomoć", to: "/pomoc" },
+    ],
+  },
+] as const;
+
+const legalLinks = [
+  { label: "Uslovi korišćenja", to: "/uslovi-koriscenja" },
+  { label: "Politika privatnosti", to: "/politika-privatnosti" },
+  { label: "Politika kolačića", to: "/kolacici" },
+  { label: "Disclaimer", to: "/disclaimer" },
+] as const;
+
+export function Footer() {
+  return (
+    <footer id="kontakt" className="bg-[color:var(--brand-primary-deep)] text-white">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4">
+        <div>
+          <Logo light />
+          <p className="mt-4 max-w-xs text-sm text-white/70">
+            Edukativna platforma o mehanizmima iGaming industrije i odgovornoj igri.
+          </p>
+          <div className="mt-5 flex items-center gap-2">
+            {[Youtube, Instagram].map((Icon, i) => (
+              <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground">
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground"><TikTokIcon /></a>
+            <a href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-accent hover:text-accent-foreground"><Linkedin className="h-4 w-4" /></a>
+          </div>
+        </div>
+
+        {footerCols.map((col) => (
+          <div key={col.title}>
+            <p className="text-sm font-bold uppercase tracking-wider text-white">{col.title}</p>
+            <ul className="mt-5 space-y-3">
+              {col.links.map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-sm text-white/75 transition hover:text-accent">{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <div>
+          <p className="text-sm font-bold uppercase tracking-wider text-white">Linkovi za pomoć</p>
+          <ul className="mt-5 space-y-3 text-sm text-white/75">
+            <li><Link to="/pomoc" className="hover:text-accent">Institucije i SOS linije</Link></li>
+            <li><Link to="/pomoc" className="hover:text-accent">Klubovi za zavisnike</Link></li>
+            <li><Link to="/pomoc" className="hover:text-accent">Onlajn savetovanje</Link></li>
+          </ul>
+          <div className="mt-6 rounded-xl border border-white/15 bg-white/5 p-4 text-xs text-white/80">
+            Imate problem sa kontrolom igranja? Pozovite besplatan broj{" "}
+            <span className="font-bold text-accent">0800 000 000</span> — 24/7.
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 text-xs text-white/70 md:flex-row md:items-center md:justify-between md:px-6">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            {legalLinks.map((l) => (
+              <Link key={l.label} to={l.to} className="hover:text-accent">{l.label}</Link>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-extrabold text-accent-foreground">18+ 🔞</span>
+            <span>Igre na sreću mogu izazvati zavisnost. Igrajte odgovorno.</span>
+          </div>
+        </div>
+        <div className="mx-auto max-w-7xl px-4 pb-8 text-xs text-white/50 md:px-6">
+          © 2026 ca<span className="logo-five">5</span>ino Zašto Zato. Sva prava zadržana.
+        </div>
+      </div>
+    </footer>
+  );
+}
