@@ -14,7 +14,8 @@ export type CardTileProps = {
 export function CardTile({ image, category, title, author, date, read, to }: CardTileProps) {
   return (
     <Link
-      to={to}
+      to={to as never}
+
       className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-card"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-blue-50">
