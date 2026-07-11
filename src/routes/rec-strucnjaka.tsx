@@ -4,6 +4,7 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ExpertCard } from "@/components/site/ExpertCard";
 import { experts } from "@/content/experts";
+import { LimitedGrid } from "@/components/site/LimitedGrid";
 
 export const Route = createFileRoute("/rec-strucnjaka")({
   head: () => ({
@@ -30,11 +31,11 @@ function RecStrucnjakaPage() {
         intro="Verujemo da nijedna osoba ne može sama dati sve odgovore kada je reč o online igrama na sreću. Zato smo okupili stručnjake iz različitih oblasti — psihologe, neuropsihologe, matematičare i druge eksperte — koji zajedno sa nama proučavaju kako razmišljamo, donosimo odluke i reagujemo na rizik, nagrade i neizvesnost."
       />
       <section className="mx-auto max-w-7xl px-4 pb-20 md:px-6">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <LimitedGrid initialCount={6} cols={3}>
           {allQuestions.map(({ expert, question }) => (
             <ExpertCard key={question.slug} variant="full" expert={expert} question={question} />
           ))}
-        </div>
+        </LimitedGrid>
       </section>
     </SiteShell>
   );

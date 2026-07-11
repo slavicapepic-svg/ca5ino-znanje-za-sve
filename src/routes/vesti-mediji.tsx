@@ -5,6 +5,7 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { PageHeader } from "@/components/site/PageHeader";
 import { mediaFeed } from "@/content/mediaFeed";
+import { LimitedGrid } from "@/components/site/LimitedGrid";
 
 export const Route = createFileRoute("/vesti-mediji")({
   head: () => ({
@@ -54,7 +55,7 @@ function VestiMedijiPage() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <LimitedGrid initialCount={6} cols={3}>
           {items.map((m) => (
             <Link
               key={m.slug}
@@ -93,7 +94,7 @@ function VestiMedijiPage() {
               </div>
             </Link>
           ))}
-        </div>
+        </LimitedGrid>
       </section>
     </SiteShell>
   );
