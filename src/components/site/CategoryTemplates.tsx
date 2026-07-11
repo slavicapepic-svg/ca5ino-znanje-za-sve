@@ -121,7 +121,6 @@ export function CategoryPage({ slug }: { slug: string }) {
         </section>
       )}
 
-      )}
 
       {/* Ungrouped articles */}
       {ungrouped.length > 0 && (
