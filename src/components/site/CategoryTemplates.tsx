@@ -24,6 +24,11 @@ const catMeta: Record<string, { icon: typeof ShieldCheck; related: string[] }> =
 
 const iconFor = (slug: string) => catMeta[slug]?.icon ?? BookOpen;
 
+const slugifyId = (s: string) =>
+  s.toLowerCase()
+    .replace(/[čć]/g, "c").replace(/š/g, "s").replace(/ž/g, "z").replace(/đ/g, "dj")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 /* ================================================================
  * CATEGORY (parent) PAGE
  * ================================================================ */
