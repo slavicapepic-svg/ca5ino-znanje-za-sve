@@ -1,10 +1,16 @@
 import { Link } from "@tanstack/react-router";
-import { Youtube, Instagram, Linkedin } from "lucide-react";
+import { Youtube, Instagram, Linkedin, Headphones, Phone } from "lucide-react";
 import { Logo } from "./Logo";
 import { TikTokIcon } from "./icons";
 import { activeSocials } from "@/content/socials";
+import { helpOrgs } from "@/content/helpLinks";
 
 const socialIcon = { youtube: Youtube, instagram: Instagram, tiktok: TikTokIcon, linkedin: Linkedin } as const;
+
+const footerHelpNumbers = helpOrgs
+  .flatMap((o) => (o.phones ?? []).map((p) => ({ org: o.name, ...p })))
+  .slice(0, 4);
+
 
 
 const footerCols = [

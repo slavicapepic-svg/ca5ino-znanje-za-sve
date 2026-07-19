@@ -19,6 +19,7 @@ import { Route as SveOIgricamaRouteImport } from './routes/sve-o-igricama'
 import { Route as RegistracijaVerifikacijaRouteImport } from './routes/registracija-verifikacija'
 import { Route as RecStrucnjakaRouteImport } from './routes/rec-strucnjaka'
 import { Route as PostaviPitanjeRouteImport } from './routes/postavi-pitanje'
+import { Route as PomocRouteImport } from './routes/pomoc'
 import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-privatnosti'
 import { Route as PolitikaKolacicaRouteImport } from './routes/politika-kolacica'
 import { Route as OdgovornaIgraRouteImport } from './routes/odgovorna-igra'
@@ -84,6 +85,11 @@ const RecStrucnjakaRoute = RecStrucnjakaRouteImport.update({
 const PostaviPitanjeRoute = PostaviPitanjeRouteImport.update({
   id: '/postavi-pitanje',
   path: '/postavi-pitanje',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PomocRoute = PomocRouteImport.update({
+  id: '/pomoc',
+  path: '/pomoc',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PolitikaPrivatnostiRoute = PolitikaPrivatnostiRouteImport.update({
@@ -171,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/odgovorna-igra': typeof OdgovornaIgraRoute
   '/politika-kolacica': typeof PolitikaKolacicaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/pomoc': typeof PomocRoute
   '/postavi-pitanje': typeof PostaviPitanjeRoute
   '/rec-strucnjaka': typeof RecStrucnjakaRouteWithChildren
   '/registracija-verifikacija': typeof RegistracijaVerifikacijaRoute
@@ -198,6 +205,7 @@ export interface FileRoutesByTo {
   '/odgovorna-igra': typeof OdgovornaIgraRoute
   '/politika-kolacica': typeof PolitikaKolacicaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/pomoc': typeof PomocRoute
   '/postavi-pitanje': typeof PostaviPitanjeRoute
   '/rec-strucnjaka': typeof RecStrucnjakaRouteWithChildren
   '/registracija-verifikacija': typeof RegistracijaVerifikacijaRoute
@@ -226,6 +234,7 @@ export interface FileRoutesById {
   '/odgovorna-igra': typeof OdgovornaIgraRoute
   '/politika-kolacica': typeof PolitikaKolacicaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/pomoc': typeof PomocRoute
   '/postavi-pitanje': typeof PostaviPitanjeRoute
   '/rec-strucnjaka': typeof RecStrucnjakaRouteWithChildren
   '/registracija-verifikacija': typeof RegistracijaVerifikacijaRoute
@@ -255,6 +264,7 @@ export interface FileRouteTypes {
     | '/odgovorna-igra'
     | '/politika-kolacica'
     | '/politika-privatnosti'
+    | '/pomoc'
     | '/postavi-pitanje'
     | '/rec-strucnjaka'
     | '/registracija-verifikacija'
@@ -282,6 +292,7 @@ export interface FileRouteTypes {
     | '/odgovorna-igra'
     | '/politika-kolacica'
     | '/politika-privatnosti'
+    | '/pomoc'
     | '/postavi-pitanje'
     | '/rec-strucnjaka'
     | '/registracija-verifikacija'
@@ -309,6 +320,7 @@ export interface FileRouteTypes {
     | '/odgovorna-igra'
     | '/politika-kolacica'
     | '/politika-privatnosti'
+    | '/pomoc'
     | '/postavi-pitanje'
     | '/rec-strucnjaka'
     | '/registracija-verifikacija'
@@ -337,6 +349,7 @@ export interface RootRouteChildren {
   OdgovornaIgraRoute: typeof OdgovornaIgraRoute
   PolitikaKolacicaRoute: typeof PolitikaKolacicaRoute
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
+  PomocRoute: typeof PomocRoute
   PostaviPitanjeRoute: typeof PostaviPitanjeRoute
   RecStrucnjakaRoute: typeof RecStrucnjakaRouteWithChildren
   RegistracijaVerifikacijaRoute: typeof RegistracijaVerifikacijaRoute
@@ -425,6 +438,13 @@ declare module '@tanstack/react-router' {
       path: '/postavi-pitanje'
       fullPath: '/postavi-pitanje'
       preLoaderRoute: typeof PostaviPitanjeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pomoc': {
+      id: '/pomoc'
+      path: '/pomoc'
+      fullPath: '/pomoc'
+      preLoaderRoute: typeof PomocRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politika-privatnosti': {
@@ -567,6 +587,7 @@ const rootRouteChildren: RootRouteChildren = {
   OdgovornaIgraRoute: OdgovornaIgraRoute,
   PolitikaKolacicaRoute: PolitikaKolacicaRoute,
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
+  PomocRoute: PomocRoute,
   PostaviPitanjeRoute: PostaviPitanjeRoute,
   RecStrucnjakaRoute: RecStrucnjakaRouteWithChildren,
   RegistracijaVerifikacijaRoute: RegistracijaVerifikacijaRoute,
