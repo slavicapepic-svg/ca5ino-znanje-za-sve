@@ -81,27 +81,18 @@ export function Footer() {
         ))}
 
         <div>
-          <p className="text-sm font-bold uppercase tracking-wider text-white">Brojevi za pomoć</p>
-          <ul className="mt-5 space-y-3 text-sm">
-            {footerHelpNumbers.map((p) => (
-              <li key={p.number}>
-                <a href={`tel:${p.number.replace(/[^\d+]/g, "")}`} className="inline-flex items-center gap-2 font-semibold text-white transition hover:text-accent">
-                  <Headphones className="h-4 w-4 text-accent" />
-                  {p.number}
-                </a>
-                {p.note && <p className="ml-6 text-[11px] text-white/60">{p.note}</p>}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-5 flex flex-wrap gap-2 text-xs">
-            <Link to="/pomoc" className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 font-bold text-accent-foreground transition hover:opacity-90">
-              <Phone className="h-3.5 w-3.5" /> Zatražite pomoć
-            </Link>
-            <Link to="/vazne-stranice" className="inline-flex items-center rounded-full border border-white/25 px-3 py-1.5 font-semibold text-white/85 transition hover:border-accent hover:text-accent">
-              Važne stranice
-            </Link>
+          <p className="text-sm font-bold uppercase tracking-wider text-white">Zatražite pomoć</p>
+          <div className="mt-5 rounded-2xl border border-white/15 bg-white/[0.04] p-5 text-sm leading-relaxed text-white/85">
+            Imate problem sa kontrolom igranja? Besplatan broj za savetovanje je{" "}
+            <a href="tel:0800110011" className="font-extrabold text-accent hover:underline">0800-110-011</a>{" "}
+            i radi radnim danima od 7 do 22h. Za mobilne telefone pozovite{" "}
+            <a href="tel:09003090007" className="font-extrabold text-accent hover:underline">0900-3090-007</a>.
           </div>
+          <Link to="/pomoc" className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-accent px-3.5 py-2 text-xs font-bold text-accent-foreground transition hover:opacity-90">
+            <Phone className="h-3.5 w-3.5" /> Sve institucije i kontakti
+          </Link>
         </div>
+
 
       </div>
 
