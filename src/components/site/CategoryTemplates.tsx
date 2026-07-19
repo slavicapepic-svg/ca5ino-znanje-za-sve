@@ -96,7 +96,47 @@ export function CategoryPage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* Info blocks -> compact grid of cards */}
+      {/* Table of Contents (bonus-uslovi) */}
+      {cat.slug === "bonus-uslovi" && cat.infoBlocks && cat.infoBlocks.length > 0 && (
+        <section className="border-y border-border bg-white py-8">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">Sadržaj</p>
+            <ol className="mt-3 grid list-decimal gap-x-6 gap-y-2 pl-5 text-sm text-brand marker:text-text-muted sm:grid-cols-2 lg:grid-cols-3">
+              <li><a href="#teme" className="hover:underline">Sve teme u rubrici</a></li>
+              {cat.infoBlocks.map((b) => (
+                <li key={b.title}>
+                  <a href={`#${slugifyId(b.title)}`} className="hover:underline">{b.title}</a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
+
+      {/* Ungrouped articles — clean tiles (image + title) for bonus */}
+      {ungrouped.length > 0 && (
+        <section id="teme" className="py-14 md:py-16">
+          <div className="mx-auto max-w-7xl px-4 md:px-6">
+            <SectionHeader index={1} icon={Icon} title="Sve teme u rubrici" subtitle="Vodiči i objašnjenja iz oblasti." />
+            <LimitedGrid initialCount={4} cols={3}>
+              {ungrouped.map((a) => (
+                <CardTile
+                  key={a.slug}
+                  to={`${cat.path}/${a.slug}`}
+                  image={a.image}
+                  title={a.title}
+                  author={cat.slug === "bonus-uslovi" ? undefined : a.author}
+                  date={cat.slug === "bonus-uslovi" ? undefined : a.date}
+                  read={cat.slug === "bonus-uslovi" ? undefined : a.read}
+                  category={cat.slug === "bonus-uslovi" ? undefined : cat.eyebrow.split("·")[1]?.trim()}
+                />
+              ))}
+            </LimitedGrid>
+          </div>
+        </section>
+      )}
+
+      {/* Info blocks -> compact grid of cards (rendered AFTER tiles) */}
       {cat.infoBlocks && cat.infoBlocks.length > 0 && (
         <section className="border-y border-border bg-bg-soft py-14">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -104,7 +144,8 @@ export function CategoryPage({ slug }: { slug: string }) {
               {cat.infoBlocks.map((b, i) => (
                 <article
                   key={b.title}
-                  className="flex flex-col rounded-2xl border border-border bg-white p-5 shadow-soft transition hover:shadow-card"
+                  id={slugifyId(b.title)}
+                  className="flex flex-col scroll-mt-24 rounded-2xl border border-border bg-white p-5 shadow-soft transition hover:shadow-card"
                 >
                   <div className="flex items-center gap-3">
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-blue-50 text-sm font-bold text-brand">
@@ -118,21 +159,6 @@ export function CategoryPage({ slug }: { slug: string }) {
                 </article>
               ))}
             </div>
-          </div>
-        </section>
-      )}
-
-
-      {/* Ungrouped articles */}
-      {ungrouped.length > 0 && (
-        <section className="py-14 md:py-16">
-          <div className="mx-auto max-w-7xl px-4 md:px-6">
-            <SectionHeader index={1} icon={Icon} title="Sve teme u rubrici" subtitle="Vodiči i objašnjenja iz oblasti." />
-            <LimitedGrid initialCount={4} cols={3}>
-              {ungrouped.map((a) => (
-                <CardTile key={a.slug} to={`${cat.path}/${a.slug}`} image={a.image} title={a.title} author={a.author} date={a.date} read={a.read} category={cat.eyebrow.split("·")[1]?.trim()} />
-              ))}
-            </LimitedGrid>
           </div>
         </section>
       )}
