@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VestiMedijiRouteImport } from './routes/vesti-mediji'
+import { Route as VazneStraniceRouteImport } from './routes/vazne-stranice'
 import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja'
 import { Route as UplateIsplateRouteImport } from './routes/uplate-isplate'
 import { Route as SvetRegulativeRouteImport } from './routes/svet-regulative'
@@ -36,6 +37,11 @@ import { Route as BonusUsloviSlugRouteImport } from './routes/bonus-uslovi_.$slu
 const VestiMedijiRoute = VestiMedijiRouteImport.update({
   id: '/vesti-mediji',
   path: '/vesti-mediji',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VazneStraniceRoute = VazneStraniceRouteImport.update({
+  id: '/vazne-stranice',
+  path: '/vazne-stranice',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UsloviKoriscenjaRoute = UsloviKoriscenjaRouteImport.update({
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/svet-regulative': typeof SvetRegulativeRoute
   '/uplate-isplate': typeof UplateIsplateRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/vazne-stranice': typeof VazneStraniceRoute
   '/vesti-mediji': typeof VestiMedijiRouteWithChildren
   '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
   '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
@@ -191,6 +198,7 @@ export interface FileRoutesByTo {
   '/svet-regulative': typeof SvetRegulativeRoute
   '/uplate-isplate': typeof UplateIsplateRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/vazne-stranice': typeof VazneStraniceRoute
   '/vesti-mediji': typeof VestiMedijiRouteWithChildren
   '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
   '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
@@ -217,6 +225,7 @@ export interface FileRoutesById {
   '/svet-regulative': typeof SvetRegulativeRoute
   '/uplate-isplate': typeof UplateIsplateRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/vazne-stranice': typeof VazneStraniceRoute
   '/vesti-mediji': typeof VestiMedijiRouteWithChildren
   '/bonus-uslovi_/$slug': typeof BonusUsloviSlugRoute
   '/odgovorna-igra_/$slug': typeof OdgovornaIgraSlugRoute
@@ -244,6 +253,7 @@ export interface FileRouteTypes {
     | '/svet-regulative'
     | '/uplate-isplate'
     | '/uslovi-koriscenja'
+    | '/vazne-stranice'
     | '/vesti-mediji'
     | '/bonus-uslovi/$slug'
     | '/odgovorna-igra/$slug'
@@ -269,6 +279,7 @@ export interface FileRouteTypes {
     | '/svet-regulative'
     | '/uplate-isplate'
     | '/uslovi-koriscenja'
+    | '/vazne-stranice'
     | '/vesti-mediji'
     | '/bonus-uslovi/$slug'
     | '/odgovorna-igra/$slug'
@@ -294,6 +305,7 @@ export interface FileRouteTypes {
     | '/svet-regulative'
     | '/uplate-isplate'
     | '/uslovi-koriscenja'
+    | '/vazne-stranice'
     | '/vesti-mediji'
     | '/bonus-uslovi_/$slug'
     | '/odgovorna-igra_/$slug'
@@ -320,6 +332,7 @@ export interface RootRouteChildren {
   SvetRegulativeRoute: typeof SvetRegulativeRoute
   UplateIsplateRoute: typeof UplateIsplateRoute
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
+  VazneStraniceRoute: typeof VazneStraniceRoute
   VestiMedijiRoute: typeof VestiMedijiRouteWithChildren
   BonusUsloviSlugRoute: typeof BonusUsloviSlugRoute
   OdgovornaIgraSlugRoute: typeof OdgovornaIgraSlugRoute
@@ -336,6 +349,13 @@ declare module '@tanstack/react-router' {
       path: '/vesti-mediji'
       fullPath: '/vesti-mediji'
       preLoaderRoute: typeof VestiMedijiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vazne-stranice': {
+      id: '/vazne-stranice'
+      path: '/vazne-stranice'
+      fullPath: '/vazne-stranice'
+      preLoaderRoute: typeof VazneStraniceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uslovi-koriscenja': {
@@ -534,6 +554,7 @@ const rootRouteChildren: RootRouteChildren = {
   SvetRegulativeRoute: SvetRegulativeRoute,
   UplateIsplateRoute: UplateIsplateRoute,
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
+  VazneStraniceRoute: VazneStraniceRoute,
   VestiMedijiRoute: VestiMedijiRouteWithChildren,
   BonusUsloviSlugRoute: BonusUsloviSlugRoute,
   OdgovornaIgraSlugRoute: OdgovornaIgraSlugRoute,
