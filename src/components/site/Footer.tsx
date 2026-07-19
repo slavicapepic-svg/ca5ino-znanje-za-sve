@@ -25,7 +25,6 @@ const footerCols = [
       { label: "Vesti i Mediji", to: "/vesti-mediji" },
       { label: "O nama", to: "/o-nama" },
       { label: "Postavi pitanje", to: "/postavi-pitanje" },
-      { label: "Pomoć", to: "/pomoc" },
     ],
   },
 ] as const;
@@ -33,7 +32,8 @@ const footerCols = [
 const legalLinks = [
   { label: "Uslovi korišćenja", to: "/uslovi-koriscenja" },
   { label: "Politika privatnosti", to: "/politika-privatnosti" },
-  { label: "Politika kolačića", to: "/kolacici" },
+  { label: "Politika kolačića", to: "/politika-kolacica" },
+  { label: "Uređivačka politika", to: "/urednicka-politika" },
   { label: "Disclaimer", to: "/disclaimer" },
 ] as const;
 
@@ -77,13 +77,13 @@ export function Footer() {
         <div>
           <p className="text-sm font-bold uppercase tracking-wider text-white">Linkovi za pomoć</p>
           <ul className="mt-5 space-y-3 text-sm text-white/75">
-            <li><Link to="/pomoc" className="hover:text-accent">Institucije i SOS linije</Link></li>
-            <li><Link to="/pomoc" className="hover:text-accent">Klubovi za zavisnike</Link></li>
-            <li><Link to="/pomoc" className="hover:text-accent">Onlajn savetovanje</Link></li>
+            <li><Link to="/vazne-stranice" className="hover:text-accent">Važne stranice</Link></li>
           </ul>
           <div className="mt-6 rounded-xl border border-white/15 bg-white/5 p-4 text-xs text-white/80">
-            Imate problem sa kontrolom igranja? Pozovite besplatan broj{" "}
-            <span className="font-bold text-accent">0800 000 000</span> — 24/7.
+            <div className="mb-2 flex items-center gap-2">
+              <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-1 text-[11px] font-extrabold text-accent-foreground">18+ 🔞</span>
+            </div>
+            Igre na sreću mogu izazvati zavisnost. Igrajte odgovorno.
           </div>
         </div>
       </div>
