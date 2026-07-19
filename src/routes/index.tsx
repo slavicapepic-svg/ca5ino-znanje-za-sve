@@ -23,6 +23,7 @@ import heroIllustration from "@/assets/hero-illustration.png";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FollowUs } from "@/components/site/FollowUs";
+import { SurveyBanner } from "@/components/site/SurveyBanner";
 import { ExpertCard } from "@/components/site/ExpertCard";
 import { featuredExperts } from "@/content/experts";
 import { categories } from "@/content/categories";
@@ -579,6 +580,7 @@ function HomePage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
+        <SurveyBanner />
         <Hero />
         <QuickLinks />
         <TopicMarquee />
