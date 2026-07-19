@@ -81,17 +81,28 @@ export function Footer() {
         ))}
 
         <div>
-          <p className="text-sm font-bold uppercase tracking-wider text-white">Linkovi za pomoć</p>
-          <ul className="mt-5 space-y-3 text-sm text-white/75">
-            <li><Link to="/vazne-stranice" className="hover:text-accent">Važne stranice</Link></li>
+          <p className="text-sm font-bold uppercase tracking-wider text-white">Brojevi za pomoć</p>
+          <ul className="mt-5 space-y-3 text-sm">
+            {footerHelpNumbers.map((p) => (
+              <li key={p.number}>
+                <a href={`tel:${p.number.replace(/[^\d+]/g, "")}`} className="inline-flex items-center gap-2 font-semibold text-white transition hover:text-accent">
+                  <Headphones className="h-4 w-4 text-accent" />
+                  {p.number}
+                </a>
+                {p.note && <p className="ml-6 text-[11px] text-white/60">{p.note}</p>}
+              </li>
+            ))}
           </ul>
-          <div className="mt-6 rounded-xl border border-white/15 bg-white/5 p-4 text-xs text-white/80">
-            <div className="mb-2 flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-1 text-[11px] font-extrabold text-accent-foreground">18+ 🔞</span>
-            </div>
-            Igre na sreću mogu izazvati zavisnost. Igrajte odgovorno.
+          <div className="mt-5 flex flex-wrap gap-2 text-xs">
+            <Link to="/pomoc" className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 font-bold text-accent-foreground transition hover:opacity-90">
+              <Phone className="h-3.5 w-3.5" /> Zatražite pomoć
+            </Link>
+            <Link to="/vazne-stranice" className="inline-flex items-center rounded-full border border-white/25 px-3 py-1.5 font-semibold text-white/85 transition hover:border-accent hover:text-accent">
+              Važne stranice
+            </Link>
           </div>
         </div>
+
       </div>
 
       <div className="border-t border-white/10">
