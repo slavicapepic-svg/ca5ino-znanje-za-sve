@@ -23,6 +23,7 @@ import heroIllustration from "@/assets/hero-illustration.png";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FollowUs } from "@/components/site/FollowUs";
+import { SurveyBanner } from "@/components/site/SurveyBanner";
 import { ExpertCard } from "@/components/site/ExpertCard";
 import { featuredExperts } from "@/content/experts";
 import { categories } from "@/content/categories";
@@ -54,7 +55,7 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pt-14 pb-8 md:px-6 lg:grid-cols-12 lg:pt-20 lg:pb-10">
         <div className="lg:col-span-7">
           <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
-            <Sparkles className="h-3.5 w-3.5" /> Edukativna platforma · ne kockarnica
+            <Sparkles className="h-3.5 w-3.5" /> Edukativna platforma · RAZUMITE iGAMING
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] text-text-strong sm:text-5xl lg:text-6xl">
             Iza <span className="text-brand">kulisa</span> igre
@@ -579,6 +580,7 @@ function HomePage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
+        <SurveyBanner />
         <Hero />
         <QuickLinks />
         <TopicMarquee />

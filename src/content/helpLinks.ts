@@ -1,31 +1,44 @@
+export type HelpOrgPhone = {
+  number: string;
+  note?: string;
+};
+
 export type HelpOrg = {
   name: string;
   description: string;
-  phone?: string;
+  address?: string;
+  phones?: HelpOrgPhone[];
   link?: string;
 };
 
 export const helpOrgs: HelpOrg[] = [
   {
-    name: "SOS linija za zavisnike od igara na sreću",
-    description: "Anonimni razgovor sa savetnicima 24/7. Prvi korak ka razgovoru o problemu.",
-    phone: "0800 000 000",
+    name: "Specijalna bolnica za bolesti zavisnosti Beograd",
+    description:
+      "Ustanova specijalizovana za lečenje bolesti zavisnosti, uključujući patološko kockanje.",
+    address: "Teodora Drajzera 44, Beograd",
+    link: "https://www.drajzerova.org.rs",
+    phones: [
+      { number: "+381 11 3671 429" },
+      { number: "+381 11 2662 727" },
+    ],
   },
   {
-    name: "Klinika za bolesti zavisnosti",
-    description: "Stručna medicinska pomoć i grupna terapija za osobe sa problematičnim igranjem.",
-    phone: "011 000 000",
-    link: "https://example.org",
+    name: "Institut za mentalno zdravlje",
+    description:
+      "Institut za dijagnostiku, lečenje i istraživanje mentalnih poremećaja u Beogradu.",
+    address: "Milana Kašanina 3, 11000 Beograd",
+    link: "https://www.imh.org.rs",
+    phones: [{ number: "+381 11 3307 500" }],
   },
   {
-    name: "Anonimni kockari Srbije",
-    description: "Podrška po modelu 12 koraka. Redovni sastanci uživo i online.",
-    phone: "064 000 0000",
-    link: "https://example.org",
-  },
-  {
-    name: "Onlajn savetovanje — chat podrška",
-    description: "Poverljiv razgovor sa psihologom putem čata, bez zakazivanja.",
-    link: "https://example.org",
+    name: "SOS linija Ministarstva zdravlja i Uprave za igre na sreću",
+    description:
+      "Besplatna i anonimna linija za pomoć osobama sa problemom patološkog kockanja i njihovim porodicama.",
+    link: "https://www.uis.gov.rs/rsc",
+    phones: [
+      { number: "0800-110-011", note: "besplatan poziv, radnim danima 07–22h" },
+      { number: "0900-3090-007", note: "za mobilne telefone" },
+    ],
   },
 ];

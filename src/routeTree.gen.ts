@@ -10,18 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VestiMedijiRouteImport } from './routes/vesti-mediji'
+import { Route as VazneStraniceRouteImport } from './routes/vazne-stranice'
 import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja'
+import { Route as UrednickaPolitikaRouteImport } from './routes/urednicka-politika'
 import { Route as UplateIsplateRouteImport } from './routes/uplate-isplate'
 import { Route as SvetRegulativeRouteImport } from './routes/svet-regulative'
 import { Route as SveOIgricamaRouteImport } from './routes/sve-o-igricama'
 import { Route as RegistracijaVerifikacijaRouteImport } from './routes/registracija-verifikacija'
 import { Route as RecStrucnjakaRouteImport } from './routes/rec-strucnjaka'
 import { Route as PostaviPitanjeRouteImport } from './routes/postavi-pitanje'
-import { Route as PomocRouteImport } from './routes/pomoc'
 import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-privatnosti'
+import { Route as PolitikaKolacicaRouteImport } from './routes/politika-kolacica'
 import { Route as OdgovornaIgraRouteImport } from './routes/odgovorna-igra'
 import { Route as ONamaRouteImport } from './routes/o-nama'
-import { Route as KolaciciRouteImport } from './routes/kolacici'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as BonusUsloviRouteImport } from './routes/bonus-uslovi'
 import { Route as IndexRouteImport } from './routes/index'
@@ -39,9 +40,19 @@ const VestiMedijiRoute = VestiMedijiRouteImport.update({
   path: '/vesti-mediji',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VazneStraniceRoute = VazneStraniceRouteImport.update({
+  id: '/vazne-stranice',
+  path: '/vazne-stranice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UsloviKoriscenjaRoute = UsloviKoriscenjaRouteImport.update({
   id: '/uslovi-koriscenja',
   path: '/uslovi-koriscenja',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UrednickaPolitikaRoute = UrednickaPolitikaRouteImport.update({
+  id: '/urednicka-politika',
+  path: '/urednicka-politika',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UplateIsplateRoute = UplateIsplateRouteImport.update({
@@ -75,14 +86,14 @@ const PostaviPitanjeRoute = PostaviPitanjeRouteImport.update({
   path: '/postavi-pitanje',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PomocRoute = PomocRouteImport.update({
-  id: '/pomoc',
-  path: '/pomoc',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PolitikaPrivatnostiRoute = PolitikaPrivatnostiRouteImport.update({
   id: '/politika-privatnosti',
   path: '/politika-privatnosti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PolitikaKolacicaRoute = PolitikaKolacicaRouteImport.update({
+  id: '/politika-kolacica',
+  path: '/politika-kolacica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OdgovornaIgraRoute = OdgovornaIgraRouteImport.update({
@@ -93,11 +104,6 @@ const OdgovornaIgraRoute = OdgovornaIgraRouteImport.update({
 const ONamaRoute = ONamaRouteImport.update({
   id: '/o-nama',
   path: '/o-nama',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KolaciciRoute = KolaciciRouteImport.update({
-  id: '/kolacici',
-  path: '/kolacici',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
@@ -161,18 +167,19 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bonus-uslovi': typeof BonusUsloviRoute
   '/disclaimer': typeof DisclaimerRoute
-  '/kolacici': typeof KolaciciRoute
   '/o-nama': typeof ONamaRoute
   '/odgovorna-igra': typeof OdgovornaIgraRoute
+  '/politika-kolacica': typeof PolitikaKolacicaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
-  '/pomoc': typeof PomocRoute
   '/postavi-pitanje': typeof PostaviPitanjeRoute
   '/rec-strucnjaka': typeof RecStrucnjakaRouteWithChildren
   '/registracija-verifikacija': typeof RegistracijaVerifikacijaRoute
   '/sve-o-igricama': typeof SveOIgricamaRoute
   '/svet-regulative': typeof SvetRegulativeRoute
   '/uplate-isplate': typeof UplateIsplateRoute
+  '/urednicka-politika': typeof UrednickaPolitikaRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/vazne-stranice': typeof VazneStraniceRoute
   '/vesti-mediji': typeof VestiMedijiRouteWithChildren
   '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
   '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
@@ -187,18 +194,19 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bonus-uslovi': typeof BonusUsloviRoute
   '/disclaimer': typeof DisclaimerRoute
-  '/kolacici': typeof KolaciciRoute
   '/o-nama': typeof ONamaRoute
   '/odgovorna-igra': typeof OdgovornaIgraRoute
+  '/politika-kolacica': typeof PolitikaKolacicaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
-  '/pomoc': typeof PomocRoute
   '/postavi-pitanje': typeof PostaviPitanjeRoute
   '/rec-strucnjaka': typeof RecStrucnjakaRouteWithChildren
   '/registracija-verifikacija': typeof RegistracijaVerifikacijaRoute
   '/sve-o-igricama': typeof SveOIgricamaRoute
   '/svet-regulative': typeof SvetRegulativeRoute
   '/uplate-isplate': typeof UplateIsplateRoute
+  '/urednicka-politika': typeof UrednickaPolitikaRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/vazne-stranice': typeof VazneStraniceRoute
   '/vesti-mediji': typeof VestiMedijiRouteWithChildren
   '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
   '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
@@ -214,18 +222,19 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/bonus-uslovi': typeof BonusUsloviRoute
   '/disclaimer': typeof DisclaimerRoute
-  '/kolacici': typeof KolaciciRoute
   '/o-nama': typeof ONamaRoute
   '/odgovorna-igra': typeof OdgovornaIgraRoute
+  '/politika-kolacica': typeof PolitikaKolacicaRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
-  '/pomoc': typeof PomocRoute
   '/postavi-pitanje': typeof PostaviPitanjeRoute
   '/rec-strucnjaka': typeof RecStrucnjakaRouteWithChildren
   '/registracija-verifikacija': typeof RegistracijaVerifikacijaRoute
   '/sve-o-igricama': typeof SveOIgricamaRoute
   '/svet-regulative': typeof SvetRegulativeRoute
   '/uplate-isplate': typeof UplateIsplateRoute
+  '/urednicka-politika': typeof UrednickaPolitikaRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/vazne-stranice': typeof VazneStraniceRoute
   '/vesti-mediji': typeof VestiMedijiRouteWithChildren
   '/bonus-uslovi_/$slug': typeof BonusUsloviSlugRoute
   '/odgovorna-igra_/$slug': typeof OdgovornaIgraSlugRoute
@@ -242,18 +251,19 @@ export interface FileRouteTypes {
     | '/'
     | '/bonus-uslovi'
     | '/disclaimer'
-    | '/kolacici'
     | '/o-nama'
     | '/odgovorna-igra'
+    | '/politika-kolacica'
     | '/politika-privatnosti'
-    | '/pomoc'
     | '/postavi-pitanje'
     | '/rec-strucnjaka'
     | '/registracija-verifikacija'
     | '/sve-o-igricama'
     | '/svet-regulative'
     | '/uplate-isplate'
+    | '/urednicka-politika'
     | '/uslovi-koriscenja'
+    | '/vazne-stranice'
     | '/vesti-mediji'
     | '/bonus-uslovi/$slug'
     | '/odgovorna-igra/$slug'
@@ -268,18 +278,19 @@ export interface FileRouteTypes {
     | '/'
     | '/bonus-uslovi'
     | '/disclaimer'
-    | '/kolacici'
     | '/o-nama'
     | '/odgovorna-igra'
+    | '/politika-kolacica'
     | '/politika-privatnosti'
-    | '/pomoc'
     | '/postavi-pitanje'
     | '/rec-strucnjaka'
     | '/registracija-verifikacija'
     | '/sve-o-igricama'
     | '/svet-regulative'
     | '/uplate-isplate'
+    | '/urednicka-politika'
     | '/uslovi-koriscenja'
+    | '/vazne-stranice'
     | '/vesti-mediji'
     | '/bonus-uslovi/$slug'
     | '/odgovorna-igra/$slug'
@@ -294,18 +305,19 @@ export interface FileRouteTypes {
     | '/'
     | '/bonus-uslovi'
     | '/disclaimer'
-    | '/kolacici'
     | '/o-nama'
     | '/odgovorna-igra'
+    | '/politika-kolacica'
     | '/politika-privatnosti'
-    | '/pomoc'
     | '/postavi-pitanje'
     | '/rec-strucnjaka'
     | '/registracija-verifikacija'
     | '/sve-o-igricama'
     | '/svet-regulative'
     | '/uplate-isplate'
+    | '/urednicka-politika'
     | '/uslovi-koriscenja'
+    | '/vazne-stranice'
     | '/vesti-mediji'
     | '/bonus-uslovi_/$slug'
     | '/odgovorna-igra_/$slug'
@@ -321,18 +333,19 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BonusUsloviRoute: typeof BonusUsloviRoute
   DisclaimerRoute: typeof DisclaimerRoute
-  KolaciciRoute: typeof KolaciciRoute
   ONamaRoute: typeof ONamaRoute
   OdgovornaIgraRoute: typeof OdgovornaIgraRoute
+  PolitikaKolacicaRoute: typeof PolitikaKolacicaRoute
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
-  PomocRoute: typeof PomocRoute
   PostaviPitanjeRoute: typeof PostaviPitanjeRoute
   RecStrucnjakaRoute: typeof RecStrucnjakaRouteWithChildren
   RegistracijaVerifikacijaRoute: typeof RegistracijaVerifikacijaRoute
   SveOIgricamaRoute: typeof SveOIgricamaRoute
   SvetRegulativeRoute: typeof SvetRegulativeRoute
   UplateIsplateRoute: typeof UplateIsplateRoute
+  UrednickaPolitikaRoute: typeof UrednickaPolitikaRoute
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
+  VazneStraniceRoute: typeof VazneStraniceRoute
   VestiMedijiRoute: typeof VestiMedijiRouteWithChildren
   BonusUsloviSlugRoute: typeof BonusUsloviSlugRoute
   OdgovornaIgraSlugRoute: typeof OdgovornaIgraSlugRoute
@@ -351,11 +364,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VestiMedijiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vazne-stranice': {
+      id: '/vazne-stranice'
+      path: '/vazne-stranice'
+      fullPath: '/vazne-stranice'
+      preLoaderRoute: typeof VazneStraniceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslovi-koriscenja': {
       id: '/uslovi-koriscenja'
       path: '/uslovi-koriscenja'
       fullPath: '/uslovi-koriscenja'
       preLoaderRoute: typeof UsloviKoriscenjaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/urednicka-politika': {
+      id: '/urednicka-politika'
+      path: '/urednicka-politika'
+      fullPath: '/urednicka-politika'
+      preLoaderRoute: typeof UrednickaPolitikaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uplate-isplate': {
@@ -400,18 +427,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostaviPitanjeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pomoc': {
-      id: '/pomoc'
-      path: '/pomoc'
-      fullPath: '/pomoc'
-      preLoaderRoute: typeof PomocRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/politika-privatnosti': {
       id: '/politika-privatnosti'
       path: '/politika-privatnosti'
       fullPath: '/politika-privatnosti'
       preLoaderRoute: typeof PolitikaPrivatnostiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politika-kolacica': {
+      id: '/politika-kolacica'
+      path: '/politika-kolacica'
+      fullPath: '/politika-kolacica'
+      preLoaderRoute: typeof PolitikaKolacicaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/odgovorna-igra': {
@@ -426,13 +453,6 @@ declare module '@tanstack/react-router' {
       path: '/o-nama'
       fullPath: '/o-nama'
       preLoaderRoute: typeof ONamaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kolacici': {
-      id: '/kolacici'
-      path: '/kolacici'
-      fullPath: '/kolacici'
-      preLoaderRoute: typeof KolaciciRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/disclaimer': {
@@ -543,18 +563,19 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BonusUsloviRoute: BonusUsloviRoute,
   DisclaimerRoute: DisclaimerRoute,
-  KolaciciRoute: KolaciciRoute,
   ONamaRoute: ONamaRoute,
   OdgovornaIgraRoute: OdgovornaIgraRoute,
+  PolitikaKolacicaRoute: PolitikaKolacicaRoute,
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
-  PomocRoute: PomocRoute,
   PostaviPitanjeRoute: PostaviPitanjeRoute,
   RecStrucnjakaRoute: RecStrucnjakaRouteWithChildren,
   RegistracijaVerifikacijaRoute: RegistracijaVerifikacijaRoute,
   SveOIgricamaRoute: SveOIgricamaRoute,
   SvetRegulativeRoute: SvetRegulativeRoute,
   UplateIsplateRoute: UplateIsplateRoute,
+  UrednickaPolitikaRoute: UrednickaPolitikaRoute,
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
+  VazneStraniceRoute: VazneStraniceRoute,
   VestiMedijiRoute: VestiMedijiRouteWithChildren,
   BonusUsloviSlugRoute: BonusUsloviSlugRoute,
   OdgovornaIgraSlugRoute: OdgovornaIgraSlugRoute,
@@ -566,13 +587,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
