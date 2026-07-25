@@ -178,7 +178,6 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
-          showCloseButton={false}
           className="max-w-3xl gap-0 overflow-hidden border-0 bg-white p-0 sm:rounded-2xl"
         >
           <div className="grid max-h-[85vh] grid-cols-1 md:grid-cols-[240px_1fr]">
