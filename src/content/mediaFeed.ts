@@ -59,7 +59,7 @@ export const mediaFeed: MediaItem[] = [
     author: "Stefan Jovanović",
     read: "8",
     body:
-      "Nove EU smernice unose harmonizaciju u domenu KYC provera i standardizaciju alata za odgovornu igru. Operateri koji posluju u više zemalja moraju uskladiti limite, samoisključenja i izveštavanje regulatorima.",
+      "Nove EU smernice unose harmonizaciju u domenu KYC provera i standardizaciju alata za odgovornu igru. Operateri koji posluju u više zemalja moraju uskladiti limite, samoisključenja i izveštavanje regulatorima.\n\n## Šta se konkretno menja\n\nRegulator traži jedinstven format izveštavanja i brži prenos podataka između nadzornih tela. To znači da će prekogranične licence imati manje sivih zona.\n\n- Ujednačeni KYC pragovi za depozite preko 2.000 EUR\n- Obavezni alati za samoisključenje sa jedinstvenim registrom\n- Standardizovano prijavljivanje sumnjivih obrazaca igre\n\n## Šta to znači za igrače\n\nZa igrače u regionu, ovo donosi konkretniju zaštitu — pre svega jasnije rokove za isplate i lakše podnošenje reklamacija ako operater ne poštuje sopstvene uslove.\n\n> Ako operater posluje u više zemalja, ne može više birati koja pravila mu odgovaraju — mora primeniti najstrožu praksu."
   },
   {
     slug: "regulatori-objasnjeni",
@@ -81,7 +81,8 @@ export const mediaFeed: MediaItem[] = [
     date: "24. jun 2026.",
     author: "Milica Pavlović",
     read: "6",
-    body: "Uslovi klađenja (wagering) su najčešće x30 do x45 iznosa bonusa. Pre nego što aktivirate bonus proverite tri stvari: wagering, max bet i rok.",
+    body:
+      "Uslovi klađenja (wagering) su najčešće x30 do x45 iznosa bonusa. Pre nego što aktivirate bonus, proverite tri stvari: wagering, maksimalni ulog po spinu i rok za ispunjenje.\n\n## Tri stavke koje uvek pročitajte\n\n- Wagering koeficijent — koliko puta morate „provrteti\u201c bonus\n- Max bet — najveći dozvoljen ulog dok je bonus aktivan\n- Rok — obično od 7 do 30 dana od aktivacije\n\n## Najčešća zamka\n\nAko pređete maksimalni ulog samo jednom, operater može poništiti sav dobitak iz bonusa. Zato je važno da limit ostavite ispod dozvoljenog i pre nego što krenete.\n\n> Bonus nije poklon — to je marketinški alat sa jasnim pravilima. Kada ih razumete, znate i da li vam se uopšte isplati."
   },
   {
     slug: "rtp-i-mit-o-vrucoj-masini",
