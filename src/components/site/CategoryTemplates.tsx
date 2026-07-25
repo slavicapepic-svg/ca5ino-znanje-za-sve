@@ -104,14 +104,47 @@ export function CategoryPage({ slug }: { slug: string }) {
 
       {/* Table of Contents (bonus-uslovi) */}
       {cat.slug === "bonus-uslovi" && cat.infoBlocks && cat.infoBlocks.length > 0 && (
-        <section className="border-y border-border bg-white py-8">
+        <section className="border-y border-border bg-white py-10 md:py-12">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">Sadržaj</p>
-            <ol className="mt-3 grid list-decimal gap-x-6 gap-y-2 pl-5 text-sm text-brand marker:text-text-muted sm:grid-cols-2 lg:grid-cols-3">
-              <li><a href="#teme" className="hover:underline">Sve teme u rubrici</a></li>
-              {cat.infoBlocks.map((b) => (
-                <li key={b.title}>
-                  <a href={`#${slugifyId(b.title)}`} className="hover:underline">{b.title}</a>
+            <div className="flex items-end justify-between gap-6">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand">
+                  <ListChecks className="h-3.5 w-3.5" /> Sadržaj
+                </span>
+                <h2 className="mt-3 text-xl font-extrabold text-text-strong sm:text-2xl">
+                  Šta ćete pronaći na ovoj stranici
+                </h2>
+              </div>
+              <span className="hidden text-xs text-text-muted sm:block">
+                {cat.infoBlocks.length + 1} celina · kliknite za skok
+              </span>
+            </div>
+
+            <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { title: "Sve teme u rubrici", href: "#teme", hint: `${cat.articles.length} tema` },
+                ...cat.infoBlocks.map((b) => ({
+                  title: b.title,
+                  href: `#${slugifyId(b.title)}`,
+                  hint: "Pročitajte više",
+                })),
+              ].map((item, i) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="group flex h-full items-start gap-3 rounded-2xl border border-border bg-white p-4 shadow-soft transition hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-card"
+                  >
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-blue-50 text-sm font-extrabold text-brand transition group-hover:bg-brand group-hover:text-white">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-semibold leading-snug text-text-strong group-hover:text-brand">
+                        {item.title}
+                      </span>
+                      <span className="mt-1 block text-xs text-text-muted">{item.hint}</span>
+                    </span>
+                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-text-muted transition group-hover:translate-x-0.5 group-hover:text-brand" />
+                  </a>
                 </li>
               ))}
             </ol>
