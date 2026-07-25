@@ -29,6 +29,7 @@ import { featuredExperts } from "@/content/experts";
 import { categories } from "@/content/categories";
 import { mediaFeed } from "@/content/mediaFeed";
 import { publishedQuestions } from "@/content/faq";
+import { EmptyState } from "@/components/site/EmptyState";
 
 
 
@@ -587,9 +588,8 @@ function HomePage() {
         <Hero />
         <QuickLinks />
         <TopicMarquee />
-        <LatestNews />
-        <LatestEducation />
-        
+        <MediaFeedBlock />
+
         <Experts />
         <AskQuestion />
       </main>
