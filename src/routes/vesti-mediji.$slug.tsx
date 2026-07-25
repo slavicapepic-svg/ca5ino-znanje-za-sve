@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { Play } from "lucide-react";
+import { Play, ArrowUpRight } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { findMediaBySlug } from "@/content/mediaFeed";
@@ -64,6 +64,16 @@ function RouteComponent() {
               </button>
             )}
           </div>
+        )}
+
+        {item.type === "video" && item.relatedArticle && (
+          <a
+            href={item.relatedArticle.href}
+            className="mt-4 inline-flex items-center gap-2 rounded-xl border border-border bg-bg-soft px-4 py-3 text-sm font-semibold text-brand transition hover:bg-blue-50"
+          >
+            {item.relatedArticle.label}
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
         )}
 
         {item.type === "news" && item.thumbnail && (

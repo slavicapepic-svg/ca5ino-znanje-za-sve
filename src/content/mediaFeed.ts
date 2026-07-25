@@ -47,6 +47,7 @@ export const mediaFeed: MediaItem[] = [
       "Sve ispod 96% je ispod tržišnog proseka.",
       "Bonus igre često imaju viši doprinos RTP-u — proverite info ekran.",
     ],
+    relatedArticle: { label: "Pročitaj ceo tekst: Šta je RTP", href: "/sve-o-igricama/sta-je-rtp" },
   },
   {
     slug: "nove-eu-smernice-2026",
