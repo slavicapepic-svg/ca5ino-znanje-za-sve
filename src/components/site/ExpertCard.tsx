@@ -202,14 +202,7 @@ function ExpertCardFull({ expert, question }: { expert: Expert; question: Expert
 
             {/* Content */}
             <div className="relative flex min-h-0 flex-col overflow-hidden">
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Zatvori"
-                className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-text-strong shadow-soft transition hover:bg-white"
-              >
-                <X className="h-4 w-4" />
-              </button>
+
 
               {/* Mobile-only header */}
               <div className="flex items-center gap-3 border-b border-border bg-bg-soft p-4 md:hidden">
