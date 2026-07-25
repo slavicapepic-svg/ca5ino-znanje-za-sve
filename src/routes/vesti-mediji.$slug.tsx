@@ -52,6 +52,82 @@ function kindLabel(type: MediaItem["type"]) {
   return "Vest";
 }
 
+type Block =
+  | { kind: "h2"; text: string }
+  | { kind: "quote"; text: string }
+  | { kind: "list"; items: string[] }
+  | { kind: "p"; text: string };
+
+function parseBody(body: string): Block[] {
+  const blocks: Block[] = [];
+  const chunks = body.split(/\n\n+/).map((c) => c.trim()).filter(Boolean);
+  for (const c of chunks) {
+    const lines = c.split("\n").map((l) => l.trim()).filter(Boolean);
+    if (lines.every((l) => l.startsWith("- ") || l.startsWith("• "))) {
+      blocks.push({ kind: "list", items: lines.map((l) => l.replace(/^[-•]\s+/, "")) });
+    } else if (lines[0].startsWith("## ")) {
+      blocks.push({ kind: "h2", text: lines[0].slice(3) });
+      const rest = lines.slice(1).join(" ");
+      if (rest) blocks.push({ kind: "p", text: rest });
+    } else if (lines[0].startsWith("> ")) {
+      blocks.push({ kind: "quote", text: lines.map((l) => l.replace(/^>\s?/, "")).join(" ") });
+    } else {
+      blocks.push({ kind: "p", text: lines.join(" ") });
+    }
+  }
+  return blocks;
+}
+
+function renderBody(body: string) {
+  const blocks = parseBody(body);
+  let firstP = true;
+  return blocks.map((b, i) => {
+    if (b.kind === "h2") {
+      return (
+        <h2 key={i} className="mt-10 mb-3 text-2xl font-extrabold tracking-tight text-text-strong">
+          {b.text}
+        </h2>
+      );
+    }
+    if (b.kind === "quote") {
+      return (
+        <blockquote
+          key={i}
+          className="my-8 rounded-2xl border-l-4 border-[color:var(--brand-accent)] bg-bg-soft px-6 py-5 text-lg italic leading-relaxed text-text-strong"
+        >
+          „{b.text}"
+        </blockquote>
+      );
+    }
+    if (b.kind === "list") {
+      return (
+        <ul key={i} className="my-5 space-y-2">
+          {b.items.map((it, j) => (
+            <li key={j} className="flex items-start gap-3 text-text-body">
+              <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--brand-accent)]" />
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    const isFirst = firstP;
+    firstP = false;
+    return (
+      <p
+        key={i}
+        className={
+          isFirst
+            ? "text-text-body first-letter:mr-2 first-letter:float-left first-letter:text-6xl first-letter:font-extrabold first-letter:leading-[0.9] first-letter:text-brand"
+            : "mt-5 text-text-body"
+        }
+      >
+        {b.text}
+      </p>
+    );
+  });
+}
+
 function RouteComponent() {
   const { slug } = Route.useParams();
   const item = findMediaBySlug(slug);
