@@ -82,7 +82,7 @@ export const mediaFeed: MediaItem[] = [
     author: "Milica Pavlović",
     read: "6",
     body:
-      "Uslovi klađenja (wagering) su najčešće x30 do x45 iznosa bonusa. Pre nego što aktivirate bonus, proverite tri stvari: wagering, maksimalni ulog po spinu i rok za ispunjenje.\n\n## Tri stavke koje uvek pročitajte\n\n- Wagering koeficijent — koliko puta morate „provrteti" bonus\n- Max bet — najveći dozvoljen ulog dok je bonus aktivan\n- Rok — obično od 7 do 30 dana od aktivacije\n\n## Najčešća zamka\n\nAko pređete maksimalni ulog samo jednom, operater može poništiti sav dobitak iz bonusa. Zato je važno da limit ostavite ispod dozvoljenog i pre nego što krenete.\n\n> Bonus nije poklon — to je marketinški alat sa jasnim pravilima. Kada ih razumete, znate i da li vam se uopšte isplati."
+      "Uslovi klađenja (wagering) su najčešće x30 do x45 iznosa bonusa. Pre nego što aktivirate bonus, proverite tri stvari: wagering, maksimalni ulog po spinu i rok za ispunjenje.\n\n## Tri stavke koje uvek pročitajte\n\n- Wagering koeficijent — koliko puta morate „provrteti\u201c bonus\n- Max bet — najveći dozvoljen ulog dok je bonus aktivan\n- Rok — obično od 7 do 30 dana od aktivacije\n\n## Najčešća zamka\n\nAko pređete maksimalni ulog samo jednom, operater može poništiti sav dobitak iz bonusa. Zato je važno da limit ostavite ispod dozvoljenog i pre nego što krenete.\n\n> Bonus nije poklon — to je marketinški alat sa jasnim pravilima. Kada ih razumete, znate i da li vam se uopšte isplati."
   },
   {
     slug: "rtp-i-mit-o-vrucoj-masini",
