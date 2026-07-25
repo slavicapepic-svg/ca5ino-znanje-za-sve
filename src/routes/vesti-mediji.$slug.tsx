@@ -159,10 +159,13 @@ function RouteComponent() {
 
       {/* BODY */}
       <section className="mx-auto max-w-3xl px-4 pt-10 pb-6 md:px-6">
-        <div className="max-w-[70ch] text-[15px] leading-relaxed text-text-body [&_p]:mt-4 [&_p]:first:mt-0">
-          <p className="text-lg leading-relaxed text-text-strong">{item.excerpt}</p>
+        <p className="border-l-4 border-[color:var(--brand-accent)] pl-4 text-lg font-medium leading-[1.7] text-text-strong">
+          {item.excerpt}
+        </p>
+
+        <div className="prose-article mt-8">
           {item.body ? (
-            item.body.split("\n\n").map((p, i) => <p key={i}>{p}</p>)
+            renderBody(item.body)
           ) : (
             <p>
               {isVideo
