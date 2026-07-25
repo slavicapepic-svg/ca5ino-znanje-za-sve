@@ -29,6 +29,7 @@ import { featuredExperts } from "@/content/experts";
 import { categories } from "@/content/categories";
 import { mediaFeed } from "@/content/mediaFeed";
 import { publishedQuestions } from "@/content/faq";
+import { EmptyState } from "@/components/site/EmptyState";
 
 
 
@@ -193,7 +194,7 @@ function QuickLinks() {
               Edukacija
             </h2>
             <p className="mt-2 max-w-xl text-text-body">
-              Najtraženije teme — objašnjene jednostavno, bez sitnih slova.
+              Nauči osnove kroz naše vodiče — jednostavno, bez sitnih slova.
             </p>
           </div>
         </div>
@@ -336,67 +337,70 @@ function MediaCard({ item }: { item: (typeof mediaFeed)[number] }) {
 }
 
 
-function LatestNews() {
-  const items = mediaFeed.filter((m) => m.type === "news").slice(0, 4);
+/* ============================= VESTI I MEDIJI (home block, 3 taba) ============================= */
+/**
+ * Centralni feed na home stranici sa 3 taba: Svi / Vesti / Video.
+ * Izvor istine: mediaFeed.ts. Puna stranica sa svim sadržajem: /vesti-mediji.
+ */
+type HomeFilter = "all" | "news" | "video";
+const homeTabs: { id: HomeFilter; label: string; empty: string }[] = [
+  { id: "all", label: "Svi", empty: "Uskoro objavljujemo prve vesti i video sadržaje." },
+  { id: "news", label: "Vesti", empty: "Uskoro stižu prve vesti." },
+  { id: "video", label: "Video", empty: "Prvi video sadržaji su u pripremi." },
+];
+
+function MediaFeedBlock() {
+  const [tab, setTab] = useState<HomeFilter>("all");
+  const items = mediaFeed
+    .filter((m) => {
+      if (tab === "all") return true;
+      if (tab === "news") return m.type === "news" || m.type === "blog";
+      return m.type === "video";
+    })
+    .slice(0, 4);
+  const active = homeTabs.find((t) => t.id === tab)!;
+
   return (
     <section id="vesti" className="relative pt-10 pb-16 md:pt-12 md:pb-20">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
-              <Calendar className="h-3.5 w-3.5" /> Najnovije vesti
+              <Calendar className="h-3.5 w-3.5" /> Vesti i mediji
             </span>
-            <h2 className="mt-3 text-3xl font-extrabold text-text-strong sm:text-4xl">
-              Aktuelne teme
-            </h2>
-          </div>
-          <Link to="/vesti-mediji" className="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline">
-            Sve vesti <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((n) => (
-            <MediaCard key={n.slug} item={n} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function LatestEducation() {
-  // Mix videos + guides iz mediaFeed-a; teaser = pun unos, samo skraćen prikaz.
-  const items = [
-    ...mediaFeed.filter((m) => m.type === "video"),
-    ...mediaFeed.filter((m) => m.type === "news"),
-  ].slice(0, 4);
-  return (
-    <section className="relative bg-bg-soft py-16 md:py-20">
-      <div className="absolute inset-x-0 top-0 -z-0" />
-      <div className="relative mx-auto max-w-7xl px-4 md:px-6">
-        <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
-              <PlayCircle className="h-3.5 w-3.5" /> Najnoviji edukativni sadržaj
-            </span>
-            <h2 className="mt-3 text-3xl font-extrabold text-text-strong sm:text-4xl">
-              Učite svojim tempom
-            </h2>
+            <h2 className="mt-3 text-3xl font-extrabold text-text-strong sm:text-4xl">Aktuelne teme</h2>
             <p className="mt-2 max-w-xl text-text-body">
-              Kratki video objašnjenja i tekstualni vodiči — bez stručnog žargona.
+              Vesti, video priče i intervjui — sve na jednom mestu.
             </p>
           </div>
           <Link to="/vesti-mediji" className="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline">
-            Cela biblioteka <ArrowRight className="h-4 w-4" />
+            Otvori Vesti i medije <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((c) => (
-            <MediaCard key={c.slug} item={c} />
+        <div className="mb-8 inline-flex rounded-full border border-border bg-white p-1 shadow-soft">
+          {homeTabs.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+                tab === t.id ? "bg-brand text-white shadow-cta" : "text-text-body hover:text-brand"
+              }`}
+            >
+              {t.label}
+            </button>
           ))}
         </div>
+
+        {items.length === 0 ? (
+          <EmptyState message={active.empty} hint="Novi sadržaj se automatski pojavljuje ovde čim se objavi." />
+        ) : (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((n) => (
+              <MediaCard key={n.slug} item={n} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -584,9 +588,8 @@ function HomePage() {
         <Hero />
         <QuickLinks />
         <TopicMarquee />
-        <LatestNews />
-        <LatestEducation />
-        
+        <MediaFeedBlock />
+
         <Experts />
         <AskQuestion />
       </main>
