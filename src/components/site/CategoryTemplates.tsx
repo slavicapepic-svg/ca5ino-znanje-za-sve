@@ -3,13 +3,14 @@ import {
   ShieldCheck, Sparkles, Wallet, Dice5, Gavel, HeartHandshake,
   ArrowRight, ArrowUpRight, ArrowLeft, Calendar, Clock,
   User as UserIcon, MessageCircleQuestion, Info, Quote, CheckCircle2,
-  BookOpen, ListChecks,
+  BookOpen, ListChecks, FileText,
 } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { CardGrid } from "@/components/site/CardGrid";
 import { CardTile } from "@/components/site/CardTile";
 import { LimitedGrid } from "@/components/site/LimitedGrid";
+import { EmptyState } from "@/components/site/EmptyState";
 import { categories, getCategoryBySlug, getArticle, type Article, type Category } from "@/content/categories";
 
 /* --- per-category metadata: icon + cross-sell --- */
@@ -190,6 +191,19 @@ export function CategoryPage({ slug }: { slug: string }) {
           </section>
         );
       })}
+
+      {/* Empty state — kada Redakcija još nije objavila teme */}
+      {cat.articles.length === 0 && (!cat.infoBlocks || cat.infoBlocks.length === 0) && (
+        <section className="py-14 md:py-16">
+          <div className="mx-auto max-w-4xl px-4 md:px-6">
+            <EmptyState
+              icon={FileText}
+              message="Sadržaj ove stranice se priprema."
+              hint="Uskoro dodajemo vodiče i objašnjenja za ovu rubriku."
+            />
+          </div>
+        </section>
+      )}
 
       {/* Cross-sell */}
       {related.length > 0 && (
