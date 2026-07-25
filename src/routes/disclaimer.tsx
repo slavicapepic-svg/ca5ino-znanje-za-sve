@@ -12,9 +12,9 @@ export const Route = createFileRoute("/disclaimer")({
   }),
   component: () => (
     <LegalPage title="Odricanje od odgovornosti (Disclaimer)" breadcrumbLabel="Disclaimer">
-      <p>CaZinoZaštoZato je edukativni i informativni projekat namenjen boljem razumevanju online igara na sreću, njihovih pravila, mehanizama i uticaja na igrače. Sadržaj objavljen na ovom sajtu predstavlja mišljenja autora, stručne analize i edukativne informacije zasnovane na iskustvu i javno dostupnim izvorima.</p>
+      <p>Ca5inoZaštoZato je edukativni i informativni projekat namenjen boljem razumevanju online igara na sreću, njihovih pravila, mehanizama i uticaja na igrače. Sadržaj objavljen na ovom sajtu predstavlja mišljenja autora, stručne analize i edukativne informacije zasnovane na iskustvu i javno dostupnim izvorima.</p>
       <p>Informacije objavljene na sajtu ne predstavljaju pravni, finansijski ili stručni savet i ne mogu se smatrati garancijom ishoda u sporovima sa kazinima, kladionicama ili drugim operaterima. Svaki slučaj je jedinstven i zavisi od konkretnih okolnosti, kao i od pravila i uslova korišćenja određenog operatera.</p>
-      <p>CaZinoZaštoZato ne organizuje igre na sreću, ne prima uplate, ne obrađuje isplate i ne pruža usluge klađenja ili kockanja. Naš cilj je isključivo edukacija, informisanje i podizanje svesti o odgovornom pristupu igrama na sreću.</p>
+      <p>Ca5inoZaštoZato ne organizuje igre na sreću, ne prima uplate, ne obrađuje isplate i ne pruža usluge klađenja ili kockanja. Naš cilj je isključivo edukacija, informisanje i podizanje svesti o odgovornom pristupu igrama na sreću.</p>
     </LegalPage>
   ),
 });
