@@ -1,6 +1,7 @@
 import { useState, useId } from "react";
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Quote, RotateCw, Plus, ArrowRight } from "lucide-react";
+import { Linkedin, Quote, RotateCw, ArrowRight, X } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import type { Expert, ExpertQA } from "@/content/experts";
 
 type BaseProps = {
