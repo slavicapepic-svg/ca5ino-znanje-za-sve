@@ -114,6 +114,18 @@ export const mediaFeed: MediaItem[] = [
     read: "6",
     youtubeId: "dQw4w9WgXcQ",
   },
+  {
+    slug: "kako-sam-prekinuo-lanac-gubitaka",
+    type: "blog",
+    title: "Kako sam prekinuo lanac gubitaka — lična priča jednog igrača",
+    excerpt: "Jedan igrač opisuje kako je prepoznao obrazac i šta mu je zaista pomoglo da napravi pauzu.",
+    thumbnail: newsPayments,
+    date: "15. jun 2026.",
+    author: "Anonimni saradnik",
+    read: "9",
+    body:
+      "Blogovi na Ca5ino ZaštoZato nisu saveti za pobedu. Oni su priče koje pomažu da razumete kako igra na sreću funkcioniše u realnom životu. U ovom tekstu jedan igrač opisuje kako je shvatio da 'samo još jedan spin' nije strategija, već mehanizam koji održava igru u toku.\n\nKljučni trenutak bio je kada je počeo da beleži svaku uplatu i isplatu. Brojevi su bili nedvosmisleni. Tek tada je mogao da vidi obrazac, a ne samo emociju trenutka.\n\nAko prepoznajete neki od ovih obrazaca, razgovor sa stručnom osobom može biti korak koji menja situaciju — bez osude, bez pritiska, sa fokusom na tome šta vama zaista pomaže.",
+  },
 ];
 
 export function findMediaBySlug(slug: string) {
