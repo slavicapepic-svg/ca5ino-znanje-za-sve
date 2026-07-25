@@ -59,7 +59,7 @@ export const mediaFeed: MediaItem[] = [
     author: "Stefan Jovanović",
     read: "8",
     body:
-      "Nove EU smernice unose harmonizaciju u domenu KYC provera i standardizaciju alata za odgovornu igru. Operateri koji posluju u više zemalja moraju uskladiti limite, samoisključenja i izveštavanje regulatorima.",
+      "Nove EU smernice unose harmonizaciju u domenu KYC provera i standardizaciju alata za odgovornu igru. Operateri koji posluju u više zemalja moraju uskladiti limite, samoisključenja i izveštavanje regulatorima.\n\n## Šta se konkretno menja\n\nRegulator traži jedinstven format izveštavanja i brži prenos podataka između nadzornih tela. To znači da će prekogranične licence imati manje sivih zona.\n\n- Ujednačeni KYC pragovi za depozite preko 2.000 EUR\n- Obavezni alati za samoisključenje sa jedinstvenim registrom\n- Standardizovano prijavljivanje sumnjivih obrazaca igre\n\n## Šta to znači za igrače\n\nZa igrače u regionu, ovo donosi konkretniju zaštitu — pre svega jasnije rokove za isplate i lakše podnošenje reklamacija ako operater ne poštuje sopstvene uslove.\n\n> Ako operater posluje u više zemalja, ne može više birati koja pravila mu odgovaraju — mora primeniti najstrožu praksu."
   },
   {
     slug: "regulatori-objasnjeni",
