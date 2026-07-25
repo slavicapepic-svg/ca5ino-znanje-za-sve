@@ -397,6 +397,9 @@ export function ArticlePage({ categorySlug, articleSlug }: { categorySlug: strin
               </p>
             </div>
 
+            {/* Share */}
+            <ShareButtons title={article.title} className="mt-8" />
+
             {/* Author block */}
             <div className="mt-10 flex items-start gap-4 rounded-2xl border border-border bg-bg-soft p-5">
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-brand text-white font-bold">
