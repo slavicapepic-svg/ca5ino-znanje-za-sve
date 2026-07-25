@@ -239,7 +239,7 @@ function RouteComponent() {
           {item.excerpt}
         </p>
 
-        <div className="prose-article mt-8">
+        <div className="mt-8 max-w-[68ch] text-[16px] leading-[1.75] text-text-body">
           {item.body ? (
             renderBody(item.body)
           ) : (
