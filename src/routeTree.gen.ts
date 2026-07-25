@@ -27,6 +27,8 @@ import { Route as ONamaRouteImport } from './routes/o-nama'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as BonusUsloviRouteImport } from './routes/bonus-uslovi'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VestiMedijiIndexRouteImport } from './routes/vesti-mediji.index'
+import { Route as RecStrucnjakaIndexRouteImport } from './routes/rec-strucnjaka.index'
 import { Route as VestiMedijiSlugRouteImport } from './routes/vesti-mediji.$slug'
 import { Route as UplateIsplateSlugRouteImport } from './routes/uplate-isplate_.$slug'
 import { Route as SvetRegulativeSlugRouteImport } from './routes/svet-regulative_.$slug'
@@ -127,6 +129,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VestiMedijiIndexRoute = VestiMedijiIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => VestiMedijiRoute,
+} as any)
+const RecStrucnjakaIndexRoute = RecStrucnjakaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RecStrucnjakaRoute,
+} as any)
 const VestiMedijiSlugRoute = VestiMedijiSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -196,6 +208,8 @@ export interface FileRoutesByFullPath {
   '/svet-regulative/$slug': typeof SvetRegulativeSlugRoute
   '/uplate-isplate/$slug': typeof UplateIsplateSlugRoute
   '/vesti-mediji/$slug': typeof VestiMedijiSlugRoute
+  '/rec-strucnjaka/': typeof RecStrucnjakaIndexRoute
+  '/vesti-mediji/': typeof VestiMedijiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -207,7 +221,6 @@ export interface FileRoutesByTo {
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/pomoc': typeof PomocRoute
   '/postavi-pitanje': typeof PostaviPitanjeRoute
-  '/rec-strucnjaka': typeof RecStrucnjakaRouteWithChildren
   '/registracija-verifikacija': typeof RegistracijaVerifikacijaRoute
   '/sve-o-igricama': typeof SveOIgricamaRoute
   '/svet-regulative': typeof SvetRegulativeRoute
@@ -215,7 +228,6 @@ export interface FileRoutesByTo {
   '/urednicka-politika': typeof UrednickaPolitikaRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/vazne-stranice': typeof VazneStraniceRoute
-  '/vesti-mediji': typeof VestiMedijiRouteWithChildren
   '/bonus-uslovi/$slug': typeof BonusUsloviSlugRoute
   '/odgovorna-igra/$slug': typeof OdgovornaIgraSlugRoute
   '/rec-strucnjaka/$slug': typeof RecStrucnjakaSlugRoute
@@ -224,6 +236,8 @@ export interface FileRoutesByTo {
   '/svet-regulative/$slug': typeof SvetRegulativeSlugRoute
   '/uplate-isplate/$slug': typeof UplateIsplateSlugRoute
   '/vesti-mediji/$slug': typeof VestiMedijiSlugRoute
+  '/rec-strucnjaka': typeof RecStrucnjakaIndexRoute
+  '/vesti-mediji': typeof VestiMedijiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -253,6 +267,8 @@ export interface FileRoutesById {
   '/svet-regulative_/$slug': typeof SvetRegulativeSlugRoute
   '/uplate-isplate_/$slug': typeof UplateIsplateSlugRoute
   '/vesti-mediji/$slug': typeof VestiMedijiSlugRoute
+  '/rec-strucnjaka/': typeof RecStrucnjakaIndexRoute
+  '/vesti-mediji/': typeof VestiMedijiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -283,6 +299,8 @@ export interface FileRouteTypes {
     | '/svet-regulative/$slug'
     | '/uplate-isplate/$slug'
     | '/vesti-mediji/$slug'
+    | '/rec-strucnjaka/'
+    | '/vesti-mediji/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -294,7 +312,6 @@ export interface FileRouteTypes {
     | '/politika-privatnosti'
     | '/pomoc'
     | '/postavi-pitanje'
-    | '/rec-strucnjaka'
     | '/registracija-verifikacija'
     | '/sve-o-igricama'
     | '/svet-regulative'
@@ -302,7 +319,6 @@ export interface FileRouteTypes {
     | '/urednicka-politika'
     | '/uslovi-koriscenja'
     | '/vazne-stranice'
-    | '/vesti-mediji'
     | '/bonus-uslovi/$slug'
     | '/odgovorna-igra/$slug'
     | '/rec-strucnjaka/$slug'
@@ -311,6 +327,8 @@ export interface FileRouteTypes {
     | '/svet-regulative/$slug'
     | '/uplate-isplate/$slug'
     | '/vesti-mediji/$slug'
+    | '/rec-strucnjaka'
+    | '/vesti-mediji'
   id:
     | '__root__'
     | '/'
@@ -339,6 +357,8 @@ export interface FileRouteTypes {
     | '/svet-regulative_/$slug'
     | '/uplate-isplate_/$slug'
     | '/vesti-mediji/$slug'
+    | '/rec-strucnjaka/'
+    | '/vesti-mediji/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -496,6 +516,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vesti-mediji/': {
+      id: '/vesti-mediji/'
+      path: '/'
+      fullPath: '/vesti-mediji/'
+      preLoaderRoute: typeof VestiMedijiIndexRouteImport
+      parentRoute: typeof VestiMedijiRoute
+    }
+    '/rec-strucnjaka/': {
+      id: '/rec-strucnjaka/'
+      path: '/'
+      fullPath: '/rec-strucnjaka/'
+      preLoaderRoute: typeof RecStrucnjakaIndexRouteImport
+      parentRoute: typeof RecStrucnjakaRoute
+    }
     '/vesti-mediji/$slug': {
       id: '/vesti-mediji/$slug'
       path: '/$slug'
@@ -557,10 +591,12 @@ declare module '@tanstack/react-router' {
 
 interface RecStrucnjakaRouteChildren {
   RecStrucnjakaSlugRoute: typeof RecStrucnjakaSlugRoute
+  RecStrucnjakaIndexRoute: typeof RecStrucnjakaIndexRoute
 }
 
 const RecStrucnjakaRouteChildren: RecStrucnjakaRouteChildren = {
   RecStrucnjakaSlugRoute: RecStrucnjakaSlugRoute,
+  RecStrucnjakaIndexRoute: RecStrucnjakaIndexRoute,
 }
 
 const RecStrucnjakaRouteWithChildren = RecStrucnjakaRoute._addFileChildren(
@@ -569,10 +605,12 @@ const RecStrucnjakaRouteWithChildren = RecStrucnjakaRoute._addFileChildren(
 
 interface VestiMedijiRouteChildren {
   VestiMedijiSlugRoute: typeof VestiMedijiSlugRoute
+  VestiMedijiIndexRoute: typeof VestiMedijiIndexRoute
 }
 
 const VestiMedijiRouteChildren: VestiMedijiRouteChildren = {
   VestiMedijiSlugRoute: VestiMedijiSlugRoute,
+  VestiMedijiIndexRoute: VestiMedijiIndexRoute,
 }
 
 const VestiMedijiRouteWithChildren = VestiMedijiRoute._addFileChildren(
