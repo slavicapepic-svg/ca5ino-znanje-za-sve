@@ -1,10 +1,19 @@
-import { Children, isValidElement, cloneElement, type ReactNode, type ReactElement } from "react";
+import {
+  Children,
+  Fragment,
+  isValidElement,
+  cloneElement,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 import { SiteShell } from "@/components/site/SiteShell";
 import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { PageHeader } from "@/components/site/PageHeader";
-import { FileText, Mail, CalendarClock } from "lucide-react";
+import { FileText, Mail, CalendarClock, Check } from "lucide-react";
 
-// --- Auto-linkify: turn URLs and emails inside text nodes into <a> tags ---
+/* ────────────────────────────────────────────────────────────────
+   Auto-linkify: URLs and emails in text become <a>
+   ──────────────────────────────────────────────────────────────── */
 const URL_RE = /(https?:\/\/[^\s<>()]+[^\s<>().,;:!?])|([\w.+-]+@[\w-]+\.[\w.-]+)/g;
 
 function linkifyString(text: string, keyPrefix: string): ReactNode[] {
@@ -24,7 +33,7 @@ function linkifyString(text: string, keyPrefix: string): ReactNode[] {
         href={href}
         target={isEmail ? undefined : "_blank"}
         rel={isEmail ? undefined : "noopener noreferrer"}
-        className="inline-flex items-baseline gap-1 font-medium text-brand underline decoration-brand/30 underline-offset-2 transition hover:text-brand-hover hover:decoration-brand/70 break-words"
+        className="font-medium text-brand underline decoration-brand/30 underline-offset-2 transition hover:text-brand-deep hover:decoration-brand/70 break-words"
       >
         {raw}
       </a>,
@@ -36,11 +45,12 @@ function linkifyString(text: string, keyPrefix: string): ReactNode[] {
 }
 
 function linkifyNode(node: ReactNode, keyPrefix = "lk"): ReactNode {
-  if (typeof node === "string") return linkifyString(node, keyPrefix);
-  if (Array.isArray(node)) return node.map((n, i) => <span key={i}>{linkifyNode(n, `${keyPrefix}-${i}`)}</span>);
+  if (typeof node === "string") return <>{linkifyString(node, keyPrefix)}</>;
+  if (Array.isArray(node))
+    return node.map((n, i) => <Fragment key={i}>{linkifyNode(n, `${keyPrefix}-${i}`)}</Fragment>);
   if (isValidElement(node)) {
     const el = node as ReactElement<any>;
-    if (el.type === "a") return el; // already a link
+    if (el.type === "a") return el;
     const kids = (el.props as any)?.children;
     if (kids == null) return el;
     return cloneElement(el, el.props, linkifyNode(kids, keyPrefix));
@@ -48,7 +58,148 @@ function linkifyNode(node: ReactNode, keyPrefix = "lk"): ReactNode {
   return node;
 }
 
-// --- Extract H2 sections to build a TOC and to wrap them nicely ---
+/* ────────────────────────────────────────────────────────────────
+   Prose transformation:
+   1. "<p>Intro: A; B; C. Trailing.</p>" → <p>Intro:</p><ul>…</ul><p>Trailing.</p>
+   2. Consecutive "<p><em>Label:</em> body</p>" → grouped definition cards
+   ──────────────────────────────────────────────────────────────── */
+
+function extractText(node: ReactNode): string {
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join("");
+  if (isValidElement(node)) return extractText((node.props as any).children);
+  return "";
+}
+
+function splitListParagraph(text: string, key: string): ReactNode | null {
+  const colonIdx = text.indexOf(":");
+  if (colonIdx <= 0) return null;
+  const after = text.slice(colonIdx + 1);
+  // Require at least 2 semicolons in the tail to consider it a list
+  if ((after.match(/;/g) ?? []).length < 2) return null;
+
+  const before = text.slice(0, colonIdx + 1).trim();
+  const parts = after
+    .split(";")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  // Try to split trailing sentence from the last item
+  let trailing = "";
+  const last = parts[parts.length - 1];
+  const trailMatch = last.match(/^(.*?[.!?])\s+([A-ZŠĐČĆŽa-zšđčćž].+)$/);
+  if (trailMatch) {
+    parts[parts.length - 1] = trailMatch[1];
+    trailing = trailMatch[2];
+  }
+
+  return (
+    <div key={key} className="mt-4 first:mt-0">
+      <p className="text-text-body">{linkifyString(before, `${key}-h`)}</p>
+      <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
+        {parts.map((p, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-2.5 rounded-lg bg-black/[0.025] px-3 py-2 text-[14px] leading-snug"
+          >
+            <Check className="mt-[3px] h-3.5 w-3.5 shrink-0 text-brand" />
+            <span>{linkifyString(p.replace(/\.$/, ""), `${key}-li-${i}`)}</span>
+          </li>
+        ))}
+      </ul>
+      {trailing && (
+        <p className="mt-3 text-text-body">{linkifyString(trailing, `${key}-t`)}</p>
+      )}
+    </div>
+  );
+}
+
+function asEmLabelParagraph(
+  el: ReactElement,
+): { label: string; body: ReactNode[] } | null {
+  const kids = Children.toArray((el.props as any).children);
+  if (kids.length === 0) return null;
+  const first = kids[0];
+  if (isValidElement(first) && first.type === "em") {
+    const labelText = extractText(first).trim();
+    if (labelText.endsWith(":")) {
+      return { label: labelText.replace(/:\s*$/, ""), body: kids.slice(1) };
+    }
+  }
+  return null;
+}
+
+function renderDefinitionGroup(
+  items: { label: string; body: ReactNode[] }[],
+  key: string,
+): ReactNode {
+  return (
+    <div key={key} className="mt-4 grid gap-3 first:mt-0 md:grid-cols-2">
+      {items.map((it, i) => (
+        <div
+          key={i}
+          className="rounded-xl border border-black/[0.06] bg-white p-4 shadow-sm"
+        >
+          <p className="text-[13px] font-bold uppercase tracking-wide text-brand">
+            {it.label}
+          </p>
+          <p className="mt-1.5 text-[14px] leading-relaxed text-text-body">
+            {linkifyNode(it.body, `${key}-${i}`)}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function transformNodes(nodes: ReactNode[], keyPrefix = "n"): ReactNode[] {
+  const out: ReactNode[] = [];
+  let emGroup: { label: string; body: ReactNode[] }[] = [];
+  const flushEm = () => {
+    if (emGroup.length > 0) {
+      if (emGroup.length === 1) {
+        // Single one — still render as a card for visual distinction
+        out.push(renderDefinitionGroup(emGroup, `${keyPrefix}-em-${out.length}`));
+      } else {
+        out.push(renderDefinitionGroup(emGroup, `${keyPrefix}-em-${out.length}`));
+      }
+      emGroup = [];
+    }
+  };
+
+  nodes.forEach((child, idx) => {
+    if (isValidElement(child) && child.type === "p") {
+      const asEm = asEmLabelParagraph(child);
+      if (asEm) {
+        emGroup.push(asEm);
+        return;
+      }
+      flushEm();
+
+      const kids = Children.toArray((child.props as any).children);
+      const isPureText = kids.every((k) => typeof k === "string");
+      if (isPureText) {
+        const text = kids.join("");
+        const listified = splitListParagraph(text, `${keyPrefix}-p-${idx}`);
+        if (listified) {
+          out.push(listified);
+          return;
+        }
+      }
+      out.push(child);
+      return;
+    }
+    flushEm();
+    out.push(child);
+  });
+  flushEm();
+  return out;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   Section splitting by <h2>
+   ──────────────────────────────────────────────────────────────── */
 function slugify(s: string) {
   return s
     .toLowerCase()
@@ -66,8 +217,10 @@ function splitSections(children: ReactNode): { intro: ReactNode[]; sections: Sec
   const sections: Section[] = [];
   let current: Section | null = null;
   for (const child of arr) {
-    if (isValidElement(child) && (child.type === "h2" || (child as any).props?.mdxType === "h2")) {
-      const title = String((child.props as any).children ?? "").trim();
+    if (isValidElement(child) && child.type === "h2") {
+      const title = String((child.props as any).children ?? "")
+        .replace(/^\d+\.\s*/, "")
+        .trim();
       current = { id: slugify(title), title, nodes: [] };
       sections.push(current);
     } else {
@@ -78,6 +231,9 @@ function splitSections(children: ReactNode): { intro: ReactNode[]; sections: Sec
   return { intro, sections };
 }
 
+/* ────────────────────────────────────────────────────────────────
+   Component
+   ──────────────────────────────────────────────────────────────── */
 export function LegalPage({
   title,
   intro,
@@ -91,8 +247,18 @@ export function LegalPage({
   breadcrumbLabel: string;
   updatedAt?: string;
 }) {
-  const linked = linkifyNode(children);
-  const { intro: introNodes, sections } = splitSections(linked);
+  const { intro: introNodes, sections } = splitSections(children);
+
+  const introTransformed = transformNodes(introNodes, "intro").map((n, i) => (
+    <Fragment key={`i-${i}`}>{linkifyNode(n, `i-${i}`)}</Fragment>
+  ));
+
+  const sectionsTransformed = sections.map((s) => ({
+    ...s,
+    nodes: transformNodes(s.nodes, s.id).map((n, i) => (
+      <Fragment key={`${s.id}-${i}`}>{linkifyNode(n, `${s.id}-${i}`)}</Fragment>
+    )),
+  }));
 
   return (
     <SiteShell>
@@ -107,12 +273,16 @@ export function LegalPage({
           </span>
           {updatedAt && (
             <span className="inline-flex items-center gap-1.5">
-              <CalendarClock className="h-3.5 w-3.5" /> Poslednje ažuriranje: <strong className="text-text-strong">{updatedAt}</strong>
+              <CalendarClock className="h-3.5 w-3.5" /> Poslednje ažuriranje:{" "}
+              <strong className="text-text-strong">{updatedAt}</strong>
             </span>
           )}
           <span className="ml-auto inline-flex items-center gap-1.5">
             <Mail className="h-3.5 w-3.5" />
-            <a href="mailto:redakcija@ca5inozastozato.rs" className="font-medium text-brand hover:text-brand-hover">
+            <a
+              href="mailto:redakcija@ca5inozastozato.rs"
+              className="font-medium text-brand hover:text-brand-deep"
+            >
               redakcija@ca5inozastozato.rs
             </a>
           </span>
@@ -120,13 +290,15 @@ export function LegalPage({
 
         <div className="grid gap-10 lg:grid-cols-12">
           {/* Sticky TOC */}
-          {sections.length > 1 && (
+          {sectionsTransformed.length > 1 && (
             <aside className="lg:col-span-4 xl:col-span-3">
               <div className="lg:sticky lg:top-24">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Sadržaj</p>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
+                  Sadržaj
+                </p>
                 <nav>
-                  <ol className="space-y-1 border-l border-black/[0.08]">
-                    {sections.map((s, i) => (
+                  <ol className="space-y-0.5 border-l border-black/[0.08]">
+                    {sectionsTransformed.map((s, i) => (
                       <li key={s.id}>
                         <a
                           href={`#${s.id}`}
@@ -148,20 +320,19 @@ export function LegalPage({
           {/* Article */}
           <article
             className={
-              (sections.length > 1 ? "lg:col-span-8 xl:col-span-9 " : "") +
+              (sectionsTransformed.length > 1 ? "lg:col-span-8 xl:col-span-9 " : "") +
               "max-w-none text-[15px] leading-relaxed text-text-body " +
-              "[&_p]:mt-4 [&_p]:first:mt-0 " +
-              "[&_em]:font-semibold [&_em]:not-italic [&_em]:text-text-strong " +
+              "[&_p]:mt-3 [&_p]:first:mt-0 " +
               "[&_strong]:text-text-strong"
             }
           >
-            {introNodes.length > 0 && (
+            {introTransformed.length > 0 && (
               <div className="rounded-2xl border border-brand/10 bg-blue-50/50 p-5 md:p-6">
-                {introNodes}
+                {introTransformed}
               </div>
             )}
 
-            {sections.map((s, i) => (
+            {sectionsTransformed.map((s, i) => (
               <section
                 key={s.id}
                 id={s.id}
@@ -171,7 +342,9 @@ export function LegalPage({
                   <span className="rounded-md bg-brand-accent/80 px-2 py-0.5 text-sm font-bold tabular-nums text-brand-deep">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h2 className="text-xl font-bold text-text-strong md:text-2xl">{s.title}</h2>
+                  <h2 className="text-xl font-bold text-text-strong md:text-2xl">
+                    {s.title}
+                  </h2>
                 </div>
                 <div className="max-w-3xl">{s.nodes}</div>
               </section>
