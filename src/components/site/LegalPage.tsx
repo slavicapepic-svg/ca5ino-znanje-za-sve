@@ -168,7 +168,7 @@ export function LegalPage({
                 className="mt-10 scroll-mt-24 border-t border-black/[0.06] pt-8 first:mt-8"
               >
                 <div className="mb-4 flex items-baseline gap-3">
-                  <span className="text-sm font-bold tabular-nums text-brand-yellow-ink bg-brand-yellow/70 rounded-md px-2 py-0.5">
+                  <span className="rounded-md bg-brand-accent/80 px-2 py-0.5 text-sm font-bold tabular-nums text-brand-deep">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h2 className="text-xl font-bold text-text-strong md:text-2xl">{s.title}</h2>
