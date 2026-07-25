@@ -5,9 +5,17 @@ import newsPayments from "@/assets/news-payments.jpg";
 import eduRtp from "@/assets/edu-rtp.jpg";
 import eduResponsible from "@/assets/edu-responsible.jpg";
 
+export type RelatedArticleRef = {
+  /** Prikazni tekst linka ispod videa, npr. "Pročitaj ceo tekst". */
+  label: string;
+  /** Interna URL putanja članka na sajtu (npr. /sve-o-igricama/sta-je-rtp). */
+  href: string;
+};
+
 export type MediaItem = {
   slug: string;
-  type: "video" | "news";
+  /** "video" i "news" idu svuda; "blog" je posebna vrsta teksta u Vestima i medijima. */
+  type: "video" | "news" | "blog";
   title: string;
   excerpt: string;
   thumbnail: string;
@@ -18,6 +26,8 @@ export type MediaItem = {
   keyPoints?: string[];
   guestBio?: string;
   body?: string;
+  /** Kada video/reel ima prateći članak na sajtu, prikazujemo link ispod videa. */
+  relatedArticle?: RelatedArticleRef;
 };
 
 export const mediaFeed: MediaItem[] = [
