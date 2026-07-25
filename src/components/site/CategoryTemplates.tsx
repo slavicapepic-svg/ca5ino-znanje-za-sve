@@ -11,6 +11,7 @@ import { CardGrid } from "@/components/site/CardGrid";
 import { CardTile } from "@/components/site/CardTile";
 import { LimitedGrid } from "@/components/site/LimitedGrid";
 import { EmptyState } from "@/components/site/EmptyState";
+import { ShareButtons } from "@/components/site/ShareButtons";
 import { categories, getCategoryBySlug, getArticle, type Article, type Category } from "@/content/categories";
 
 /* --- per-category metadata: icon + cross-sell --- */
@@ -395,6 +396,9 @@ export function ArticlePage({ categorySlug, articleSlug }: { categorySlug: strin
                 i povežete znanje sa drugim oblastima našeg edukativnog centra.
               </p>
             </div>
+
+            {/* Share */}
+            <ShareButtons title={article.title} className="mt-8" />
 
             {/* Author block */}
             <div className="mt-10 flex items-start gap-4 rounded-2xl border border-border bg-bg-soft p-5">
