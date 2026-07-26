@@ -47,6 +47,9 @@ const team: TeamMember[] = [
   },
 ];
 
+// Ostavi prazno dok se ne uploaduje fotografija; može biti import iz "@/assets/..." ili URL.
+const slavicaPhoto: string | undefined = undefined;
+
 function ONamaPage() {
   return (
     <SiteShell>
