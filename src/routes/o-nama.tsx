@@ -158,12 +158,21 @@ function ONamaPage() {
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-3">
-                <span
-                  className="grid h-12 w-12 place-items-center rounded-full bg-brand/10 text-base font-bold text-brand"
-                  aria-hidden
-                >
-                  SP
-                </span>
+                {slavicaPhoto ? (
+                  <img
+                    src={slavicaPhoto}
+                    alt="Slavica Pepić"
+                    loading="lazy"
+                    className="h-12 w-12 rounded-full object-cover ring-2 ring-brand/20"
+                  />
+                ) : (
+                  <span
+                    className="grid h-12 w-12 place-items-center rounded-full bg-brand/10 text-base font-bold text-brand"
+                    aria-hidden
+                  >
+                    SP
+                  </span>
+                )}
                 <span className="text-sm font-semibold text-text-strong">Slavica Pepić</span>
               </div>
               <a
