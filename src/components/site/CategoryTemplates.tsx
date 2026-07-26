@@ -176,8 +176,11 @@ export function CategoryPage({ slug }: { slug: string }) {
         </section>
       )}
 
-      {/* Info blocks -> compact grid of cards (rendered AFTER tiles) */}
-      {cat.infoBlocks && cat.infoBlocks.length > 0 && (
+      {/* Info blocks — rich redesign for bonus-uslovi, generic grid otherwise */}
+      {cat.slug === "bonus-uslovi" && cat.infoBlocks && cat.infoBlocks.length > 0 && (
+        <BonusInfoSections />
+      )}
+      {cat.slug !== "bonus-uslovi" && cat.infoBlocks && cat.infoBlocks.length > 0 && (
         <section className="border-y border-border bg-bg-soft py-14">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
