@@ -145,6 +145,42 @@ function ONamaPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-16 md:px-6">
+        <Reveal>
+          <div className="rounded-2xl border border-border bg-white p-6 shadow-soft md:p-8">
+            <div className="flex items-center gap-2">
+              <span className="text-lg" aria-hidden>⭐</span>
+              <h2 className="text-xl font-extrabold text-text-strong sm:text-2xl">Zahvalnica</h2>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-text-body sm:text-base">
+              Posebnu zahvalnost dugujemo Slavici Pepić za dizajn, vizuelni identitet i korisničko
+              iskustvo sajta. Njen rad pomogao je da Ca5inoZaštoZato dobije prepoznatljiv izgled i
+              preglednu strukturu koja naš edukativni sadržaj čini dostupnijim i lakšim za korišćenje.
+            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <div className="flex items-center gap-3">
+                <span
+                  className="grid h-12 w-12 place-items-center rounded-full bg-brand/10 text-base font-bold text-brand"
+                  aria-hidden
+                >
+                  SP
+                </span>
+                <span className="text-sm font-semibold text-text-strong">Slavica Pepić</span>
+              </div>
+              <a
+                href="https://www.linkedin.com/in/slavica-pepic/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profil — Slavica Pepić"
+                className="inline-flex items-center gap-2 rounded-full border border-brand/20 px-3 py-1.5 text-xs font-semibold text-brand hover:bg-brand/5"
+              >
+                <Linkedin className="h-3.5 w-3.5" /> LinkedIn profil
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-16 md:px-6">
         <div className="grid gap-4 md:grid-cols-2">
           <Reveal>
             <Link
