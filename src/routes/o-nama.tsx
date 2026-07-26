@@ -47,8 +47,8 @@ const team: TeamMember[] = [
   },
 ];
 
-// Ostavi prazno dok se ne uploaduje fotografija; može biti import iz "@/assets/..." ili URL.
-const slavicaPhoto: string | undefined = undefined;
+import slavicaPhotoAsset from "@/assets/slavica-pepic.png.asset.json";
+const slavicaPhoto: string | undefined = slavicaPhotoAsset.url;
 
 function ONamaPage() {
   return (
