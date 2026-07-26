@@ -12,6 +12,7 @@ import { CardTile } from "@/components/site/CardTile";
 import { LimitedGrid } from "@/components/site/LimitedGrid";
 import { EmptyState } from "@/components/site/EmptyState";
 import { ShareButtons } from "@/components/site/ShareButtons";
+import { BonusInfoSections } from "@/components/site/BonusInfoSections";
 import { categories, getCategoryBySlug, getArticle, type Article, type Category } from "@/content/categories";
 
 /* --- per-category metadata: icon + cross-sell --- */
